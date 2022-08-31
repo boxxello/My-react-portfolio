@@ -11,7 +11,7 @@ import '../styles/resume.css';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 const Particle = lazy(() => import("../Particle").then(({default: Particle}) => ({default: Particle})));
 const resumeLink =
-    "https://raw.githubusercontent.com/boxxello/sito/main/Resume_Francesco_Bosso.pdf";
+    "https://raw.githubusercontent.com/boxxello/My-react-portfolio/master/public/Resume_Francesco_Bosso.pdf";
 
 function ResumeNew() {
     const [width, setWidth] = useState(1200);
