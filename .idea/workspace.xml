@@ -1,79 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="39be5424-54bb-40bf-b808-1e8c36da8e8b" name="Changes" comment="Full commit of my portfolio.">
-      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/Resume_Francesco_Bosso.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/android-chrome-192x192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/android-chrome-512x512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/apple-touch-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/favicon-16x16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/favicon-32x32.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/comandi.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Resume_Francesco_Bosso.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/android-chrome-192x192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/android-chrome-512x512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/apple-touch-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/favicon-16x16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/favicon-32x32.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/App.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Assets/Projects/anticheat-test-min_1.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Assets/Projects/captcha-eval-min_1.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Assets/Projects/logo-warehouse-min_1.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Assets/Projects/tree-dots-min_1.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Assets/Resume-Francesco-Bosso.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Assets/Resume_Francesco_Bosso.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Assets/about.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Assets/avatar-5-cmp.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Assets/home-bg.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Assets/home-main2.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Assets/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Assets/pre.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/About/About.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/About/AboutCard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/About/Github.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/About/OperatingSys.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/About/Techstack.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/About/Toolstack.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Home/Home.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Home/Home2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Home/Type.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Navbar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Particle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Pre.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Projects/ProjectCards.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Projects/Projects.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Resume/ResumeNew.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ScrollToTop.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/styles/about.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/styles/footer.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/styles/home.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/styles/navbar.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/styles/preloader.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/styles/projects.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/styles/resume.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reportWebVitals.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/style.css" afterDir="false" />
-    </list>
+    <list default="true" id="39be5424-54bb-40bf-b808-1e8c36da8e8b" name="Changes" comment="Full commit of my portfolio." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -198,8 +126,16 @@
       <workItem from="1661975863851" duration="28000" />
       <workItem from="1661975912665" duration="1412000" />
       <workItem from="1661980490406" duration="174000" />
-      <workItem from="1661980683764" duration="801000" />
+      <workItem from="1661980683764" duration="1008000" />
     </task>
+    <task id="LOCAL-00001" summary="Full commit of my portfolio.">
+      <created>1661981620980</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1661981620980</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
