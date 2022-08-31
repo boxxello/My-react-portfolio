@@ -1,3 +1,4 @@
+
 # pull official base image
 FROM node:17-alpine
 
@@ -27,4 +28,4 @@ RUN npm run build --production
 #RUN npm install --save-dev terser-brunch
 RUN npm install -g serve
 #RUN brunch build -p
-CMD ["serve", "-s", "build"]
+CMD ["serve", "-s", "build", "-l", "3008"]

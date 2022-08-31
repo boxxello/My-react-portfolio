@@ -1,2 +1,2 @@
 sudo docker build . -t nuovosito
-sudo docker run -it -d --restart=always -p 3000:3000 --name nuovosito100 nuovosito
+sudo docker run -it -d --restart=always -p 3008:3008 --name nuovosito100 nuovosito

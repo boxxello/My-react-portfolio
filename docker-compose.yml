@@ -10,7 +10,7 @@ services:
       - '.:/app'
       - '/app/node_modules'
     ports:
-      - 3000:3000
+      - 3008:3008
     environment:
       - CHOKIDAR_USEPOLLING=true    
     restart: always

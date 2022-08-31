@@ -13,7 +13,7 @@ const Particle = lazy(() => import("../Particle").then(({default: Particle}) => 
 const resumeLink =
     "https://raw.githubusercontent.com/boxxello/My-react-portfolio/master/public/Resume_Francesco_Bosso.pdf";
 
-function ResumeNew() {
+function Resume() {
     const [width, setWidth] = useState(1200);
 
     useEffect(() => {
@@ -57,5 +57,5 @@ function ResumeNew() {
     );
 }
 
-export default ResumeNew;
+export default Resume;
 
