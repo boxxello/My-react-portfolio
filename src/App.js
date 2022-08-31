@@ -23,7 +23,7 @@ import ScrollToTop from "./components/ScrollToTop";
 
 const About = lazy(() => import("./components/About/About").then(({default: About}) => ({default: About})));
 const Projects = lazy(() => import("./components/Projects/Projects").then(({default: Projects}) => ({default: Projects})));
-const Resume = lazy(() => import("./components/Resume/Resume").then(({Resume: Projects}) => ({default: Resume})));
+const Resume = lazy(() => import("./components/Resume/ResumeNew").then(({default: Projects}) => ({default: Projects})));
 
 function App() {
 
