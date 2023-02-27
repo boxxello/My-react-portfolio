@@ -56,17 +56,18 @@
 
     position: relative;
     background-image: var(--image-gradient), url(../../Assets/home-bg.webp);
+background-size: cover;
     z-index: -1;
     /*background-image: var(--image-gradient), url(Assets/home-bg.webp);*/
     background-position: top center;
     background-repeat: no-repeat;
 
-    min-height: 100vh !important;
-    max-width: 100vw !important;
+    min-height: 100vh;
+    min-width: 100vw;
     color: whitesmoke;
     text-align: left;
-    padding-bottom: 30px !important;
-    padding-top: 10% !important;
+    padding-bottom: 30px;
+    padding-top: 10% ;
 }
 
 .heading {
