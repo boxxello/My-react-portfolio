@@ -1,31 +1,30 @@
+# Build stage
+FROM node:18-alpine AS builder
 
-# pull official base image
-FROM node:17-alpine
-
-# set working directory
-RUN mkdir /app
+# Set work directory
 WORKDIR /app
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
-
-
-# install app dependencies
-#copies package.json and package-lock.json to Docker environment
+# Install dependencies
 COPY package*.json ./
-RUN npm install
+RUN npm ci || npm install
 
-# Installs all node packages
- 
-RUN mkdir -p node_modules/.cache && chmod -R 777 node_modules/.cache
+# Copy project files
+COPY . .
 
-# Copies everything over to Docker environment
-COPY . ./
-EXPOSE 3000
-# start app
-RUN npm run build --production
-#RUN npm install -g brunch
-#RUN npm install --save-dev terser-brunch
-RUN npm install -g serve
-#RUN brunch build -p
-CMD ["serve", "-s", "build", "-l", "3008"]
+# Build the app
+RUN npm run build
+
+# Production stage
+FROM nginx:alpine
+
+# Copy built assets from builder stage
+COPY --from=builder /app/build /usr/share/nginx/html
+
+# Copy nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port 80
+EXPOSE 80
+
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]

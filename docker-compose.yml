@@ -2,16 +2,11 @@ version: '3.7'
 
 services:
   app:
-    container_name: nuovosito100
+    container_name: portfolio
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - '.:/app'
-      - '/app/node_modules'
     ports:
-      - 3008:3008
-    environment:
-      - CHOKIDAR_USEPOLLING=true    
+      - "80:80"
     restart: always
 
