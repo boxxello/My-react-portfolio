@@ -1,0 +1,15 @@
+.vscode
+.idea
+
+.venv
+/node_modules/
+*sqlite*
+
+static/dist
+
+__pycache__
+
+htmlcov/**
+.coverage
+
+/node_modules/
