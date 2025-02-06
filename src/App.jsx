@@ -29,10 +29,10 @@ const messages = {
     'it': messages_it,
 };
 
-const About = lazy(() => import("./components/About/About").then(({default: About}) => ({default: About})));
-const Projects = lazy(() => import("./components/Projects/Projects").then(({default: Projects}) => ({default: Projects})));
-const Resume = lazy(() => import("./components/Resume/Resume").then(({default: Projects}) => ({default: Projects})));
-
+const About = lazy(() => import("./components/About/About"));
+const Projects = lazy(() => import("./components/Projects/Projects"));
+const Resume = lazy(() => import("./components/Resume/Resume"));
+import 'pdfjs-dist/build/pdf.worker.min.mjs';
 function App() {
     const [load, updateLoad] = useState(true);
     const [locale, setLocale] = useState('en');

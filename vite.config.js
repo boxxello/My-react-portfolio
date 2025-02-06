@@ -5,7 +5,9 @@ import path from 'path';
 export default defineConfig({
     plugins: [react()],
     esbuild: {
-        loader: 'jsx'
+        loader: 'jsx',
+        include: /\.[jt]sx?$/,
+        exclude: /node_modules/
     },
     base: '/', // Ensure this points to the correct base
 
@@ -14,8 +16,10 @@ export default defineConfig({
         esbuildOptions: {
             loader: {
                 '.js': 'jsx',
+                '.jsx': 'jsx'
             },
         },
+        include: ['react-pdf']
     },
     server: {
         port: 3000,
@@ -24,12 +28,22 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './src')
-        }
+        },
+        extensions: ['.js', '.jsx', '.json']
     },
     build: {
         outDir: 'dist',
         assetsDir: 'assets',
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    pdfjs: ['pdfjs-dist', 'react-pdf']
+                }
+            }
+        }
     },
+    // Add this section to handle PDF files
+    assetsInclude: ['**/*.pdf'],
     // Handle client-side routing
     preview: {
         port: 3000

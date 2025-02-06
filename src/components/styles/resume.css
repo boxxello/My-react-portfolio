@@ -1,5 +1,5 @@
 .resume-section {
-    position: relative !important;
+    position: relative;
     padding-top: 110px !important;
     padding-bottom: 30px !important;
     background-image: var(--section-background-color) !important;
@@ -104,5 +104,49 @@
 
 .fork-btn-inner::after {
     display: none !important;
+}
+
+.loading-message,
+.error-message {
+    color: white;
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.error-message {
+    color: #ff6b6b;
+}
+
+/* PDF viewer styles */
+.react-pdf__Document {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.react-pdf__Page {
+    margin: 1em 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    background-color: white;
+}
+
+.react-pdf__Page canvas {
+    max-width: 100%;
+    height: auto !important;
+}
+
+@media (max-width: 786px) {
+    .resume-section {
+        padding-top: 80px !important;
+    }
+    
+    .resume {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
 }
 
