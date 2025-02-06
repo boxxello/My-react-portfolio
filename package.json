@@ -29,8 +29,7 @@
     "start": "^5.1.0",
     "typewriter-effect": "^2.18.2",
     "web-vitals": "^2.1.4",
-    "yup": "^1.6.1",
-    "pdfjs-dist": "^4.8.69"
+    "yup": "^1.6.1"
   },
   "scripts": {
     "dev": "vite",

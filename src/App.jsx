@@ -1,4 +1,4 @@
-import React, {useState, useEffect, lazy, Suspense, startTransition} from "react";
+import React, {useState, useEffect, lazy, Suspense} from "react";
 import { IntlProvider } from 'react-intl';
 import Preloader from "./components/Pre";
 import Navbar from "./components/Navbar";
@@ -31,57 +31,54 @@ const messages = {
 
 const About = lazy(() => import("./components/About/About"));
 const Projects = lazy(() => import("./components/Projects/Projects"));
-const Resume = lazy(() => import("./components/Resume/Resume"));
-import 'pdfjs-dist/build/pdf.worker.min.mjs';
+const Resume = lazy(() => import("./components/Resume/Resume.jsx"));
+
 function App() {
-    const [load, updateLoad] = useState(true);
+    const [load, setLoad] = useState(true);
     const [locale, setLocale] = useState('en');
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            updateLoad(false);
+            setLoad(false);
         }, 1200);
-
         return () => clearTimeout(timer);
     }, []);
 
     return (
-        <IntlProvider locale={locale} messages={messages[locale]}>
-            {/*{startTransition(() => (*/}
-                <BrowserRouter>
-                    <Preloader load={load}/>
-                    <div className="App" id={load ? "no-scroll" : "scroll"}>
-                        <Navbar/>
-                        <ScrollToTop/>
+        <IntlProvider messages={messages[locale]} locale={locale} defaultLocale="en">
+            <BrowserRouter>
+                <Preloader load={load}/>
+                <div className="App" id={load ? "no-scroll" : "scroll"}>
+                    <Navbar/>
+                    <ScrollToTop/>
 
-                        <Routes>
-                            <Route path="/" exact element={<Home/>}/>
+                    <Routes>
+                        <Route path="/" element={<Home/>}/>
 
-                            <Route path="/project" element={
-                                <Suspense fallback={<Preloader load={load}/>}>
-                                    <Projects/>
-                                </Suspense>}/>
+                        <Route path="/project" element={
+                            <Suspense fallback={<Preloader load={load}/>}>
+                                <Projects/>
+                            </Suspense>}/>
 
-                            <Route path="/about" element={
-                                <Suspense fallback={<Preloader load={load}/>}>
-                                    <About/>
-                                </Suspense>}/>
+                        <Route path="/about" element={
+                            <Suspense fallback={<Preloader load={load}/>}>
+                                <About/>
+                            </Suspense>}/>
 
-                            <Route path="/resume" element={
-                                <Suspense fallback={<Preloader load={load}/>}>
-                                    <Resume/>
-                                </Suspense>}/>
+                        <Route path="/resume" element={
+                            <Suspense fallback={<Preloader load={load}/>}>
+                                <Resume/>
+                            </Suspense>}/>
 
-                            <Route path={"*"} exact element={
-                                <Suspense fallback={<Preloader load={load}/>}>
-                                    <Navigate to="/"/>
-                                </Suspense>}/>
+                        <Route path={"*"} exact element={
+                            <Suspense fallback={<Preloader load={load}/>}>
+                                <Navigate to="/"/>
+                            </Suspense>}/>
 
-                        </Routes>
-                        <Footer changeLanguage={setLocale} currentLocale={locale}/>
-                    </div>
-                </BrowserRouter>
-            {/*))}*/}
+                    </Routes>
+                    <Footer changeLanguage={setLocale} currentLocale={locale}/>
+                </div>
+            </BrowserRouter>
         </IntlProvider>
     );
 }

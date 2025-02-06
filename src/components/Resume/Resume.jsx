@@ -1,20 +1,14 @@
-import React, { useState, useEffect, lazy, Suspense, useMemo } from "react";
-import { Container, Row } from "react-bootstrap";
+import React, {useState, useEffect, lazy, Suspense} from "react";
+import {Container, Row} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import pdf from "../../Assets/Resume_Francesco_Bosso.pdf";
-import { AiOutlineDownload } from "react-icons/ai";
-import { Document, Page, pdfjs } from "react-pdf";
+import {AiOutlineDownload} from "react-icons/ai";
+import {Document, Page} from "react-pdf";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import '../styles/resume.css';
 
-// Import worker directly from node_modules
-import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.entry';
-
-// Set worker
-pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
-
-const Particle = lazy(() => import("../Particle").then(({ default: Particle }) => ({ default: Particle })));
+// Simple Particle import
+const Particle = lazy(() => import("../Particle"));
 
 function Resume() {
     const [width, setWidth] = useState(window.innerWidth);
@@ -32,7 +26,7 @@ function Resume() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    function onDocumentLoadSuccess({ numPages }) {
+    function onDocumentLoadSuccess({numPages}) {
         setNumPages(numPages);
         setLoading(false);
     }
@@ -61,13 +55,6 @@ function Resume() {
         );
     };
 
-    // Memoize options to avoid unnecessary reloads
-    const pdfOptions = useMemo(() => ({
-        cMapUrl: 'https://unpkg.com/pdfjs-dist@4.8.69/cmaps/',
-        cMapPacked: true,
-        standardFontDataUrl: 'https://unpkg.com/pdfjs-dist@4.8.69/standard_fonts/'
-    }), []);
-
     return (
         <div>
             <Container fluid className="resume-section">
@@ -77,13 +64,12 @@ function Resume() {
 
                 <Row className="resume">
                     <Document
-                        file={pdf}
+                        file="/Resume_Francesco_Bosso.pdf"
                         onLoadSuccess={onDocumentLoadSuccess}
                         onLoadError={onDocumentLoadError}
                         loading={<div>Loading PDF...</div>}
                         error={<div>Error loading PDF!</div>}
                         className="d-flex justify-content-center"
-                        options={pdfOptions}
                     >
                         {renderPDFContent()}
                     </Document>
@@ -92,7 +78,7 @@ function Resume() {
                 <Row style={{justifyContent: "center", position: "relative"}}>
                     <Button
                         variant="primary"
-                        href={pdf}
+                        href="/Resume_Francesco_Bosso.pdf"
                         target="_blank"
                         style={{maxWidth: "250px"}}
                     >
