@@ -1,0 +1,29 @@
+{
+    "projects": {
+        "heading": "Lavoro",
+        "description": "Ecco alcuni progetti su cui ho lavorato recentemente.",
+        "bloomShare": {
+            "title": "BloomShare",
+            "description": "Un sito web di fiori che consente agli utenti di creare bouquet virtuali.",
+            "btn": "Fioriamo!"
+        },
+        "amazon": {
+            "title": "Amazon WareHouseDeals Italia (discontinuato)",
+            "description": "Un scraper che ci consente di controllare sconti o errori di prezzo su Amazon WareHouse IT nel minor tempo possibile per consentire agli utenti del canale Telegram di acquistare i prodotti pubblicati.",
+            "btn": "Unisciti al canale TG"
+        },
+        "captchaSolver": {
+            "title": "Risolutore di Captcha",
+            "description": "Strumento di classificazione delle immagini basato su deep learning addestrato con circa 5 mila immagini. Il modello è stato addestrato utilizzando il framework Tensorflow 2 e ha un'accuratezza superiore al 95%."
+        },
+        "clientAntiCheat": {
+            "title": "Client AntiCheat",
+            "description": "Un client Anticheat di FiveM che eseguiva una scansione attraverso le stringhe di memoria delle chiavi regedit, analisi dei file prefetch, dump di memoria del client Fivem, ma consentiva anche di dare un'occhiata rapida alle specifiche del PC, alle cartelle e così via.",
+            "btn": "Visualizza su Github"
+        },
+        "moreComing": {
+            "title": "Altri stanno arrivando",
+            "description": "Rimanete sintonizzati!"
+        }
+    }
+}
