@@ -1,0 +1,29 @@
+{
+    "projects": {
+        "heading": "Work",
+        "description": "Here are a few projects I've worked on recently.",
+        "bloomShare": {
+            "title": "BloomShare",
+            "description": "A flower website that allows users to create virtual bouquets.",
+            "btn": "Let's bloom!"
+        },
+        "amazon": {
+            "title": "Amazon WareHouseDeals Italia (discontinued)",
+            "description": "A scraper which allows us to check for discounts or price errors on Amazon WareHouse IT in the shortest possible time to allow Telegram channel users to buy the posted products.",
+            "btn": "Join the TG channel"
+        },
+        "captchaSolver": {
+            "title": "Captcha solver",
+            "description": "Deep learning image classification tool trained with around 5 thousand images. The model was trained using Tensorflow 2 framework and has +95% accuracy."
+        },
+        "clientAntiCheat": {
+            "title": "Client AntiCheat",
+            "description": "A FiveM Anticheat client which performed a scan through regedit key files memory strings, prefetch file analysis, Fivem client process memory dumps but also allowed to have a quick look into pc specs, folders and so on.",
+            "btn": "View on Github"
+        },
+        "moreComing": {
+            "title": "More are coming",
+            "description": "Stay tuned!"
+        }
+    }
+}

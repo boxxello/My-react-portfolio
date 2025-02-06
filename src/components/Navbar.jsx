@@ -15,7 +15,7 @@ import {
 
 import {CgFileDocument} from "react-icons/cg";
 
-function NavBar() {
+function NavbarCustom({ changeLanguage, currentLocale }) {
     const [expand, updateExpanded] = useState(false);
     const [navColour, updateNavbar] = useState(false);
 
@@ -91,7 +91,6 @@ function NavBar() {
                             </Nav.Link>
                         </Nav.Item>
 
-
                         <Nav.Item className="fork-btn">
                             <Button
                                 href="https://github.com/boxxello"
@@ -102,6 +101,12 @@ function NavBar() {
                                 <AiFillStar style={{fontSize: "1.1em"}}/>
                             </Button>
                         </Nav.Item>
+
+                        <Nav.Item>
+                            <Button onClick={() => changeLanguage(currentLocale === 'en' ? 'it' : 'en')}>
+                                {currentLocale === 'en' ? 'Italiano' : 'English'}
+                            </Button>
+                        </Nav.Item>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
@@ -109,4 +114,4 @@ function NavBar() {
     );
 }
 
-export default NavBar;
+export default NavbarCustom;
