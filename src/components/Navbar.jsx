@@ -3,17 +3,18 @@ import {
     Box,
     Flex,
     IconButton,
-    Image,
     Link as ChakraLink,
     Stack,
     useColorModeValue,
     useDisclosure,
     Container,
     Button,
+    Text,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Link as RouterLink } from "react-router-dom";
-import logo from "../Assets/logo.png";
+import { motion, AnimatePresence } from "framer-motion";
+import { FormattedMessage } from "react-intl";
 import { CgGitFork } from "react-icons/cg";
 import {
     AiFillStar,
@@ -24,10 +25,16 @@ import {
 import { CgFileDocument } from "react-icons/cg";
 import { usePreferences } from "../hooks/usePreferences";
 
+const MotionBox = motion(Box);
+const MotionFlex = motion(Flex);
+const MotionIconButton = motion(IconButton);
+const MotionText = motion(Text);
+
 function NavbarCustom() {
     const { isOpen, onToggle, onClose } = useDisclosure();
     const { language, setLanguage } = usePreferences();
     const [navBackground, setNavBackground] = useState(false);
+    const [hoveredItem, setHoveredItem] = useState(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -44,74 +51,155 @@ function NavbarCustom() {
         }
     };
 
-    const NavItem = ({ to, icon, children }) => {
+    const glitchAnimation = {
+        initial: { opacity: 1, x: 0 },
+        hover: {
+            opacity: [1, 0.8, 1],
+            x: [0, -2, 2, -2, 0],
+            transition: {
+                duration: 0.2,
+                repeat: Infinity,
+                repeatType: "reverse",
+            },
+        },
+    };
+
+    const pixelBorderAnimation = {
+        initial: { scale: 1 },
+        hover: {
+            scale: [1, 1.02, 0.98, 1],
+            transition: {
+                duration: 0.2,
+                repeat: Infinity,
+                repeatType: "reverse",
+            },
+        },
+    };
+
+    const logoAnimation = {
+        initial: { scale: 1, rotate: 0 },
+        hover: {
+            scale: [1, 1.1, 1],
+            rotate: [0, -5, 5, 0],
+            transition: {
+                duration: 0.3,
+                ease: "easeInOut",
+            },
+        },
+    };
+
+    const NavItem = ({ to, icon, children, itemKey }) => {
         const color = useColorModeValue("gray.800", "white");
+        const hoverBg = useColorModeValue("rgba(160, 174, 192, 0.2)", "rgba(255, 255, 255, 0.1)");
+        
         return (
-            <ChakraLink
-                as={RouterLink}
-                to={to}
-                display="flex"
-                alignItems="center"
-                px={2}
-                py={1}
-                rounded="md"
-                color={color}
-                onClick={handleItemClick}
-                _hover={{
-                    textDecoration: "none",
-                    bg: useColorModeValue("gray.200", "gray.700"),
+            <MotionBox
+                initial="initial"
+                whileHover="hover"
+                variants={pixelBorderAnimation}
+                onHoverStart={() => setHoveredItem(itemKey)}
+                onHoverEnd={() => setHoveredItem(null)}
+                style={{ 
+                    position: 'relative',
+                    padding: '2px'
                 }}
             >
-                {icon}
-                <Box ml={1}>{children}</Box>
-            </ChakraLink>
+                <ChakraLink
+                    as={RouterLink}
+                    to={to}
+                    display="flex"
+                    alignItems="center"
+                    px={3}
+                    py={2}
+                    rounded="md"
+                    color={color}
+                    onClick={handleItemClick}
+                    position="relative"
+                    _hover={{
+                        textDecoration: "none",
+                        bg: hoverBg,
+                    }}
+                    style={{
+                        fontFamily: "'Press Start 2P', cursive",
+                        fontSize: "0.8em",
+                        letterSpacing: "1px",
+                    }}
+                >
+                    <MotionBox
+                        variants={glitchAnimation}
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                        }}
+                    >
+                        {icon}
+                        <Box ml={2}>{children}</Box>
+                    </MotionBox>
+                </ChakraLink>
+            </MotionBox>
         );
     };
 
     return (
-        <Box
+        <MotionBox
             position="fixed"
             top={0}
             left={0}
             right={0}
             zIndex="sticky"
-            transition="all 0.3s ease-in-out"
-            bg={useColorModeValue(
-                navBackground ? "white" : "rgba(255, 255, 255, 0.8)",
-                navBackground ? "gray.800" : "rgba(26, 32, 44, 0.8)"
-            )}
-            boxShadow={navBackground ? "sm" : "none"}
-            backdropFilter="blur(10px)"
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            transition={{ type: "spring", stiffness: 100 }}
+            style={{
+                background: useColorModeValue(
+                    navBackground ? "rgba(255, 255, 255, 0.95)" : "rgba(255, 255, 255, 0.8)",
+                    navBackground ? "rgba(26, 32, 44, 0.95)" : "rgba(26, 32, 44, 0.8)"
+                ),
+                boxShadow: navBackground ? "0 2px 4px rgba(0,0,0,0.1)" : "none",
+                backdropFilter: "blur(10px)",
+                borderBottom: "2px solid",
+                borderColor: useColorModeValue("gray.200", "gray.700"),
+            }}
         >
             <Container maxW="container.xl">
-                <Flex
+                <MotionFlex
                     minH="60px"
                     py={2}
                     px={4}
                     align="center"
                     justify="space-between"
                 >
-                    <ChakraLink 
-                        as={RouterLink} 
-                        to="/"
-                        onClick={handleItemClick}
+                    <MotionBox
+                        whileHover="hover"
+                        variants={logoAnimation}
                     >
-                        <Image
-                            src={logo}
-                            alt="brand"
-                            h="2em"
-                            w="3em"
-                            objectFit="contain"
-                        />
-                    </ChakraLink>
+                        <ChakraLink 
+                            as={RouterLink} 
+                            to="/"
+                            onClick={handleItemClick}
+                            _hover={{ textDecoration: 'none' }}
+                        >
+                            <MotionText
+                                fontSize="2xl"
+                                fontWeight="bold"
+                                fontFamily="'Press Start 2P', cursive"
+                                bgGradient="linear(to-r, teal.500, teal.300)"
+                                bgClip="text"
+                                letterSpacing="wider"
+                            >
+                                FB
+                            </MotionText>
+                        </ChakraLink>
+                    </MotionBox>
 
-                    <IconButton
+                    <MotionIconButton
                         display={{ base: "flex", md: "none" }}
                         onClick={onToggle}
                         icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
                         variant="ghost"
                         aria-label="Toggle Navigation"
-                        size="lg"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
                     />
 
                     <Stack
@@ -119,57 +207,63 @@ function NavbarCustom() {
                         display={{ base: isOpen ? "flex" : "none", md: "flex" }}
                         width={{ base: "full", md: "auto" }}
                         alignItems="center"
-                        spacing={{ base: 2, md: 4 }}
+                        spacing={4}
                         mt={{ base: 4, md: 0 }}
-                        position={{ base: "absolute", md: "static" }}
-                        top="60px"
-                        left={0}
-                        bg={useColorModeValue("white", "gray.800")}
-                        p={{ base: 4, md: 0 }}
-                        boxShadow={{ base: "md", md: "none" }}
-                        zIndex="dropdown"
                     >
-                        <NavItem to="/" icon={<AiOutlineHome style={{ fontSize: "1.2em" }} />}>.is()</NavItem>
-                        <NavItem to="/about" icon={<AiOutlineUser style={{ fontSize: "1.2em" }} />}>.about()</NavItem>
-                        <NavItem to="/resume" icon={<CgFileDocument style={{ fontSize: "1.2em" }} />}>.resume()</NavItem>
-                        <NavItem to="/project" icon={<AiOutlineFundProjectionScreen style={{ fontSize: "1.2em" }} />}>.work()</NavItem>
+                        <NavItem to="/" icon={<AiOutlineHome />} itemKey="home">
+                            <FormattedMessage id="nav.home" />
+                        </NavItem>
+                        <NavItem to="/about" icon={<AiOutlineUser />} itemKey="about">
+                            <FormattedMessage id="nav.about" />
+                        </NavItem>
+                        <NavItem to="/resume" icon={<CgFileDocument />} itemKey="resume">
+                            <FormattedMessage id="nav.resume" />
+                        </NavItem>
+                        <NavItem to="/projects" icon={<AiOutlineFundProjectionScreen />} itemKey="work">
+                            <FormattedMessage id="nav.work" />
+                        </NavItem>
                         
-                        <Stack
-                            direction={{ base: "column", md: "row" }}
-                            spacing={2}
-                            w={{ base: "full", md: "auto" }}
-                            align="center"
+                        <MotionBox
+                            whileHover="hover"
+                            variants={pixelBorderAnimation}
                         >
                             <Button
                                 as="a"
                                 href="https://github.com/boxxello"
                                 target="_blank"
-                                size="sm"
-                                colorScheme="teal"
                                 leftIcon={<CgGitFork />}
-                                rightIcon={<AiFillStar />}
-                                onClick={handleItemClick}
-                                w={{ base: "full", md: "auto" }}
-                            >
-                                GitHub
-                            </Button>
-
-                            <Button 
-                                onClick={() => {
-                                    setLanguage(language === 'en' ? 'it' : 'en');
-                                    handleItemClick();
-                                }}
+                                colorScheme="teal"
+                                variant="ghost"
                                 size="sm"
-                                colorScheme="blue"
-                                w={{ base: "full", md: "auto" }}
+                                style={{
+                                    fontFamily: "'Press Start 2P', cursive",
+                                    fontSize: "0.7em",
+                                }}
                             >
-                                {language === 'en' ? 'Italiano' : 'English'}
+                                <FormattedMessage id="nav.github" />
                             </Button>
-                        </Stack>
+                        </MotionBox>
+                        
+                        <MotionBox
+                            whileHover="hover"
+                            variants={pixelBorderAnimation}
+                        >
+                            <Button
+                                onClick={() => setLanguage(language === 'en' ? 'it' : 'en')}
+                                variant="ghost"
+                                size="sm"
+                                style={{
+                                    fontFamily: "'Press Start 2P', cursive",
+                                    fontSize: "0.7em",
+                                }}
+                            >
+                                <FormattedMessage id={`nav.language.${language === 'en' ? 'it' : 'en'}`} />
+                            </Button>
+                        </MotionBox>
                     </Stack>
-                </Flex>
+                </MotionFlex>
             </Container>
-        </Box>
+        </MotionBox>
     );
 }
 
