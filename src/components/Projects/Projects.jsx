@@ -7,6 +7,7 @@ import {
     Text,
     useColorModeValue,
 } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCards";
 import {FormattedMessage} from 'react-intl';
 
@@ -20,12 +21,24 @@ import bloomshare
     from "../../Assets/Projects/bloomshare.png";
 import treedots from "../../Assets/Projects/tree-dots-min_1.webp";
 
-const Particle = lazy(() => import("../Particle").then(({default: Particle}) => ({default: Particle})));
-
+const Particle = lazy(() => import("../Particle"));
+const MotionHeading = motion(Heading);
 
 function Projects() {
     const bgColor = useColorModeValue("gray.50", "gray.900");
     const headingColor = useColorModeValue("teal.600", "teal.200");
+
+    const headingAnimation = {
+        initial: { opacity: 0, y: -20 },
+        animate: { 
+            opacity: 1, 
+            y: 0,
+            transition: {
+                duration: 0.5,
+                ease: "easeOut"
+            }
+        }
+    };
 
     return (
         <Box
@@ -35,18 +48,27 @@ function Projects() {
             py={20}
         >
             <Container maxW="container.xl">
-                <Suspense fallback={<div>Loading particles...</div>}>
+                <Suspense fallback={
+                    <Text fontFamily="'Press Start 2P', cursive" fontSize="sm">
+                        <FormattedMessage id="home.loading" />
+                    </Text>
+                }>
                     <Particle/>
                 </Suspense>
 
-                <Heading
+                <MotionHeading
                     as="h1"
-                    fontSize={{ base: "2xl", md: "3xl" }}
+                    fontSize={{ base: "xl", md: "2xl" }}
                     textAlign="center"
                     mb={12}
+                    color={headingColor}
+                    fontFamily="'Press Start 2P', cursive"
+                    initial="initial"
+                    animate="animate"
+                    variants={headingAnimation}
                 >
                     <FormattedMessage id="projects.heading" defaultMessage="Work" />
-                </Heading>
+                </MotionHeading>
 
                 <SimpleGrid
                     columns={{ base: 1, md: 2, lg: 3 }}

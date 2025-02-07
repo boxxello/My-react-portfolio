@@ -1,19 +1,20 @@
 {
-    "nav.home": ".is()",
-    "nav.about": ".about()",
-    "nav.resume": ".resume()",
-    "nav.work": ".work()",
+    "nav.home": "Home",
+    "nav.about": "About",
+    "nav.resume": "Resume",
+    "nav.work": "Work",
     "nav.github": "GitHub",
     "nav.language.en": "English",
-    "nav.language.it": "Italiano",
+    "nav.language.it": "Italian",
     
-    "home.loading": "Loading particles...",
-    "home.title": "boxxo.",
-    "home.subtitle": "is()",
+    "home.loading": "Loading...",
+    "home.welcome": "Welcome to my Portfolio",
     "home.name": "Francesco Bosso",
-    "home.typewriter.0": "IT-Student",
-    "home.typewriter.1": "Developer",
-    "home.typewriter.2": "Deep Learning DEV",
+    "home.description": "I'm a Software Developer with a passion for building innovative solutions. I specialize in full-stack development and creating efficient, scalable applications.",
+    "home.typewriter.first": "Software Developer",
+    "home.typewriter.second": "University Student",
+    "home.typewriter.third": "Tech Enthusiast",
+    "home.typewriter.fourth": "Open Source Contributor",
     "home.image.alt": "home pic",
     
     "home.intro.heading": "LET ME INTRODUCE MYSELF",
@@ -58,23 +59,25 @@
     "resume.error": "Error loading PDF!",
     "resume.download": "Download CV",
     
-    "projects.heading": "Work",
+    "projects.heading": "My Recent Works",
     "projects.description": "Here are a few projects I've worked on recently.",
     "projects.bloomShare.title": "BloomShare",
-    "projects.bloomShare.description": "A flower website that allows users to create virtual bouquets.",
-    "projects.bloomShare.btn": "Let's bloom!",
+    "projects.bloomShare.description": "A flower delivery service that connects local florists with customers, featuring real-time order tracking and customizable arrangements.",
+    "projects.bloomShare.btn": "Visit Site",
     
-    "projects.amazon.title": "Amazon WareHouseDeals Italia (discontinued)",
-    "projects.amazon.description": "A scraper which allows us to check for discounts or price errors on Amazon WareHouse IT in the shortest possible time to allow Telegram channel users to buy the posted products.",
-    "projects.amazon.btn": "Join the TG channel",
+    "projects.amazon.title": "Warehouse Deals",
+    "projects.amazon.description": "A Telegram bot that tracks and notifies users about Amazon Warehouse deals, helping them find the best discounts.",
+    "projects.amazon.btn": "Try Bot",
     
-    "projects.captchaSolver.title": "Captcha solver",
-    "projects.captchaSolver.description": "Deep learning image classification tool trained with around 5 thousand images. The model was trained using Tensorflow 2 framework and has +95% accuracy.",
+    "projects.captchaSolver.title": "Captcha Solver",
+    "projects.captchaSolver.description": "An advanced captcha solving system using machine learning and computer vision techniques.",
     
-    "projects.clientAntiCheat.title": "Client AntiCheat",
-    "projects.clientAntiCheat.description": "A FiveM Anticheat client which performed a scan through regedit key files memory strings, prefetch file analysis, Fivem client process memory dumps but also allowed to have a quick look into pc specs, folders and so on.",
-    "projects.clientAntiCheat.btn": "View on Github",
+    "projects.clientAntiCheat.title": "FiveM Anti-Cheat",
+    "projects.clientAntiCheat.description": "A client-side anti-cheat system for FiveM servers, implementing various detection methods.",
+    "projects.clientAntiCheat.btn": "View Code",
     
-    "projects.moreComing.title": "More are coming",
-    "projects.moreComing.description": "Stay tuned!"
+    "projects.moreComing.title": "More Coming Soon",
+    "projects.moreComing.description": "Stay tuned for more exciting projects!",
+    
+    "footer.copyright": " 2024 Francesco Bosso. All rights reserved."
 }

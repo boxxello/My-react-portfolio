@@ -1,19 +1,20 @@
 {
-    "nav.home": ".is()",
-    "nav.about": ".about()",
-    "nav.resume": ".resume()",
-    "nav.work": ".work()",
+    "nav.home": "Home",
+    "nav.about": "Chi Sono",
+    "nav.resume": "CV",
+    "nav.work": "Progetti",
     "nav.github": "GitHub",
-    "nav.language.en": "English",
+    "nav.language.en": "Inglese",
     "nav.language.it": "Italiano",
     
-    "home.loading": "Caricamento particelle...",
-    "home.title": "boxxo.",
-    "home.subtitle": "is()",
+    "home.loading": "Caricamento...",
+    "home.welcome": "Benvenuto nel mio Portfolio",
     "home.name": "Francesco Bosso",
-    "home.typewriter.0": "Studente Informatica",
-    "home.typewriter.1": "Sviluppatore",
-    "home.typewriter.2": "Sviluppatore Deep Learning",
+    "home.description": "Sono uno Sviluppatore Software con la passione per la creazione di soluzioni innovative. Mi specializzo nello sviluppo full-stack e nella creazione di applicazioni efficienti e scalabili.",
+    "home.typewriter.first": "Sviluppatore Software",
+    "home.typewriter.second": "Studente Universitario",
+    "home.typewriter.third": "Appassionato di cloud computing",
+    "home.typewriter.fourth": "Contributore Open Source",
     "home.image.alt": "immagine home",
     
     "home.intro.heading": "LASCIA CHE MI PRESENTI",
@@ -58,23 +59,23 @@
     "resume.error": "Errore nel caricamento del PDF!",
     "resume.download": "Scarica CV",
     
-    "projects.heading": "Progetti su cui ho sbattuto la testa",
+    "projects.heading": "I Miei Lavori Recenti",
     "projects.description": "Ecco alcuni progetti su cui ho lavorato recentemente.",
     "projects.bloomShare.title": "BloomShare",
-    "projects.bloomShare.description": "Un sito web di fiori che consente agli utenti di creare bouquet virtuali.",
-    "projects.bloomShare.btn": "Fioriamo!",
+    "projects.bloomShare.description": "Un servizio di consegna fiori che connette fioristi locali con i clienti, con tracciamento ordini in tempo reale e composizioni personalizzabili.",
+    "projects.bloomShare.btn": "Visita il Sito",
     
-    "projects.amazon.title": "Amazon WareHouseDeals Italia (discontinuato)",
-    "projects.amazon.description": "Un scraper che ci consente di controllare sconti o errori di prezzo su Amazon WareHouse IT nel minor tempo possibile per consentire agli utenti del canale Telegram di acquistare i prodotti pubblicati.",
-    "projects.amazon.btn": "Unisciti al canale TG",
+    "projects.amazon.title": "Warehouse Deals",
+    "projects.amazon.description": "Un bot Telegram che monitora e notifica gli utenti sulle offerte di Amazon Warehouse, aiutandoli a trovare i migliori sconti.",
+    "projects.amazon.btn": "Prova il Bot",
     
-    "projects.captchaSolver.title": "Risolutore di Captcha",
-    "projects.captchaSolver.description": "Strumento di classificazione delle immagini basato su deep learning addestrato con circa 5 mila immagini. Il modello è stato addestrato utilizzando il framework Tensorflow 2 e ha un'accuratezza superiore al 95%.",
+    "projects.captchaSolver.title": "Risolutore Captcha",
+    "projects.captchaSolver.description": "Un sistema avanzato di risoluzione captcha che utilizza machine learning e tecniche di computer vision.",
     
-    "projects.clientAntiCheat.title": "Client AntiCheat",
-    "projects.clientAntiCheat.description": "Un client Anticheat di FiveM che eseguiva una scansione attraverso le stringhe di memoria delle chiavi regedit, analisi dei file prefetch, dump di memoria del client Fivem, ma consentiva anche di dare un'occhiata rapida alle specifiche del PC, alle cartelle e così via.",
-    "projects.clientAntiCheat.btn": "Visualizza su Github",
+    "projects.clientAntiCheat.title": "FiveM Anti-Cheat",
+    "projects.clientAntiCheat.description": "Un sistema anti-cheat lato client per server FiveM, che implementa vari metodi di rilevamento.",
+    "projects.clientAntiCheat.btn": "Vedi Codice",
     
-    "projects.moreComing.title": "Altri stanno arrivando",
-    "projects.moreComing.description": "Rimanete sintonizzati!"
+    "projects.moreComing.title": "Altri in Arrivo",
+    "projects.moreComing.description": "Resta sintonizzato per altri progetti interessanti!"
 }
