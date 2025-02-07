@@ -1,33 +1,32 @@
 import React from "react";
 import { SimpleGrid, Box, Text, useColorModeValue } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import {
-    SiVisualstudiocode,
-    SiPostman,
-    SiSlack,
-    SiVercel,
-    SiGithub,
-    SiDocker,
-    SiJetbrains,
-    SiAmazonaws
+import { 
+    SiProxmox,
+    SiVmware,
+    SiVirtualbox,
+    SiMicrosofthyper,
+    SiUbuntu,
+    SiWindows,
+    SiLinux
 } from "react-icons/si";
+import { FormattedMessage } from "react-intl";
 
 const MotionBox = motion(Box);
 
-function Toolstack() {
+function Virtualization() {
     const bgColor = useColorModeValue("gray.50", "gray.700");
     const hoverColor = useColorModeValue("teal.500", "teal.200");
     const textColor = useColorModeValue("gray.700", "gray.200");
 
-    const tools = [
-        { icon: SiVisualstudiocode, name: "VS Code" },
-        { icon: SiJetbrains, name: "JetBrains" },
-        { icon: SiPostman, name: "Postman" },
-        { icon: SiGithub, name: "GitHub" },
-        { icon: SiDocker, name: "Docker" },
-        { icon: SiAmazonaws, name: "AWS" },
-        { icon: SiVercel, name: "Vercel" },
-        { icon: SiSlack, name: "Slack" }
+    const virtualTech = [
+        { icon: SiProxmox, name: "Proxmox" },
+        { icon: SiVmware, name: "VMware" },
+        { icon: SiVirtualbox, name: "VirtualBox" },
+        { icon: SiMicrosofthyper, name: "Hyper-V" },
+        { icon: SiWindows, name: "Windows" },
+        { icon: SiUbuntu, name: "Ubuntu" },
+        { icon: SiLinux, name: "Linux" }
     ];
 
     const containerAnimation = {
@@ -64,7 +63,7 @@ function Toolstack() {
                 spacing={6}
                 mt={4}
             >
-                {tools.map((tool, index) => (
+                {virtualTech.map((tech, index) => (
                     <MotionBox
                         key={index}
                         variants={itemAnimation}
@@ -87,7 +86,7 @@ function Toolstack() {
                         }}
                     >
                         <Box
-                            as={tool.icon}
+                            as={tech.icon}
                             w={12}
                             h={12}
                             mx="auto"
@@ -101,7 +100,7 @@ function Toolstack() {
                             color={textColor}
                             transition="color 0.3s ease"
                         >
-                            {tool.name}
+                            {tech.name}
                         </Text>
                     </MotionBox>
                 ))}
@@ -110,4 +109,4 @@ function Toolstack() {
     );
 }
 
-export default Toolstack;
+export default Virtualization;

@@ -1,34 +1,24 @@
-import React, { lazy, Suspense } from "react";
+import React from "react";
 import {
     Container,
     Box,
-    Flex,
     Heading,
     Text,
-    Image,
     VStack,
     useColorModeValue,
-    SimpleGrid,
-    List,
-    ListItem,
-    ListIcon,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import Github from "./Github";
+import { FormattedMessage } from "react-intl";
+import AboutCard from "./AboutCard";
 import Techstack from "./Techstack";
-import Aboutcard from "./AboutCard";
-import laptopImg from "../../Assets/about.png";
 import Toolstack from "./Toolstack";
-import OperatingSys from "./OperatingSys";
-import { FaGraduationCap, FaLaptopCode, FaServer } from "react-icons/fa";
+import Virtualization from "./Virtualization";
+import Github from "./Github";
 
-const Particle = lazy(() => import("../Particle"));
 const MotionHeading = motion(Heading);
-const MotionBox = motion(Box);
+const MotionText = motion(Text);
 
 function About() {
-    const purpleColor = useColorModeValue("teal.500", "teal.200");
-    const bgColor = useColorModeValue("gray.50", "gray.900");
     const headingColor = useColorModeValue("teal.600", "teal.200");
     const textColor = useColorModeValue("gray.600", "gray.300");
 
@@ -37,6 +27,7 @@ function About() {
         show: {
             opacity: 1,
             transition: {
+                duration: 0.5,
                 staggerChildren: 0.3
             }
         }
@@ -56,141 +47,95 @@ function About() {
     return (
         <Box
             as="section"
-            bg={bgColor}
             minH="100vh"
-            py={20}
+            pt={{ base: "20", md: "32" }}
+            pb={20}
         >
-            <Suspense fallback={<Text>Loading particles...</Text>}>
-                <Particle />
-            </Suspense>
-
-            <Container maxW="container.xl">
+            <Container maxW="container.lg">
                 <motion.div
                     initial="hidden"
                     animate="show"
                     variants={containerAnimation}
                 >
-                    <MotionHeading
-                        as="h1"
-                        fontSize={{ base: "2xl", md: "3xl" }}
-                        textAlign="center"
-                        mb={12}
-                        color={headingColor}
-                        fontFamily="'Press Start 2P', cursive"
-                        variants={itemAnimation}
-                    >
-                        about('
-                        <Text as="span" color={purpleColor}>
-                            selected
-                        </Text>
-                        ')
-                    </MotionHeading>
-
-                    <Flex
-                        direction={{ base: "column", md: "row" }}
-                        align="center"
-                        justify="space-between"
-                        gap={8}
-                        mb={16}
-                    >
-                        <VStack
-                            flex="1"
-                            align="start"
-                            spacing={6}
-                            maxW={{ base: "100%", md: "60%" }}
-                        >
+                    <VStack spacing={12} align="stretch">
+                        <VStack spacing={6} align="center">
                             <MotionHeading
-                                as="h2"
-                                fontSize={{ base: "xl", md: "2xl" }}
-                                mb={4}
-                                color={headingColor}
+                                as="h1"
+                                fontSize={{ base: "2xl", md: "4xl" }}
                                 fontFamily="'Press Start 2P', cursive"
+                                color={headingColor}
                                 variants={itemAnimation}
                             >
-                                Professional{" "}
-                                <Text as="span" color={purpleColor}>
-                                    Skillset
-                                </Text>
+                                <FormattedMessage id="about.title" />
                             </MotionHeading>
-                            <Aboutcard />
+                            
+                            <MotionText
+                                color={textColor}
+                                fontSize={{ base: "md", md: "lg" }}
+                                textAlign="center"
+                                maxW="2xl"
+                                variants={itemAnimation}
+                            >
+                                <FormattedMessage id="about.subtitle" />
+                            </MotionText>
                         </VStack>
 
-                        <Box
-                            flex="1"
-                            maxW={{ base: "300px", md: "400px" }}
-                            mt={{ base: 8, md: 16 }}
-                        >
-                            <Image
-                                src={laptopImg}
-                                alt="about"
-                                w="100%"
-                                h="auto"
-                                objectFit="contain"
-                            />
+                        <Box as={motion.div} variants={itemAnimation}>
+                            <AboutCard />
                         </Box>
-                    </Flex>
 
-                    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
-                        <MotionBox variants={itemAnimation}>
+                        <VStack spacing={8} as={motion.div} variants={itemAnimation}>
                             <MotionHeading
                                 as="h2"
                                 fontSize={{ base: "xl", md: "2xl" }}
-                                mb={4}
-                                color={headingColor}
                                 fontFamily="'Press Start 2P', cursive"
+                                color={headingColor}
+                                variants={itemAnimation}
                             >
-                                <Text as="span" color={purpleColor}>
-                                    Tools
-                                </Text>{" "}
-                                I use
+                                <FormattedMessage id="about.skills.professional" />
                             </MotionHeading>
-                            <List spacing={3}>
-                                <ListItem>
-                                    <ListIcon as={FaLaptopCode} color="teal.500" />
-                                    <Text as="span" fontWeight="bold" fontFamily="'Press Start 2P', cursive" fontSize="sm">
-                                        Frontend:
-                                    </Text>
-                                    <Text as="span" ml={2}>
-                                        <Techstack />
-                                    </Text>
-                                </ListItem>
-                                <ListItem>
-                                    <ListIcon as={FaServer} color="teal.500" />
-                                    <Text as="span" fontWeight="bold" fontFamily="'Press Start 2P', cursive" fontSize="sm">
-                                        Backend:
-                                    </Text>
-                                    <Text as="span" ml={2}>
-                                        <Toolstack />
-                                    </Text>
-                                </ListItem>
-                                <ListItem>
-                                    <ListIcon as={FaGraduationCap} color="teal.500" />
-                                    <Text as="span" fontWeight="bold" fontFamily="'Press Start 2P', cursive" fontSize="sm">
-                                        Operating Systems:
-                                    </Text>
-                                    <Text as="span" ml={2}>
-                                        <OperatingSys />
-                                    </Text>
-                                </ListItem>
-                            </List>
-                        </MotionBox>
+                            <Techstack />
+                        </VStack>
 
-                        <MotionBox variants={itemAnimation}>
+                        <VStack spacing={8} as={motion.div} variants={itemAnimation}>
                             <MotionHeading
                                 as="h2"
                                 fontSize={{ base: "xl", md: "2xl" }}
-                                mb={4}
-                                color={headingColor}
                                 fontFamily="'Press Start 2P', cursive"
+                                color={headingColor}
+                                variants={itemAnimation}
                             >
-                                Days I{" "}
-                                <Text as="span" color={purpleColor}>
-                                    Code
-                                </Text>
+                                <FormattedMessage id="about.skills.tools" />
+                            </MotionHeading>
+                            <Toolstack />
+                        </VStack>
+
+                        <VStack spacing={8} as={motion.div} variants={itemAnimation}>
+                            <MotionHeading
+                                as="h2"
+                                fontSize={{ base: "xl", md: "2xl" }}
+                                fontFamily="'Press Start 2P', cursive"
+                                color={headingColor}
+                                variants={itemAnimation}
+                            >
+                                <FormattedMessage id="about.skills.virtualization" />
+                            </MotionHeading>
+                            <Virtualization />
+                        </VStack>
+
+                        <VStack spacing={8} as={motion.div} variants={itemAnimation}>
+                            <MotionHeading
+                                as="h2"
+                                fontSize={{ base: "xl", md: "2xl" }}
+                                fontFamily="'Press Start 2P', cursive"
+                                color={headingColor}
+                                variants={itemAnimation}
+                            >
+                                <FormattedMessage id="about.github.title" />
                             </MotionHeading>
                             <Github />
-                        </MotionBox>
-                    </SimpleGrid>
+                        </VStack>
+                    </VStack>
                 </motion.div>
             </Container>
         </Box>

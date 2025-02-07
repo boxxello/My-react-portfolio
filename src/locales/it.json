@@ -35,10 +35,12 @@
     "home.intro.social.instagram": "Seguimi su Instagram",
     
     "about.title": "Chi Sono",
-    "about.intro": "Ciao a tutti, sono Francesco Bosso dall'Italia.",
-    "about.description": "Sono uno sviluppatore Full Stack con esperienza in JavaScript, React.js, Node.js e MongoDB.",
-    "about.github.title": "Giorni di Codifica",
-    "about.github.loading": "Caricamento Calendario GitHub...",
+    "about.subtitle": "Sviluppatore Full Stack e Appassionato di Tecnologia",
+    "about.education": "Studente di Informatica all'Università di Salerno",
+    "about.interests": "Sviluppo Full Stack, Cloud Computing, DevOps",
+    "about.hobbies": "Gaming, Fotografia, Tecnologia",
+    "about.description": "Sono uno sviluppatore software con solide basi sia nelle tecnologie frontend che backend. Mi piace costruire applicazioni scalabili ed esplorare nuove tecnologie. Attualmente mi concentro su React, Django e soluzioni cloud.",
+    
     "about.skills.professional": "Competenze Professionali",
     "about.skills.tools": "Strumenti che Utilizzo",
     "about.skills.os": "Sistemi Operativi che Utilizzo",
@@ -54,6 +56,10 @@
     "about.card.hobbies.3": "Illustrare copertine di album",
     "about.card.hobbies.4": "Pensare a nuove startup",
     "about.card.quote": "Fai ciò che ami ama ciò che fai",
+    "about.github.title": "Giorni di Codifica",
+    "about.github.loading": "Caricamento Calendario GitHub...",
+    "about.github.languages": "Linguaggi Più Utilizzati",
+    "about.github.contributions": "Grafico dei Contributi",
     
     "resume.loading": "Caricamento...",
     "resume.error": "Errore nel caricamento del PDF!",

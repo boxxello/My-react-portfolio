@@ -1,62 +1,138 @@
 import React from "react";
-import { SimpleGrid, Box, Icon, useColorModeValue } from "@chakra-ui/react";
+import { SimpleGrid, Box, Text, useColorModeValue } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import {
     DiJavascript1,
     DiReact,
-    DiNodejs,
     DiPython,
-    DiGit,
-    DiJava,
-    DiCss3,
+    DiDjango,
+    DiMongodb,
+    DiDocker,
+    DiMysql,
+    DiPostgresql,
 } from "react-icons/di";
 import {
-    SiC,
     SiCsharp,
-    SiPytorch,
-    SiTensorflow,
+    SiDotnet,
+    SiVite,
+    SiMicrosoftsqlserver,
+    SiTypescript,
+    SiRedux,
+    SiNestjs,
+    SiExpress,
 } from "react-icons/si";
+import { FormattedMessage } from "react-intl";
+
+const MotionBox = motion(Box);
 
 function Techstack() {
-    const bgColor = useColorModeValue("white", "gray.700");
-    const iconColor = useColorModeValue("teal.600", "teal.200");
+    const bgColor = useColorModeValue("gray.50", "gray.700");
+    const hoverColor = useColorModeValue("teal.500", "teal.200");
+    const textColor = useColorModeValue("gray.700", "gray.200");
 
-    const techs = [
-        { icon: SiCsharp, label: "C#" },
-        { icon: DiJava, label: "Java" },
-        { icon: DiPython, label: "Python" },
-        { icon: SiC, label: "C" },
-        { icon: DiCss3, label: "CSS" },
-        { icon: DiJavascript1, label: "JavaScript" },
-        { icon: SiTensorflow, label: "TensorFlow" },
-        { icon: SiPytorch, label: "PyTorch" },
-        { icon: DiNodejs, label: "Node.js" },
-        { icon: DiReact, label: "React" },
-        { icon: DiGit, label: "Git" },
+    const technologies = [
+        // Frontend
+        { icon: DiReact, name: "React" },
+        { icon: SiVite, name: "Vite" },
+        { icon: DiJavascript1, name: "JavaScript" },
+        { icon: SiTypescript, name: "TypeScript" },
+        { icon: SiRedux, name: "Redux" },
+        
+        // Backend
+        { icon: DiPython, name: "Python" },
+        { icon: DiDjango, name: "Django" },
+        { icon: SiCsharp, name: "C#" },
+        { icon: SiDotnet, name: ".NET Core" },
+        { icon: SiNestjs, name: "NestJS" },
+        { icon: SiExpress, name: "Express" },
+        
+        // Databases
+        { icon: DiMongodb, name: "MongoDB" },
+        { icon: DiPostgresql, name: "PostgreSQL" },
+        { icon: DiMysql, name: "MySQL" },
+        { icon: SiMicrosoftsqlserver, name: "SQL Server" },
+        
+        // DevOps
+        { icon: DiDocker, name: "Docker" }
     ];
 
+    const containerAnimation = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
+    };
+
+    const itemAnimation = {
+        hidden: { opacity: 0, scale: 0.8 },
+        show: { 
+            opacity: 1, 
+            scale: 1,
+            transition: {
+                type: "spring",
+                stiffness: 200,
+                damping: 10
+            }
+        }
+    };
+
     return (
-        <SimpleGrid columns={{ base: 2, sm: 3, md: 4, lg: 5 }} spacing={6}>
-            {techs.map((tech, index) => (
-                <Box
-                    key={index}
-                    p={4}
-                    textAlign="center"
-                    borderRadius="lg"
-                    bg={bgColor}
-                    boxShadow="md"
-                    transition="transform 0.3s"
-                    _hover={{ transform: "scale(1.05)" }}
-                >
-                    <Icon
-                        as={tech.icon}
-                        w={12}
-                        h={12}
-                        color={iconColor}
-                        title={tech.label}
-                    />
-                </Box>
-            ))}
-        </SimpleGrid>
+        <motion.div
+            variants={containerAnimation}
+            initial="hidden"
+            animate="show"
+        >
+            <SimpleGrid
+                columns={{ base: 2, sm: 3, md: 4 }}
+                spacing={6}
+                mt={4}
+            >
+                {technologies.map((tech, index) => (
+                    <MotionBox
+                        key={index}
+                        variants={itemAnimation}
+                        bg={bgColor}
+                        p={4}
+                        rounded="lg"
+                        textAlign="center"
+                        border="2px"
+                        borderColor="transparent"
+                        transition="all 0.3s ease"
+                        _hover={{
+                            transform: "translateY(-5px)",
+                            borderColor: hoverColor,
+                            "& svg": {
+                                color: hoverColor
+                            },
+                            "& p": {
+                                color: hoverColor
+                            }
+                        }}
+                    >
+                        <Box
+                            as={tech.icon}
+                            w={12}
+                            h={12}
+                            mx="auto"
+                            color={textColor}
+                            transition="color 0.3s ease"
+                        />
+                        <Text
+                            mt={2}
+                            fontSize="xs"
+                            fontFamily="'Press Start 2P', cursive"
+                            color={textColor}
+                            transition="color 0.3s ease"
+                        >
+                            {tech.name}
+                        </Text>
+                    </MotionBox>
+                ))}
+            </SimpleGrid>
+        </motion.div>
     );
 }
 

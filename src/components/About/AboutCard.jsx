@@ -1,79 +1,114 @@
 import React from "react";
-import { Box, Text, VStack, useColorModeValue } from "@chakra-ui/react";
-import { ImPointRight } from "react-icons/im";
+import {
+    Box,
+    Text,
+    VStack,
+    useColorModeValue,
+    List,
+    ListItem,
+    ListIcon,
+} from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import { FormattedMessage } from "react-intl";
+import { FaGraduationCap, FaCode, FaHeart } from "react-icons/fa";
+
+const MotionBox = motion(Box);
+const MotionText = motion(Text);
 
 function AboutCard() {
-    const bgColor = useColorModeValue("white", "gray.700");
-    const textColor = useColorModeValue("gray.700", "gray.200");
+    const bgColor = useColorModeValue("gray.50", "gray.700");
+    const borderColor = useColorModeValue("teal.500", "teal.200");
+    const textColor = useColorModeValue("gray.600", "gray.300");
+
+    const containerAnimation = {
+        hidden: { opacity: 0, y: 20 },
+        show: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.5,
+                staggerChildren: 0.2
+            }
+        }
+    };
+
+    const itemAnimation = {
+        hidden: { opacity: 0, x: -20 },
+        show: { 
+            opacity: 1, 
+            x: 0,
+            transition: {
+                duration: 0.3
+            }
+        }
+    };
 
     return (
-        <Box
-            p={6}
+        <MotionBox
+            initial="hidden"
+            animate="show"
+            variants={containerAnimation}
             bg={bgColor}
-            borderRadius="lg"
-            boxShadow="lg"
-            color={textColor}
+            p={6}
+            rounded="lg"
+            border="2px"
+            borderColor={borderColor}
+            shadow="lg"
+            _hover={{
+                transform: "translateY(-5px)",
+                transition: "transform 0.3s ease"
+            }}
         >
-            <VStack align="start" spacing={4}>
-                <Text>
-                    <FormattedMessage id="about.card.intro" />{" "}
-                    <span style={{ fontWeight: "bold" }}>
-                        <FormattedMessage id="about.card.name" />
-                    </span>{" "}
-                    <FormattedMessage id="about.card.from" />{" "}
-                    <a 
-                        href="https://goo.gl/maps/pjcVMRXYCcQoqhSd9" 
-                        target="_blank" 
-                        rel="noreferrer"
-                        style={{ fontWeight: "bold" }}
-                    >
-                        <FormattedMessage id="about.card.location" />
-                    </a>
-                    <br/>
-                    <FormattedMessage id="about.card.studying" />{" "}
-                    <a 
-                        href="https://www.unisa.it/"
-                        target="_blank"
-                        rel="noreferrer" 
-                        style={{ fontWeight: "bold"}}
-                    >
-                        <FormattedMessage id="about.card.university" />
-                    </a>
-                    <br/>
-                    <br/>
-                    <FormattedMessage id="about.card.hobbies.intro" />
-                </Text>
-                <VStack align="start" spacing={2} pl={4}>
-                    <Text display="flex" alignItems="center">
-                        <ImPointRight style={{ marginRight: "8px" }} />
-                        <FormattedMessage id="about.card.hobbies.1" />
-                    </Text>
-                    <Text display="flex" alignItems="center">
-                        <ImPointRight style={{ marginRight: "8px" }} />
-                        <FormattedMessage id="about.card.hobbies.2" />
-                    </Text>
-                    <Text display="flex" alignItems="center">
-                        <ImPointRight style={{ marginRight: "8px" }} />
-                        <FormattedMessage id="about.card.hobbies.3" />
-                    </Text>
-                    <Text display="flex" alignItems="center">
-                        <ImPointRight style={{ marginRight: "8px" }} />
-                        <FormattedMessage id="about.card.hobbies.4" />
-                    </Text>
-                </VStack>
-                <Text 
-                    fontStyle="italic" 
-                    pt={4} 
-                    style={{
-                        marginBlockEnd: 0, 
-                        color: "rgb(155 126 172)"
-                    }}
+            <VStack spacing={4} align="stretch">
+                <List spacing={4}>
+                    <ListItem as={motion.div} variants={itemAnimation}>
+                        <ListIcon as={FaGraduationCap} color="teal.500" fontSize="xl" />
+                        <MotionText
+                            as="span"
+                            fontFamily="'Press Start 2P', cursive"
+                            fontSize="sm"
+                            color={textColor}
+                        >
+                            <FormattedMessage id="about.education" />
+                        </MotionText>
+                    </ListItem>
+
+                    <ListItem as={motion.div} variants={itemAnimation}>
+                        <ListIcon as={FaCode} color="teal.500" fontSize="xl" />
+                        <MotionText
+                            as="span"
+                            fontFamily="'Press Start 2P', cursive"
+                            fontSize="sm"
+                            color={textColor}
+                        >
+                            <FormattedMessage id="about.interests" />
+                        </MotionText>
+                    </ListItem>
+
+                    <ListItem as={motion.div} variants={itemAnimation}>
+                        <ListIcon as={FaHeart} color="teal.500" fontSize="xl" />
+                        <MotionText
+                            as="span"
+                            fontFamily="'Press Start 2P', cursive"
+                            fontSize="sm"
+                            color={textColor}
+                        >
+                            <FormattedMessage id="about.hobbies" />
+                        </MotionText>
+                    </ListItem>
+                </List>
+
+                <MotionText
+                    variants={itemAnimation}
+                    color={textColor}
+                    fontSize="sm"
+                    mt={4}
+                    lineHeight="tall"
                 >
-                    "<FormattedMessage id="about.card.quote" />"
-                </Text>
+                    <FormattedMessage id="about.description" />
+                </MotionText>
             </VStack>
-        </Box>
+        </MotionBox>
     );
 }
 

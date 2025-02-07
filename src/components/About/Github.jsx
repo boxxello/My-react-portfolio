@@ -1,8 +1,13 @@
 import React from "react";
+import { Box, VStack, useColorModeValue } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import GitHubCalendar from "react-github-calendar";
-import { Box, Center, useColorModeValue } from "@chakra-ui/react";
+
+const MotionBox = motion(Box);
 
 function Github() {
+    const bgColor = useColorModeValue("gray.50", "gray.700");
+    const borderColor = useColorModeValue("teal.500", "teal.200");
     const calendarTheme = useColorModeValue(
         {
             level0: '#ebedf0',
@@ -20,25 +25,89 @@ function Github() {
         }
     );
 
+    const containerAnimation = {
+        hidden: { opacity: 0, y: 20 },
+        show: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.5,
+                staggerChildren: 0.2
+            }
+        }
+    };
+
+    const itemAnimation = {
+        hidden: { opacity: 0, scale: 0.9 },
+        show: {
+            opacity: 1,
+            scale: 1,
+            transition: {
+                duration: 0.3
+            }
+        }
+    };
+
     return (
-        <Center py={8}>
-            <Box
-                maxW="100%"
+        <VStack spacing={6}>
+            <MotionBox
+                variants={containerAnimation}
+                initial="hidden"
+                animate="show"
+                bg={bgColor}
+                p={6}
+                rounded="lg"
+                border="2px"
+                borderColor={borderColor}
+                shadow="lg"
+                w="full"
+                maxW="800px"
+                mx="auto"
+                transition="transform 0.3s ease"
+                _hover={{
+                    transform: "translateY(-5px)"
+                }}
+            >
+                <Box
+                    as="iframe"
+                    src="https://github-readme-stats.vercel.app/api/top-langs?username=boxxello&show_icons=true&locale=en&layout=compact&theme=react&hide_border=true&bg_color=0D1117"
+                    w="100%"
+                    h="200px"
+                    border="none"
+                    overflow="hidden"
+                    loading="lazy"
+                />
+            </MotionBox>
+
+            <MotionBox
+                variants={containerAnimation}
+                initial="hidden"
+                animate="show"
+                bg={bgColor}
+                p={6}
+                rounded="lg"
+                border="2px"
+                borderColor={borderColor}
+                shadow="lg"
+                w="full"
+                maxW="800px"
+                mx="auto"
+                transition="transform 0.3s ease"
+                _hover={{
+                    transform: "translateY(-5px)"
+                }}
                 overflowX="auto"
-                bg={useColorModeValue('white', 'gray.800')}
-                p={4}
-                borderRadius="lg"
-                boxShadow="sm"
             >
                 <GitHubCalendar
                     username="boxxello"
-                    blockSize={15}
+                    blockSize={12}
                     blockMargin={5}
                     theme={calendarTheme}
                     fontSize={16}
+                    style={{ width: '100%' }}
                 />
-            </Box>
-        </Center>
+            </MotionBox>
+        </VStack>
     );
 }
 
