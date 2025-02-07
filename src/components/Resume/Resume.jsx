@@ -10,16 +10,22 @@ import {
     Spinner,
 } from "@chakra-ui/react";
 import { AiOutlineDownload } from "react-icons/ai";
-import { Document, Page } from "react-pdf";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 
-const Particle = lazy(() => import("../Particle"));
+import { Document, Page, pdfjs } from "react-pdf";
+import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
+
+pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
+
+const resumePath = "/assets/Resume_Francesco_Bosso.pdf";
 
 function Resume() {
     const [width, setWidth] = useState(window.innerWidth);
     const [numPages, setNumPages] = useState(null);
     const [pageNumber] = useState(1);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     const bgColor = useColorModeValue("gray.50", "gray.900");
     const pdfBgColor = useColorModeValue("white", "gray.800");
@@ -30,19 +36,20 @@ function Resume() {
         };
 
         window.addEventListener("resize", setDimension);
-
-        return () => {
-            window.removeEventListener("resize", setDimension);
-        };
+        return () => window.removeEventListener("resize", setDimension);
     }, []);
 
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
-        console.log("Loaded successfully!");
+        setIsLoading(false);
+        setError(null);
+        console.log("PDF loaded successfully!");
     }
 
     function onDocumentLoadError(error) {
-        console.error("Error while loading document! " + error.message);
+        setError(error.message);
+        setIsLoading(false);
+        console.error("Error loading PDF:", error.message);
     }
 
     function renderPDFContent() {
@@ -51,18 +58,15 @@ function Resume() {
     }
 
     return (
-        <Box
-            minH="100vh"
-            bg={bgColor}
-            pt={20}
-            pb={10}
-        >
+        <Box minH="100vh" bg={bgColor} pt={20} pb={10}>
             <Container maxW="container.xl">
-                <Suspense fallback={
-                    <Center h="100vh">
-                        <Spinner size="xl" color="teal.500" />
-                    </Center>
-                }>
+                <Suspense
+                    fallback={
+                        <Center h="100vh">
+                            <Spinner size="xl" color="teal.500" />
+                        </Center>
+                    }
+                >
                     <Particle />
                 </Suspense>
 
@@ -92,36 +96,23 @@ function Resume() {
                         p={4}
                         borderRadius="lg"
                         boxShadow="md"
-                        sx={{
-                            ".react-pdf__Document": {
-                                display: "flex",
-                                justifyContent: "center",
-                                width: "100%",
-                            },
-                            ".react-pdf__Page": {
-                                boxShadow: "base",
-                                borderRadius: "md",
-                            },
-                            ".react-pdf__Page__canvas": {
-                                borderRadius: "md",
-                            },
-                        }}
+                        position="relative"
                     >
+                        {isLoading && (
+                            <Center position="absolute" top="50%" left="50%" transform="translate(-50%, -50%)">
+                                <Spinner size="xl" color="teal.500" />
+                            </Center>
+                        )}
+                        {error && (
+                            <Center position="absolute" top="50%" left="50%" transform="translate(-50%, -50%)">
+                                <Text color="red.500">Error loading PDF: {error}</Text>
+                            </Center>
+                        )}
                         <Document
-                            file="/Resume_Francesco_Bosso.pdf"
+                            file={resumePath}
                             onLoadSuccess={onDocumentLoadSuccess}
                             onLoadError={onDocumentLoadError}
-                            loading={
-                                <Center p={8}>
-                                    <Spinner size="xl" color="teal.500" />
-                                    <Text ml={4}>Loading PDF...</Text>
-                                </Center>
-                            }
-                            error={
-                                <Center p={8}>
-                                    <Text color="red.500">Error loading PDF!</Text>
-                                </Center>
-                            }
+                            loading={null}
                         >
                             {renderPDFContent()}
                         </Document>

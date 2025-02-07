@@ -27,9 +27,11 @@ export default defineConfig({
     build: {
         outDir: 'dist',
         assetsDir: 'assets',
+        sourcemap: true,
     },
     server: {
         port: 3000,
-        host: true
-    }
+        host: true,
+    },
+    assetsInclude: ['**/*.pdf']
 });
