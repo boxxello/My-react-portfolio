@@ -67,25 +67,27 @@
     "resume.error": "Error loading PDF!",
     "resume.download": "Download CV",
     
-    "projects.heading": "My Recent Works",
-    "projects.description": "Here are a few projects I've worked on recently.",
+    "projects.title": "My Recent Works",
+    "projects.subtitle": "Here are a few projects I've worked on recently",
+    "projects.default.btn": "View Project",
+    
     "projects.bloomShare.title": "BloomShare",
-    "projects.bloomShare.description": "A flower delivery service that connects local florists with customers, featuring real-time order tracking and customizable arrangements.",
-    "projects.bloomShare.btn": "Visit Site",
+    "projects.bloomShare.description": "A flower website that allows users to create virtual bouquets.",
+    "projects.bloomShare.btn": "Let's bloom!",
     
-    "projects.amazon.title": "Warehouse Deals",
-    "projects.amazon.description": "A Telegram bot that tracks and notifies users about Amazon Warehouse deals, helping them find the best discounts.",
-    "projects.amazon.btn": "Try Bot",
+    "projects.amazon.title": "Amazon WareHouseDeals Italia (discontinued)",
+    "projects.amazon.description": "A scraper which allows us to check for discounts or price errors on Amazon WareHouse IT in the shortest possible time to allow Telegram channel users to buy the posted products.",
+    "projects.amazon.btn": "Join the TG channel",
     
-    "projects.captchaSolver.title": "Captcha Solver",
-    "projects.captchaSolver.description": "An advanced captcha solving system using machine learning and computer vision techniques.",
+    "projects.captchaSolver.title": "Captcha solver",
+    "projects.captchaSolver.description": "Deep learning image classification tool trained with around 5 thousand images. The model was trained using Tensorflow 2 framework and has +95% accuracy",
     
-    "projects.clientAntiCheat.title": "FiveM Anti-Cheat",
-    "projects.clientAntiCheat.description": "A client-side anti-cheat system for FiveM servers, implementing various detection methods.",
-    "projects.clientAntiCheat.btn": "View Code",
+    "projects.clientAntiCheat.title": "Client AntiCheat",
+    "projects.clientAntiCheat.description": "A FiveM Anticheat client which performed a scan through regedit key files memory strings, prefetch file analysis, Fivem client process memory dumps but also allowed to have a quick look into pc specs, folders and so on.",
+    "projects.clientAntiCheat.btn": "View on Github",
     
-    "projects.moreComing.title": "More Coming Soon",
-    "projects.moreComing.description": "Stay tuned for more exciting projects!",
+    "projects.moreComing.title": "More are coming",
+    "projects.moreComing.description": "Stay tuned!",
     
     "footer.copyright": " 2024 Francesco Bosso. All rights reserved."
 }

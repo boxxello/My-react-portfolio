@@ -69,21 +69,25 @@
     "resume.error": "Errore nel caricamento del PDF!",
     "resume.download": "Scarica CV",
     
+    "projects.title": "I Miei Lavori Recenti",
+    "projects.subtitle": "Ecco alcuni progetti su cui ho lavorato di recente",
+    "projects.default.btn": "Vedi Progetto",
+
     "projects.heading": "I Miei Lavori Recenti",
     "projects.description": "Ecco alcuni progetti su cui ho lavorato recentemente.",
     "projects.bloomShare.title": "BloomShare",
-    "projects.bloomShare.description": "Un servizio di consegna fiori che connette fioristi locali con i clienti, con tracciamento ordini in tempo reale e composizioni personalizzabili.",
-    "projects.bloomShare.btn": "Visita il Sito",
-    
+    "projects.bloomShare.description": "Un sito web di fiori che permette agli utenti di creare bouquet virtuali.",
+    "projects.bloomShare.btn": "Fiorisci con noi!",
+
     "projects.amazon.title": "Warehouse Deals",
     "projects.amazon.description": "Un bot Telegram che monitora e notifica gli utenti sulle offerte di Amazon Warehouse, aiutandoli a trovare i migliori sconti.",
     "projects.amazon.btn": "Prova il Bot",
     
     "projects.captchaSolver.title": "Risolutore Captcha",
-    "projects.captchaSolver.description": "Un sistema avanzato di risoluzione captcha che utilizza machine learning e tecniche di computer vision.",
+    "projects.captchaSolver.description": "Strumento di classificazione delle immagini basato su deep learning addestrato con circa 5 mila immagini. Il modello è stato addestrato utilizzando il framework Tensorflow 2 e ha un'accuratezza del +95%",
     
     "projects.clientAntiCheat.title": "FiveM Anti-Cheat",
-    "projects.clientAntiCheat.description": "Un sistema anti-cheat lato client per server FiveM, che implementa vari metodi di rilevamento.",
+    "projects.clientAntiCheat.description": "Un client AntiCheat per FiveM che esegue una scansione attraverso chiavi di registro, stringhe di memoria, analisi dei file prefetch, dump della memoria del processo client FiveM e permette anche di dare un'occhiata rapida alle specifiche del PC e alle cartelle.",
     "projects.clientAntiCheat.btn": "Vedi Codice",
     
     "projects.moreComing.title": "Altri in Arrivo",
