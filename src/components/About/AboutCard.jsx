@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Text, VStack, useColorModeValue } from "@chakra-ui/react";
 import { ImPointRight } from "react-icons/im";
+import { FormattedMessage } from "react-intl";
 
 function AboutCard() {
     const bgColor = useColorModeValue("white", "gray.700");
@@ -16,33 +17,60 @@ function AboutCard() {
         >
             <VStack align="start" spacing={4}>
                 <Text>
-                    Hi everyone, I am <span style={{ fontWeight: "bold" }}>Francesco Bosso </span>
-                    from <a href={"https://goo.gl/maps/pjcVMRXYCcQoqhSd9"} target="_blank" rel={"noreferrer"}
-                            style={{ fontWeight: "bold" }}>Portici, Italia.</a>
-                    <br/>I'm currently studying for IT at <a href={"https://www.unisa.it/"}
-                                                                 target="_blank"
-                                                                 rel={"noreferrer"} style={{ fontWeight: "bold"}}> Fisciano
-                        Univerisity</a>
+                    <FormattedMessage id="about.card.intro" />{" "}
+                    <span style={{ fontWeight: "bold" }}>
+                        <FormattedMessage id="about.card.name" />
+                    </span>{" "}
+                    <FormattedMessage id="about.card.from" />{" "}
+                    <a 
+                        href="https://goo.gl/maps/pjcVMRXYCcQoqhSd9" 
+                        target="_blank" 
+                        rel="noreferrer"
+                        style={{ fontWeight: "bold" }}
+                    >
+                        <FormattedMessage id="about.card.location" />
+                    </a>
+                    <br/>
+                    <FormattedMessage id="about.card.studying" />{" "}
+                    <a 
+                        href="https://www.unisa.it/"
+                        target="_blank"
+                        rel="noreferrer" 
+                        style={{ fontWeight: "bold"}}
+                    >
+                        <FormattedMessage id="about.card.university" />
+                    </a>
                     <br/>
                     <br/>
-                    Apart from coding, here are some activities that I like doing:
+                    <FormattedMessage id="about.card.hobbies.intro" />
                 </Text>
                 <VStack align="start" spacing={2} pl={4}>
                     <Text display="flex" alignItems="center">
-                        <ImPointRight style={{ marginRight: "8px" }} /> Travelling
+                        <ImPointRight style={{ marginRight: "8px" }} />
+                        <FormattedMessage id="about.card.hobbies.1" />
                     </Text>
                     <Text display="flex" alignItems="center">
-                        <ImPointRight style={{ marginRight: "8px" }} /> Drawing
+                        <ImPointRight style={{ marginRight: "8px" }} />
+                        <FormattedMessage id="about.card.hobbies.2" />
                     </Text>
                     <Text display="flex" alignItems="center">
-                        <ImPointRight style={{ marginRight: "8px" }} /> Illustrating album arts
+                        <ImPointRight style={{ marginRight: "8px" }} />
+                        <FormattedMessage id="about.card.hobbies.3" />
                     </Text>
                     <Text display="flex" alignItems="center">
-                        <ImPointRight style={{ marginRight: "8px" }} /> Thinking about new startups
+                        <ImPointRight style={{ marginRight: "8px" }} />
+                        <FormattedMessage id="about.card.hobbies.4" />
                     </Text>
                 </VStack>
-                <Text fontStyle="italic" pt={4} style={{marginBlockEnd: 0, color: "rgb(155 126 172)"}}>
-                    "Do what you love love what you do"{" "}
+                <Text 
+                    fontStyle="italic" 
+                    pt={4} 
+                    style={{
+                        marginBlockEnd: 0, 
+                        color: "rgb(155 126 172)"
+                    }}
+                >
+                    "<FormattedMessage id="about.card.quote" />"
                 </Text>
             </VStack>
         </Box>

@@ -13,7 +13,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
     import.meta.url
 ).toString();
 
-console.log(pdfjs);
+console.log("PDF.js worker configured!");
 root.render(
     <React.StrictMode>
         <App />

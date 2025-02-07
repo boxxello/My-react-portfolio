@@ -1,29 +1,80 @@
 {
-    "projects": {
-        "heading": "Work",
-        "description": "Here are a few projects I've worked on recently.",
-        "bloomShare": {
-            "title": "BloomShare",
-            "description": "A flower website that allows users to create virtual bouquets.",
-            "btn": "Let's bloom!"
-        },
-        "amazon": {
-            "title": "Amazon WareHouseDeals Italia (discontinued)",
-            "description": "A scraper which allows us to check for discounts or price errors on Amazon WareHouse IT in the shortest possible time to allow Telegram channel users to buy the posted products.",
-            "btn": "Join the TG channel"
-        },
-        "captchaSolver": {
-            "title": "Captcha solver",
-            "description": "Deep learning image classification tool trained with around 5 thousand images. The model was trained using Tensorflow 2 framework and has +95% accuracy."
-        },
-        "clientAntiCheat": {
-            "title": "Client AntiCheat",
-            "description": "A FiveM Anticheat client which performed a scan through regedit key files memory strings, prefetch file analysis, Fivem client process memory dumps but also allowed to have a quick look into pc specs, folders and so on.",
-            "btn": "View on Github"
-        },
-        "moreComing": {
-            "title": "More are coming",
-            "description": "Stay tuned!"
-        }
-    }
+    "nav.home": ".is()",
+    "nav.about": ".about()",
+    "nav.resume": ".resume()",
+    "nav.work": ".work()",
+    "nav.github": "GitHub",
+    "nav.language.en": "English",
+    "nav.language.it": "Italiano",
+    
+    "home.loading": "Loading particles...",
+    "home.title": "boxxo",
+    "home.subtitle": "is()",
+    "home.name": "Francesco Bosso",
+    "home.typewriter.0": "IT-Student",
+    "home.typewriter.1": "Developer",
+    "home.typewriter.2": "Deep Learning DEV",
+    "home.image.alt": "home pic",
+    
+    "home.intro.heading": "LET ME INTRODUCE MYSELF",
+    "home.intro.heading.highlight": "INTRODUCE",
+    "home.intro.p1": "I fell in love with programming since I was 12 y.o. and I have at least learnt since then or so I think… ️",
+    "home.intro.p2": "I am fluent in classics like",
+    "home.intro.p2.highlight": "C, C#, Java and Python",
+    "home.intro.p3": "My field of interest is related to building new",
+    "home.intro.p3.highlight1": "Products",
+    "home.intro.p3.between": "in areas concerning",
+    "home.intro.p3.highlight2": "Deep Learning",
+    "home.intro.p4": "Thanks for checking my website!",
+    "home.intro.p4.comment": "// It's a work in progress so check back often!",
+    "home.intro.connect": "FIND ME ON",
+    "home.intro.social.github": "Visit my GitHub profile",
+    "home.intro.social.twitter": "Follow me on Twitter",
+    "home.intro.social.linkedin": "Connect with me on LinkedIn",
+    "home.intro.social.instagram": "Follow me on Instagram",
+    
+    "about.title": "Know Who I Am",
+    "about.intro": "Hi Everyone, I am Francesco Bosso from Italy.",
+    "about.description": "I am a Full Stack Developer with experience in JavaScript, React.js, Node.js, and MongoDB.",
+    "about.github.title": "Days I Code",
+    "about.github.loading": "Loading GitHub Calendar...",
+    "about.skills.professional": "Professional Skillset",
+    "about.skills.tools": "Tools I Use",
+    "about.skills.os": "Operating Systems I Use",
+    "about.card.intro": "Hi everyone, I am",
+    "about.card.name": "Francesco Bosso",
+    "about.card.from": "from",
+    "about.card.location": "Portici, Italia",
+    "about.card.studying": "I'm currently studying for IT at",
+    "about.card.university": "Fisciano University",
+    "about.card.hobbies.intro": "Apart from coding, here are some activities that I like doing:",
+    "about.card.hobbies.1": "Travelling",
+    "about.card.hobbies.2": "Drawing",
+    "about.card.hobbies.3": "Illustrating album arts",
+    "about.card.hobbies.4": "Thinking about new startups",
+    "about.card.quote": "Do what you love love what you do",
+    
+    "resume.loading": "Loading...",
+    "resume.error": "Error loading PDF!",
+    "resume.download": "Download CV",
+    
+    "projects.heading": "Work",
+    "projects.description": "Here are a few projects I've worked on recently.",
+    "projects.bloomShare.title": "BloomShare",
+    "projects.bloomShare.description": "A flower website that allows users to create virtual bouquets.",
+    "projects.bloomShare.btn": "Let's bloom!",
+    
+    "projects.amazon.title": "Amazon WareHouseDeals Italia (discontinued)",
+    "projects.amazon.description": "A scraper which allows us to check for discounts or price errors on Amazon WareHouse IT in the shortest possible time to allow Telegram channel users to buy the posted products.",
+    "projects.amazon.btn": "Join the TG channel",
+    
+    "projects.captchaSolver.title": "Captcha solver",
+    "projects.captchaSolver.description": "Deep learning image classification tool trained with around 5 thousand images. The model was trained using Tensorflow 2 framework and has +95% accuracy.",
+    
+    "projects.clientAntiCheat.title": "Client AntiCheat",
+    "projects.clientAntiCheat.description": "A FiveM Anticheat client which performed a scan through regedit key files memory strings, prefetch file analysis, Fivem client process memory dumps but also allowed to have a quick look into pc specs, folders and so on.",
+    "projects.clientAntiCheat.btn": "View on Github",
+    
+    "projects.moreComing.title": "More are coming",
+    "projects.moreComing.description": "Stay tuned!"
 }

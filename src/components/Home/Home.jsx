@@ -8,6 +8,7 @@ import {
     Image,
     useColorModeValue,
 } from "@chakra-ui/react";
+import { FormattedMessage } from "react-intl";
 import homeLogo from "../../Assets/home-main2.svg";
 import Home2 from "./Home2";
 import Type from "./Type";
@@ -27,7 +28,11 @@ function Home() {
                 py={20}
                 position="relative"
             >
-                <Suspense fallback={<Text>Loading particles...</Text>}>
+                <Suspense fallback={
+                    <Text>
+                        <FormattedMessage id="home.loading" />
+                    </Text>
+                }>
                     <Particle/>
                 </Suspense>
                 
@@ -45,9 +50,9 @@ function Home() {
                                 mb={4}
                                 color={textColor}
                             >
-                                boxxo.
+                                <FormattedMessage id="home.title" />
                                 <Text as="span" color={accentColor}>
-                                    is()
+                                    <FormattedMessage id="home.subtitle" />
                                 </Text>
                             </Heading>
 
@@ -57,7 +62,7 @@ function Home() {
                                 mb={8}
                                 color={accentColor}
                             >
-                                Francesco Bosso
+                                <FormattedMessage id="home.name" />
                             </Heading>
 
                             <Box py={12}>
@@ -72,7 +77,7 @@ function Home() {
                         >
                             <Image
                                 src={homeLogo}
-                                alt="home pic"
+                                alt={<FormattedMessage id="home.image.alt" />}
                                 w="100%"
                                 h="auto"
                                 objectFit="contain"

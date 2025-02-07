@@ -12,6 +12,7 @@ import {
     VStack,
     Icon,
 } from "@chakra-ui/react";
+import { FormattedMessage } from "react-intl";
 import Tilt from "react-parallax-tilt";
 import myImg4 from "../../Assets/avatar-5-cmp.webp";
 import {
@@ -27,10 +28,10 @@ function Home2() {
     const iconHoverBg = useColorModeValue("gray.200", "gray.700");
 
     const socialLinks = [
-        { icon: AiFillGithub, href: "https://github.com/boxxello" },
-        { icon: AiOutlineTwitter, href: "https://twitter.com/francesco_bosso" },
-        { icon: FaLinkedinIn, href: "https://linkedin.com/in/francesco-bosso-unisa" },
-        { icon: AiFillInstagram, href: "https://www.instagram.com/boxxo__/" },
+        { icon: AiFillGithub, href: "https://github.com/boxxello", ariaLabel: "home.intro.social.github" },
+        { icon: AiOutlineTwitter, href: "https://twitter.com/francesco_bosso", ariaLabel: "home.intro.social.twitter" },
+        { icon: FaLinkedinIn, href: "https://linkedin.com/in/francesco-bosso-unisa", ariaLabel: "home.intro.social.linkedin" },
+        { icon: AiFillInstagram, href: "https://www.instagram.com/boxxo__/", ariaLabel: "home.intro.social.instagram" },
     ];
 
     return (
@@ -57,43 +58,77 @@ function Home2() {
                             fontSize={{ base: "3xl", md: "4xl" }}
                             fontWeight="bold"
                         >
-                            LET ME{" "}
-                            <Text as="span" color={purpleColor}>
-                                INTRODUCE
-                            </Text>{" "}
-                            MYSELF
+                            <FormattedMessage id="home.intro.heading" values={{
+                                highlight: (chunks) => (
+                                    <Text as="span" color={purpleColor}>
+                                        <FormattedMessage id="home.intro.heading.highlight" />
+                                    </Text>
+                                )
+                            }} />
                         </Heading>
                         
                         <VStack align="start" spacing={4}>
                             <Text fontSize="lg">
-                                I fell in love with programming since I was 12 y.o. and I have at least learnt since then or so I think… ️
+                                <FormattedMessage id="home.intro.p1" />
                             </Text>
                             
                             <Text fontSize="lg">
-                                I am fluent in classics like{" "}
+                                <FormattedMessage id="home.intro.p2" />{" "}
                                 <Text as="span" fontWeight="bold" color={purpleColor}>
-                                    C, C#, Java and Python.
+                                    <FormattedMessage id="home.intro.p2.highlight" />
                                 </Text>
                             </Text>
                             
                             <Text fontSize="lg">
-                                My field of interest is related to building new{" "}
+                                <FormattedMessage id="home.intro.p3" />{" "}
                                 <Text as="span" fontWeight="bold" color={purpleColor}>
-                                    Products
+                                    <FormattedMessage id="home.intro.p3.highlight1" />
                                 </Text>{" "}
-                                in areas concerning{" "}
+                                <FormattedMessage id="home.intro.p3.between" />{" "}
                                 <Text as="span" fontWeight="bold" color={purpleColor}>
-                                    Deep Learning.
+                                    <FormattedMessage id="home.intro.p3.highlight2" />
                                 </Text>
                             </Text>
                             
                             <Text fontSize="lg">
-                                Thanks for checking my website!
+                                <FormattedMessage id="home.intro.p4" />
                                 <br />
                                 <Text as="span" fontWeight="bold" color={purpleColor}>
-                                    // It's a work in progress so check back often!
+                                    <FormattedMessage id="home.intro.p4.comment" />
                                 </Text>
                             </Text>
+                        </VStack>
+
+                        <VStack align="start" spacing={4} width="100%">
+                            <Heading size="md">
+                                <FormattedMessage id="home.intro.connect" />
+                            </Heading>
+                            <SimpleGrid columns={4} spacing={4}>
+                                {socialLinks.map((link, index) => (
+                                    <Link
+                                        key={index}
+                                        href={link.href}
+                                        isExternal
+                                        aria-label={<FormattedMessage id={link.ariaLabel} />}
+                                    >
+                                        <Box
+                                            p={3}
+                                            bg="transparent"
+                                            borderRadius="lg"
+                                            _hover={{
+                                                bg: iconHoverBg,
+                                            }}
+                                            transition="all 0.3s ease"
+                                        >
+                                            <Icon
+                                                as={link.icon}
+                                                boxSize={6}
+                                                color={purpleColor}
+                                            />
+                                        </Box>
+                                    </Link>
+                                ))}
+                            </SimpleGrid>
                         </VStack>
                     </VStack>
 
@@ -101,66 +136,15 @@ function Home2() {
                         <Tilt>
                             <Image
                                 src={myImg4}
-                                alt="avatar"
-                                borderRadius="xl"
-                                objectFit="cover"
-                                w="100%"
-                                h="auto"
+                                alt={<FormattedMessage id="home.image.alt" />}
+                                borderRadius="2xl"
+                                boxShadow="lg"
+                                width="100%"
+                                height="auto"
                             />
                         </Tilt>
                     </Box>
                 </Flex>
-
-                <VStack spacing={4} mt={16} align="center">
-                    <Heading fontSize="2xl">
-                        YOU CAN{" "}
-                        <Text as="span" color={purpleColor}>
-                            FIND
-                        </Text>{" "}
-                        ME ON
-                    </Heading>
-                    
-                    <Text>
-                        multiple{" "}
-                        <Text as="span" color={purpleColor}>
-                            platforms
-                        </Text>{" "}
-                        as
-                    </Text>
-
-                    <SimpleGrid
-                        columns={{ base: 2, sm: 4 }}
-                        spacing={8}
-                        mt={4}
-                    >
-                        {socialLinks.map((social, index) => (
-                            <Link
-                                key={index}
-                                href={social.href}
-                                isExternal
-                                _hover={{
-                                    textDecoration: "none",
-                                }}
-                            >
-                                <Box
-                                    p={3}
-                                    borderRadius="full"
-                                    transition="all 0.3s"
-                                    _hover={{
-                                        bg: iconHoverBg,
-                                        transform: "translateY(-2px)",
-                                    }}
-                                >
-                                    <Icon
-                                        as={social.icon}
-                                        boxSize={8}
-                                        color={purpleColor}
-                                    />
-                                </Box>
-                            </Link>
-                        ))}
-                    </SimpleGrid>
-                </VStack>
             </Container>
         </Box>
     );

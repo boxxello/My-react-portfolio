@@ -1,29 +1,80 @@
 {
-    "projects": {
-        "heading": "Lavoro",
-        "description": "Ecco alcuni progetti su cui ho lavorato recentemente.",
-        "bloomShare": {
-            "title": "BloomShare",
-            "description": "Un sito web di fiori che consente agli utenti di creare bouquet virtuali.",
-            "btn": "Fioriamo!"
-        },
-        "amazon": {
-            "title": "Amazon WareHouseDeals Italia (discontinuato)",
-            "description": "Un scraper che ci consente di controllare sconti o errori di prezzo su Amazon WareHouse IT nel minor tempo possibile per consentire agli utenti del canale Telegram di acquistare i prodotti pubblicati.",
-            "btn": "Unisciti al canale TG"
-        },
-        "captchaSolver": {
-            "title": "Risolutore di Captcha",
-            "description": "Strumento di classificazione delle immagini basato su deep learning addestrato con circa 5 mila immagini. Il modello è stato addestrato utilizzando il framework Tensorflow 2 e ha un'accuratezza superiore al 95%."
-        },
-        "clientAntiCheat": {
-            "title": "Client AntiCheat",
-            "description": "Un client Anticheat di FiveM che eseguiva una scansione attraverso le stringhe di memoria delle chiavi regedit, analisi dei file prefetch, dump di memoria del client Fivem, ma consentiva anche di dare un'occhiata rapida alle specifiche del PC, alle cartelle e così via.",
-            "btn": "Visualizza su Github"
-        },
-        "moreComing": {
-            "title": "Altri stanno arrivando",
-            "description": "Rimanete sintonizzati!"
-        }
-    }
+    "nav.home": ".is()",
+    "nav.about": ".about()",
+    "nav.resume": ".resume()",
+    "nav.work": ".work()",
+    "nav.github": "GitHub",
+    "nav.language.en": "English",
+    "nav.language.it": "Italiano",
+    
+    "home.loading": "Caricamento particelle...",
+    "home.title": "boxxo",
+    "home.subtitle": "is()",
+    "home.name": "Francesco Bosso",
+    "home.typewriter.0": "Studente Informatica",
+    "home.typewriter.1": "Sviluppatore",
+    "home.typewriter.2": "Sviluppatore Deep Learning",
+    "home.image.alt": "immagine home",
+    
+    "home.intro.heading": "LASCIA CHE MI PRESENTI",
+    "home.intro.heading.highlight": "PRESENTI",
+    "home.intro.p1": "Mi sono innamorato della programmazione da quando avevo 12 anni e da allora ho continuato ad imparare, o almeno credo... ️",
+    "home.intro.p2": "Sono esperto nei classici come",
+    "home.intro.p2.highlight": "C, C#, Java e Python",
+    "home.intro.p3": "Il mio campo di interesse è legato alla creazione di nuovi",
+    "home.intro.p3.highlight1": "Prodotti",
+    "home.intro.p3.between": "in aree riguardanti il",
+    "home.intro.p3.highlight2": "Deep Learning",
+    "home.intro.p4": "Grazie per aver visitato il mio sito!",
+    "home.intro.p4.comment": "// È un lavoro in corso, quindi torna spesso a controllare!",
+    "home.intro.connect": "TROVAMI SU",
+    "home.intro.social.github": "Visita il mio profilo GitHub",
+    "home.intro.social.twitter": "Seguimi su Twitter",
+    "home.intro.social.linkedin": "Connettiti con me su LinkedIn",
+    "home.intro.social.instagram": "Seguimi su Instagram",
+    
+    "about.title": "Chi Sono",
+    "about.intro": "Ciao a tutti, sono Francesco Bosso dall'Italia.",
+    "about.description": "Sono uno sviluppatore Full Stack con esperienza in JavaScript, React.js, Node.js e MongoDB.",
+    "about.github.title": "Giorni di Codifica",
+    "about.github.loading": "Caricamento Calendario GitHub...",
+    "about.skills.professional": "Competenze Professionali",
+    "about.skills.tools": "Strumenti che Utilizzo",
+    "about.skills.os": "Sistemi Operativi che Utilizzo",
+    "about.card.intro": "Ciao a tutti, sono",
+    "about.card.name": "Francesco Bosso",
+    "about.card.from": "di",
+    "about.card.location": "Portici, Italia",
+    "about.card.studying": "Attualmente studio Informatica presso",
+    "about.card.university": "l'Università di Fisciano",
+    "about.card.hobbies.intro": "Oltre alla programmazione, ecco alcune attività che mi piace fare:",
+    "about.card.hobbies.1": "Viaggiare",
+    "about.card.hobbies.2": "Disegnare",
+    "about.card.hobbies.3": "Illustrare copertine di album",
+    "about.card.hobbies.4": "Pensare a nuove startup",
+    "about.card.quote": "Fai ciò che ami ama ciò che fai",
+    
+    "resume.loading": "Caricamento...",
+    "resume.error": "Errore nel caricamento del PDF!",
+    "resume.download": "Scarica CV",
+    
+    "projects.heading": "Progetti su cui ho sbattuto la testa",
+    "projects.description": "Ecco alcuni progetti su cui ho lavorato recentemente.",
+    "projects.bloomShare.title": "BloomShare",
+    "projects.bloomShare.description": "Un sito web di fiori che consente agli utenti di creare bouquet virtuali.",
+    "projects.bloomShare.btn": "Fioriamo!",
+    
+    "projects.amazon.title": "Amazon WareHouseDeals Italia (discontinuato)",
+    "projects.amazon.description": "Un scraper che ci consente di controllare sconti o errori di prezzo su Amazon WareHouse IT nel minor tempo possibile per consentire agli utenti del canale Telegram di acquistare i prodotti pubblicati.",
+    "projects.amazon.btn": "Unisciti al canale TG",
+    
+    "projects.captchaSolver.title": "Risolutore di Captcha",
+    "projects.captchaSolver.description": "Strumento di classificazione delle immagini basato su deep learning addestrato con circa 5 mila immagini. Il modello è stato addestrato utilizzando il framework Tensorflow 2 e ha un'accuratezza superiore al 95%.",
+    
+    "projects.clientAntiCheat.title": "Client AntiCheat",
+    "projects.clientAntiCheat.description": "Un client Anticheat di FiveM che eseguiva una scansione attraverso le stringhe di memoria delle chiavi regedit, analisi dei file prefetch, dump di memoria del client Fivem, ma consentiva anche di dare un'occhiata rapida alle specifiche del PC, alle cartelle e così via.",
+    "projects.clientAntiCheat.btn": "Visualizza su Github",
+    
+    "projects.moreComing.title": "Altri stanno arrivando",
+    "projects.moreComing.description": "Rimanete sintonizzati!"
 }

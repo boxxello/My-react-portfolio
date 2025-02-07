@@ -16,7 +16,8 @@ import anticheat
     from "../../Assets/Projects/anticheat-test-min_1.webp";
 import warehouse_project
     from "../../Assets/Projects/logo-warehouse-min_1.webp";
-
+import bloomshare
+    from "../../Assets/Projects/bloomshare.png";
 import treedots from "../../Assets/Projects/tree-dots-min_1.webp";
 
 const Particle = lazy(() => import("../Particle").then(({default: Particle}) => ({default: Particle})));
@@ -53,7 +54,7 @@ function Projects() {
                     justifyItems="center"
                 >
                     <ProjectCard
-                        imgPath={warehouse_project}
+                        imgPath={bloomshare}
                         title={<FormattedMessage id="projects.bloomShare.title" defaultMessage="BloomShare" />}
                         description={<FormattedMessage id="projects.bloomShare.description" defaultMessage="A flower website that allows users to create virtual bouquets." />}
                         link="https://flowers.box-xo.com"

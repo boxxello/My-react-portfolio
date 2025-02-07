@@ -7,8 +7,10 @@ import {
     useColorModeValue,
     VStack,
     Heading,
+    Flex,
 } from "@chakra-ui/react";
 import { BiLinkExternal } from "react-icons/bi";
+import { FormattedMessage } from "react-intl";
 
 function ProjectCards(props) {
     const cardBg = useColorModeValue("white", "gray.700");
@@ -17,15 +19,18 @@ function ProjectCards(props) {
     return (
         <Box
             maxW="sm"
+            w="100%"
             borderWidth="1px"
             borderRadius="lg"
             overflow="hidden"
             bg={cardBg}
             transition="transform 0.3s"
             _hover={{ transform: "scale(1.02)" }}
-            height="100%"
+            height={{ base: "auto", md: "500px" }}
+            display="flex"
+            flexDirection="column"
         >
-            <Box position="relative" paddingTop="100%">
+            <Box position="relative" paddingTop="56.25%">
                 <Image
                     src={props.imgPath}
                     alt="project"
@@ -37,26 +42,34 @@ function ProjectCards(props) {
                     height="100%"
                 />
             </Box>
-            <VStack p={6} spacing={4} align="start" height="calc(100% - 100%)">
-                <Heading size="md" color={textColor}>
-                    {props.title}
-                </Heading>
-                <Text color={textColor} flex="1">
-                    {props.description}
-                </Text>
-                {props.showBtn && (
-                    <Button
-                        as="a"
-                        href={props.link}
-                        target="_blank"
-                        colorScheme="teal"
-                        rightIcon={<BiLinkExternal />}
-                        width="full"
-                    >
-                        {props.btn_text || "View Project"}
-                    </Button>
+            
+            <Flex direction="column" p={6} flex="1" justify="space-between">
+                <VStack spacing={4} align="start">
+                    <Heading size="md" color={textColor}>
+                        {props.title}
+                    </Heading>
+                    <Text color={textColor}>
+                        {props.description}
+                    </Text>
+                </VStack>
+                
+                {props.showBtn ? (
+                    <Box mt={4}>
+                        <Button
+                            as="a"
+                            href={props.link}
+                            target="_blank"
+                            colorScheme="teal"
+                            rightIcon={<BiLinkExternal />}
+                            width="full"
+                        >
+                            {props.btn_text || <FormattedMessage id="projects.default.btn" defaultMessage="View Project" />}
+                        </Button>
+                    </Box>
+                ) : (
+                    <Box mt={4} height="40px" />
                 )}
-            </VStack>
+            </Flex>
         </Box>
     );
 }
