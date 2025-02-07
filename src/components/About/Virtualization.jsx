@@ -5,11 +5,14 @@ import {
     SiProxmox,
     SiVmware,
     SiVirtualbox,
-    SiMicrosofthyper,
+    SiMicrosoftazure,
     SiUbuntu,
     SiWindows,
-    SiLinux
+    SiLinux,
+    SiDebian,
+    SiRedhat
 } from "react-icons/si";
+import { GiServerRack } from "react-icons/gi";
 import { FormattedMessage } from "react-intl";
 
 const MotionBox = motion(Box);
@@ -20,13 +23,19 @@ function Virtualization() {
     const textColor = useColorModeValue("gray.700", "gray.200");
 
     const virtualTech = [
+        // Virtualization Platforms
         { icon: SiProxmox, name: "Proxmox" },
         { icon: SiVmware, name: "VMware" },
         { icon: SiVirtualbox, name: "VirtualBox" },
-        { icon: SiMicrosofthyper, name: "Hyper-V" },
+        { icon: SiMicrosoftazure, name: "Hyper-V" },
+        
+        // Operating Systems
         { icon: SiWindows, name: "Windows" },
         { icon: SiUbuntu, name: "Ubuntu" },
-        { icon: SiLinux, name: "Linux" }
+        { icon: SiLinux, name: "Linux" },
+        { icon: SiDebian, name: "Debian" },
+        { icon: SiRedhat, name: "Red Hat" },
+        { icon: GiServerRack, name: "Server" }
     ];
 
     const containerAnimation = {

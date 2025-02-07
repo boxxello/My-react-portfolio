@@ -43,7 +43,9 @@
     
     "about.skills.professional": "Professional Skillset",
     "about.skills.tools": "Tools I Use",
-    "about.skills.virtualization": "Virtualization & OS",
+    "about.skills.virtualization": "Virtualization & Systems",
+    "about.skills.virtualization.platforms": "Virtualization Platforms",
+    "about.skills.virtualization.os": "Operating Systems",
     "about.github.title": "Days I Code",
     "about.github.languages": "Most Used Languages",
     "about.github.contributions": "Contribution Graph",

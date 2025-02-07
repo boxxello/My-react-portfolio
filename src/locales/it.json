@@ -44,6 +44,10 @@
     "about.skills.professional": "Competenze Professionali",
     "about.skills.tools": "Strumenti che Utilizzo",
     "about.skills.os": "Sistemi Operativi che Utilizzo",
+    "about.skills.virtualization": "Virtualizzazione e Sistemi",
+    "about.skills.virtualization.platforms": "Piattaforme di Virtualizzazione",
+    "about.skills.virtualization.os": "Sistemi Operativi",
+    
     "about.card.intro": "Ciao a tutti, sono",
     "about.card.name": "Francesco Bosso",
     "about.card.from": "di",
