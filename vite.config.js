@@ -9,19 +9,14 @@ export default defineConfig({
         include: /\.[jt]sx?$/,
         exclude: /node_modules/
     },
-    base: '/', 
+    base: '/',
     optimizeDeps: {
-        include: ['react-pdf'],
         esbuildOptions: {
             loader: {
                 '.js': 'jsx',
                 '.jsx': 'jsx'
             },
         },
-    },
-    server: {
-        port: 3000,
-        open: true,
     },
     resolve: {
         alias: {
@@ -30,24 +25,11 @@ export default defineConfig({
         extensions: ['.js', '.jsx', '.json']
     },
     build: {
-        commonjsOptions: {
-            include: [/node_modules/],
-        },
         outDir: 'dist',
         assetsDir: 'assets',
-        rollupOptions: {
-            output: {
-                manualChunks: {
-                    'react-pdf': ['react-pdf'],
-                    pdfjs: ['pdfjs-dist', 'react-pdf']
-                }
-            }
-        }
     },
-    // Add this section to handle PDF files
-    assetsInclude: ['**/*.pdf'],
-    // Handle client-side routing
-    preview: {
-        port: 3000
+    server: {
+        port: 3000,
+        host: true
     }
 });
