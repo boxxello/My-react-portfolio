@@ -1,110 +1,168 @@
 import React from "react";
-import {Container, Row, Col} from "react-bootstrap";
+import {
+    Container,
+    Box,
+    Flex,
+    Text,
+    Heading,
+    Image,
+    Link,
+    SimpleGrid,
+    useColorModeValue,
+    VStack,
+    Icon,
+} from "@chakra-ui/react";
 import Tilt from "react-parallax-tilt";
-
-import myImg4 from "../../Assets/avatar-5-cmp.webp"
+import myImg4 from "../../Assets/avatar-5-cmp.webp";
 import {
     AiFillGithub,
     AiOutlineTwitter,
     AiFillInstagram,
 } from "react-icons/ai";
-import {FaLinkedinIn} from "react-icons/fa";
+import { FaLinkedinIn } from "react-icons/fa";
 
 function Home2() {
+    const purpleColor = useColorModeValue("teal.500", "teal.200");
+    const bgColor = useColorModeValue("gray.50", "gray.900");
+    const iconHoverBg = useColorModeValue("gray.200", "gray.700");
+
+    const socialLinks = [
+        { icon: AiFillGithub, href: "https://github.com/boxxello" },
+        { icon: AiOutlineTwitter, href: "https://twitter.com/francesco_bosso" },
+        { icon: FaLinkedinIn, href: "https://linkedin.com/in/francesco-bosso-unisa" },
+        { icon: AiFillInstagram, href: "https://www.instagram.com/boxxo__/" },
+    ];
+
     return (
-        <Container fluid className="home-about-section" id="about">
-            <Container>
-                <Row>
-                    <Col md={8} className="home-about-description" style={{marginTop: "2em"}}>
-                        <h1 style={{fontSize: "2.6em"}}>
-                            LET ME <span className="purple"> INTRODUCE </span> MYSELF
-                        </h1>
-                        <p className="home-about-body">
-                            I fell in love with programming since I was 12 y.o. and I have at least learnt since then or
-                            so I think… ️
-                            <br/>
-                            <br/>I am fluent in classics like
-                            <i>
-                                <b className="purple"> C, C#, Java and Python. </b>
-                            </i>
-                            <br/>
-                            <br/>
-                            My field of interest is related to building new {" "}
-                            <i>
-                                <b className="purple">Products </b>
+        <Box
+            as="section"
+            bg={bgColor}
+            py={16}
+            id="about"
+        >
+            <Container maxW="container.xl">
+                <Flex
+                    direction={{ base: "column", md: "row" }}
+                    align="center"
+                    justify="space-between"
+                    gap={8}
+                >
+                    <VStack
+                        flex="1"
+                        align="start"
+                        spacing={6}
+                        maxW={{ base: "100%", md: "60%" }}
+                    >
+                        <Heading
+                            fontSize={{ base: "3xl", md: "4xl" }}
+                            fontWeight="bold"
+                        >
+                            LET ME{" "}
+                            <Text as="span" color={purpleColor}>
+                                INTRODUCE
+                            </Text>{" "}
+                            MYSELF
+                        </Heading>
+                        
+                        <VStack align="start" spacing={4}>
+                            <Text fontSize="lg">
+                                I fell in love with programming since I was 12 y.o. and I have at least learnt since then or so I think… ️
+                            </Text>
+                            
+                            <Text fontSize="lg">
+                                I am fluent in classics like{" "}
+                                <Text as="span" fontWeight="bold" color={purpleColor}>
+                                    C, C#, Java and Python.
+                                </Text>
+                            </Text>
+                            
+                            <Text fontSize="lg">
+                                My field of interest is related to building new{" "}
+                                <Text as="span" fontWeight="bold" color={purpleColor}>
+                                    Products
+                                </Text>{" "}
+                                in areas concerning{" "}
+                                <Text as="span" fontWeight="bold" color={purpleColor}>
+                                    Deep Learning.
+                                </Text>
+                            </Text>
+                            
+                            <Text fontSize="lg">
+                                Thanks for checking my website!
+                                <br />
+                                <Text as="span" fontWeight="bold" color={purpleColor}>
+                                    // It's a work in progress so check back often!
+                                </Text>
+                            </Text>
+                        </VStack>
+                    </VStack>
 
-                            </i>
-                            in areas concerning {" "}
-                            <b className="purple">
-                                <br/>Deep Learning.
-                            </b>
-                            <br/>
-                            <br/>
-                            Thanks for checking my website!
-                            <br/>
-                            <b className="purple"> {"//"} It's a work in progress so check back often!</b>
-                        </p>
-                    </Col>
-                    <Col md={4} className="myAvtar">
+                    <Box flex="1" maxW={{ base: "300px", md: "400px" }}>
                         <Tilt>
-
-                            <img src={myImg4} className="img-fluid2" alt="avatar" height="500" width="200"/>
+                            <Image
+                                src={myImg4}
+                                alt="avatar"
+                                borderRadius="xl"
+                                objectFit="cover"
+                                w="100%"
+                                h="auto"
+                            />
                         </Tilt>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col md={12} className="home-about-social">
-                        <h1>YOU CAN <b className="purple"> FIND </b>ME ON</h1>
-                        <p>
-                            multiple <span className="purple">platforms </span>as
-                        </p>
-                        <ul className="home-about-social-links">
-                            <li className="social-icons">
-                                <a
-                                    href="https://github.com/boxxello"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="icon-colour  home-social-icons"
-                                >
-                                    <AiFillGithub/>
-                                </a>
-                            </li>
-                            <li className="social-icons">
-                                <a
-                                    href="https://twitter.com/francesco_bosso"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="icon-colour  home-social-icons"
-                                >
-                                    <AiOutlineTwitter/>
-                                </a>
-                            </li>
-                            <li className="social-icons">
-                                <a
-                                    href="https://linkedin.com/in/francesco-bosso-unisa"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="icon-colour  home-social-icons"
+                    </Box>
+                </Flex>
 
+                <VStack spacing={4} mt={16} align="center">
+                    <Heading fontSize="2xl">
+                        YOU CAN{" "}
+                        <Text as="span" color={purpleColor}>
+                            FIND
+                        </Text>{" "}
+                        ME ON
+                    </Heading>
+                    
+                    <Text>
+                        multiple{" "}
+                        <Text as="span" color={purpleColor}>
+                            platforms
+                        </Text>{" "}
+                        as
+                    </Text>
+
+                    <SimpleGrid
+                        columns={{ base: 2, sm: 4 }}
+                        spacing={8}
+                        mt={4}
+                    >
+                        {socialLinks.map((social, index) => (
+                            <Link
+                                key={index}
+                                href={social.href}
+                                isExternal
+                                _hover={{
+                                    textDecoration: "none",
+                                }}
+                            >
+                                <Box
+                                    p={3}
+                                    borderRadius="full"
+                                    transition="all 0.3s"
+                                    _hover={{
+                                        bg: iconHoverBg,
+                                        transform: "translateY(-2px)",
+                                    }}
                                 >
-                                    <FaLinkedinIn/>
-                                </a>
-                            </li>
-                            <li className="social-icons">
-                                <a
-                                    href="https://www.instagram.com/boxxo__/"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="icon-colour home-social-icons"
-                                >
-                                    <AiFillInstagram/>
-                                </a>
-                            </li>
-                        </ul>
-                    </Col>
-                </Row>
+                                    <Icon
+                                        as={social.icon}
+                                        boxSize={8}
+                                        color={purpleColor}
+                                    />
+                                </Box>
+                            </Link>
+                        ))}
+                    </SimpleGrid>
+                </VStack>
             </Container>
-        </Container>
+        </Box>
     );
 }
 

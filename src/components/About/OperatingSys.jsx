@@ -1,41 +1,49 @@
 import React from "react";
-import {Col, Row} from "react-bootstrap";
-import {
-    SiDebian,
-    SiLinux,
-} from "react-icons/si";
-import {CgWindows} from "react-icons/cg";
-import {GrUbuntu, GrArchlinux} from "react-icons/gr";
-import {FaFreebsd, FaFedora} from "react-icons/fa";
-
+import { SimpleGrid, Box, Icon, useColorModeValue } from "@chakra-ui/react";
+import { SiLinux, SiWindows, SiMacos, SiDebian, SiUbuntu, SiArchlinux, SiFreebsd, SiFedora } from "react-icons/si";
 
 function OperatingSys() {
+    const bgColor = useColorModeValue("white", "gray.700");
+    const iconColor = useColorModeValue("teal.600", "teal.200");
+
+    const operatingSystems = [
+        { icon: SiWindows, label: "Windows" },
+        { icon: SiLinux, label: "Linux" },
+        { icon: SiMacos, label: "macOS" },
+        { icon: SiDebian, label: "Debian" },
+        { icon: SiUbuntu, label: "Ubuntu" },
+        { icon: SiArchlinux, label: "Arch Linux" },
+        { icon: SiFreebsd, label: "FreeBSD" },
+        { icon: SiFedora, label: "Fedora" }
+    ];
+
     return (
-        <Row style={{justifyContent: "center", paddingBottom: "50px"}}>
-            <Col xs={4} md={2} className="tech-icons">
-                <SiLinux/>
-            </Col>
-            <Col xs={4} md={2} className="tech-icons">
-                <CgWindows/>
-            </Col>
-            <Col xs={4} md={2} className="tech-icons">
-                <GrUbuntu/>
-            </Col>
-            <Col xs={4} md={2} className="tech-icons">
-                <FaFreebsd/>
-            </Col>
-            <Col xs={4} md={2} className="tech-icons">
-                <FaFedora/>
-            </Col>
-            <Col xs={4} md={2} className="tech-icons">
-                <GrArchlinux/>
-            </Col>
-            <Col xs={4} md={2} className="tech-icons">
-                <SiDebian/>
-            </Col>
-
-
-        </Row>
+        <SimpleGrid
+            columns={{ base: 1, sm: 3 }}
+            spacing={6}
+            justifyItems="center"
+        >
+            {operatingSystems.map((os, index) => (
+                <Box
+                    key={index}
+                    p={4}
+                    textAlign="center"
+                    borderRadius="lg"
+                    bg={bgColor}
+                    boxShadow="md"
+                    transition="transform 0.3s"
+                    _hover={{ transform: "scale(1.05)" }}
+                >
+                    <Icon
+                        as={os.icon}
+                        w={12}
+                        h={12}
+                        color={iconColor}
+                        title={os.label}
+                    />
+                </Box>
+            ))}
+        </SimpleGrid>
     );
 }
 

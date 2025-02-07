@@ -1,21 +1,51 @@
 import React from "react";
-import {Container, Row, Col, Button} from "react-bootstrap";
+import {
+    Box,
+    Container,
+    Text,
+    Button,
+    Flex,
+    useColorModeValue,
+} from "@chakra-ui/react";
+import { usePreferences } from "../hooks/usePreferences";
 
-function Footer({ changeLanguage, currentLocale }) {
+function Footer() {
+    const { language, setLanguage } = usePreferences();
+
     return (
-        <Container fluid className="footer">
-            <Row>
-                <Col md="4" className="footer-copywright"/>
-                <Col md="4" className="footer-copywright">
-                    <h3>Designed and Developed by Francesco Bosso</h3>
-                </Col>
-                <Col md="4" className="footer-copywright">
-                    <Button onClick={() => changeLanguage(currentLocale === 'en' ? 'it' : 'en')}>
-                        {currentLocale === 'en' ? 'Italiano' : 'English'}
-                    </Button>
-                </Col>
-            </Row>
-        </Container>
+        <Box
+            as="footer"
+            bg={useColorModeValue("gray.100", "gray.900")}
+            py={6}
+            mt="auto"
+        >
+            <Container maxW="container.xl">
+                <Flex
+                    direction={{ base: "column", md: "row" }}
+                    justify="space-between"
+                    align="center"
+                    gap={4}
+                >
+                    <Box flex="1" />
+                    <Text
+                        textAlign="center"
+                        fontSize="md"
+                        color={useColorModeValue("gray.600", "gray.400")}
+                    >
+                        Designed and Developed by Francesco Bosso
+                    </Text>
+                    <Box flex="1" textAlign={{ base: "center", md: "right" }}>
+                        <Button
+                            onClick={() => setLanguage(language === 'en' ? 'it' : 'en')}
+                            size="sm"
+                            colorScheme="teal"
+                        >
+                            {language === 'en' ? 'Italiano' : 'English'}
+                        </Button>
+                    </Box>
+                </Flex>
+            </Container>
+        </Box>
     );
 }
 

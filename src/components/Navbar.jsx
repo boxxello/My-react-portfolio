@@ -1,116 +1,138 @@
-import React, {useState} from "react";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import Container from "react-bootstrap/Container";
+import React, { useState, useEffect } from "react";
+import {
+    Box,
+    Flex,
+    IconButton,
+    Image,
+    Link as ChakraLink,
+    Stack,
+    useColorModeValue,
+    useDisclosure,
+    Container,
+    Button,
+} from "@chakra-ui/react";
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { Link as RouterLink } from "react-router-dom";
 import logo from "../Assets/logo.png";
-import Button from "react-bootstrap/Button";
-import {Link} from "react-router-dom";
-import {CgGitFork} from "react-icons/cg";
+import { CgGitFork } from "react-icons/cg";
 import {
     AiFillStar,
     AiOutlineHome,
     AiOutlineFundProjectionScreen,
     AiOutlineUser,
 } from "react-icons/ai";
+import { CgFileDocument } from "react-icons/cg";
+import { usePreferences } from "../hooks/usePreferences";
 
-import {CgFileDocument} from "react-icons/cg";
+function NavbarCustom() {
+    const { isOpen, onToggle } = useDisclosure();
+    const { language, setLanguage } = usePreferences();
+    const [navBackground, setNavBackground] = useState(false);
 
-function NavbarCustom({ changeLanguage, currentLocale }) {
-    const [expand, updateExpanded] = useState(false);
-    const [navColour, updateNavbar] = useState(false);
+    useEffect(() => {
+        const handleScroll = () => {
+            const show = window.scrollY > 20;
+            setNavBackground(show);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
-    function scrollHandler() {
-        if (window.scrollY >= 20) {
-            updateNavbar(true);
-        } else {
-            updateNavbar(false);
-        }
-    }
-
-    window.addEventListener("scroll", scrollHandler);
+    const NavItem = ({ to, icon, children }) => {
+        const color = useColorModeValue("gray.800", "white");
+        return (
+            <ChakraLink
+                as={RouterLink}
+                to={to}
+                display="flex"
+                alignItems="center"
+                px={2}
+                py={1}
+                rounded="md"
+                color={color}
+                _hover={{
+                    textDecoration: "none",
+                    bg: useColorModeValue("gray.200", "gray.700"),
+                }}
+            >
+                {icon}
+                <Box ml={1}>{children}</Box>
+            </ChakraLink>
+        );
+    };
 
     return (
-        <Navbar
-            expanded={expand}
-            fixed="top"
-            expand="md"
-            className={navColour ? "sticky" : "navbar"}
+        <Box
+            position="fixed"
+            top={0}
+            left={0}
+            right={0}
+            zIndex="sticky"
+            transition="background-color 0.3s ease-in-out"
+            bg={useColorModeValue(
+                navBackground ? "white" : "rgba(255, 255, 255, 0.8)",
+                navBackground ? "gray.800" : "rgba(26, 32, 44, 0.8)"
+            )}
+            boxShadow={navBackground ? "sm" : "none"}
+            backdropFilter="blur(10px)"
         >
-            <Container>
-                <Navbar.Brand href="/">
-                    <img src={logo} className="img-fluid logo" alt="brand" height="1.5em" width="2.5em"/>
-                </Navbar.Brand>
-                <Navbar.Toggle
-                    aria-controls="responsive-navbar-nav"
-                    onClick={() => {
-                        updateExpanded(expand ? false : "expanded");
-                    }}
+            <Container maxW="container.xl">
+                <Flex
+                    minH="60px"
+                    py={2}
+                    align="center"
+                    justify="space-between"
                 >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </Navbar.Toggle>
-                <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="ml-auto" defaultActiveKey="#home">
-                        <Nav.Item>
-                            <Nav.Link as={Link} to="/" onClick={() => updateExpanded(false)}>
-                                <AiOutlineHome style={{marginBottom: "2"}}/>.is()
-                            </Nav.Link>
-                        </Nav.Item>
+                    <ChakraLink as={RouterLink} to="/">
+                        <Image
+                            src={logo}
+                            alt="brand"
+                            h="1.5em"
+                            w="2.5em"
+                            objectFit="contain"
+                        />
+                    </ChakraLink>
 
-                        <Nav.Item>
-                            <Nav.Link
-                                as={Link}
-                                to="/about"
-                                onClick={() => updateExpanded(false)}
-                            >
-                                <AiOutlineUser style={{marginBottom: "2px"}}/> .about()
-                            </Nav.Link>
-                        </Nav.Item>
+                    <IconButton
+                        display={{ base: "flex", md: "none" }}
+                        onClick={onToggle}
+                        icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+                        variant="ghost"
+                        aria-label="Toggle Navigation"
+                    />
 
-                        <Nav.Item>
-                            <Nav.Link
-                                as={Link}
-                                to="/resume"
-                                onClick={() => updateExpanded(false)}
-                            >
-                                <CgFileDocument style={{marginBottom: "2px"}}/> .resume()
-                            </Nav.Link>
-                        </Nav.Item>
+                    <Stack
+                        direction={{ base: "column", md: "row" }}
+                        display={{ base: isOpen ? "flex" : "none", md: "flex" }}
+                        width={{ base: "full", md: "auto" }}
+                        alignItems="center"
+                        spacing={4}
+                        mt={{ base: 4, md: 0 }}
+                    >
+                        <NavItem to="/" icon={<AiOutlineHome />}>.is()</NavItem>
+                        <NavItem to="/about" icon={<AiOutlineUser />}>.about()</NavItem>
+                        <NavItem to="/resume" icon={<CgFileDocument />}>.resume()</NavItem>
+                        <NavItem to="/project" icon={<AiOutlineFundProjectionScreen />}>.work()</NavItem>
+                        
+                        <Button
+                            as="a"
+                            href="https://github.com/boxxello"
+                            target="_blank"
+                            size="sm"
+                            colorScheme="teal"
+                            leftIcon={<CgGitFork />}
+                            rightIcon={<AiFillStar />}
+                        >
+                            GitHub
+                        </Button>
 
-                        <Nav.Item>
-                            <Nav.Link
-                                as={Link}
-                                to="/project"
-                                onClick={() => updateExpanded(false)}
-                            >
-                                <AiOutlineFundProjectionScreen
-                                    style={{marginBottom: "2px"}}
-                                />{" "}
-                                .work()
-                            </Nav.Link>
-                        </Nav.Item>
-
-                        <Nav.Item className="fork-btn">
-                            <Button
-                                href="https://github.com/boxxello"
-                                target="_blank"
-                                className="fork-btn-inner"
-                            >
-                                <CgGitFork style={{fontSize: "1.2em"}}/>{" "}
-                                <AiFillStar style={{fontSize: "1.1em"}}/>
-                            </Button>
-                        </Nav.Item>
-
-                        <Nav.Item>
-                            <Button onClick={() => changeLanguage(currentLocale === 'en' ? 'it' : 'en')}>
-                                {currentLocale === 'en' ? 'Italiano' : 'English'}
-                            </Button>
-                        </Nav.Item>
-                    </Nav>
-                </Navbar.Collapse>
+                        <Button onClick={() => setLanguage(language === 'en' ? 'it' : 'en')}>
+                            {language === 'en' ? 'Italiano' : 'English'}
+                        </Button>
+                    </Stack>
+                </Flex>
             </Container>
-        </Navbar>
+        </Box>
     );
 }
 

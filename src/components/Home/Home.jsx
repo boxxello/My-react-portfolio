@@ -1,48 +1,88 @@
 import React, {lazy, Suspense} from "react";
-import {Container, Row, Col} from "react-bootstrap";
+import {
+    Container,
+    Box,
+    Flex,
+    Heading,
+    Text,
+    Image,
+    useColorModeValue,
+} from "@chakra-ui/react";
 import homeLogo from "../../Assets/home-main2.svg";
-
-
 import Home2 from "./Home2";
 import Type from "./Type";
-import '../styles/home.css';
 
-
-const Particle = lazy(() => import("../Particle").then(({default: Particle}) => ({default: Particle})));
-
+const Particle = lazy(() => import("../Particle"));
 
 function Home() {
+    const bgColor = useColorModeValue("white", "gray.900");
+    const textColor = useColorModeValue("gray.800", "white");
+    const accentColor = useColorModeValue("teal.500", "teal.200");
+
     return (
-        <section>
-            <Container fluid className="home-section" id="home">
-                <Suspense fallback={<div>Loading particles...</div>}>
+        <Box as="section">
+            <Box
+                bg={bgColor}
+                minH="100vh"
+                py={20}
+                position="relative"
+            >
+                <Suspense fallback={<Text>Loading particles...</Text>}>
                     <Particle/>
                 </Suspense>
-                <Container className="home-content">
-                    <Row>
-                        <Col md={7} className="home-header">
-                            <h1 className="heading">
-                                boxxo.<strong className="main-name">is()</strong>
-                            </h1>
+                
+                <Container maxW="container.xl" py={10}>
+                    <Flex
+                        direction={{ base: "column", md: "row" }}
+                        align="center"
+                        justify="space-between"
+                        gap={8}
+                    >
+                        <Box flex="1">
+                            <Heading
+                                as="h1"
+                                fontSize={{ base: "4xl", md: "5xl" }}
+                                mb={4}
+                                color={textColor}
+                            >
+                                boxxo.
+                                <Text as="span" color={accentColor}>
+                                    is()
+                                </Text>
+                            </Heading>
 
-                            <h1 className="heading-name">
+                            <Heading
+                                as="h2"
+                                fontSize={{ base: "3xl", md: "4xl" }}
+                                mb={8}
+                                color={accentColor}
+                            >
+                                Francesco Bosso
+                            </Heading>
 
-                                <strong className="main-name"> Francesco Bosso</strong>
-                            </h1>
+                            <Box py={12}>
+                                <Type />
+                            </Box>
+                        </Box>
 
-                            <div style={{padding: 50, textAlign: "left"}}>
-                                <Type/>
-                            </div>
-                        </Col>
-
-                        <Col md={5} style={{paddingBottom: 20}}>
-                            <img src={homeLogo} alt="home pic" className="img-fluid2"/>
-                        </Col>
-                    </Row>
+                        <Box
+                            flex="1"
+                            maxW={{ base: "100%", md: "400px" }}
+                            px={4}
+                        >
+                            <Image
+                                src={homeLogo}
+                                alt="home pic"
+                                w="100%"
+                                h="auto"
+                                objectFit="contain"
+                            />
+                        </Box>
+                    </Flex>
                 </Container>
-            </Container>
-            <Home2/>
-        </section>
+            </Box>
+            <Home2 />
+        </Box>
     );
 }
 
