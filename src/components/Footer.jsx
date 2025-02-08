@@ -93,7 +93,7 @@ function Footer() {
                         fontFamily="'Press Start 2P', cursive"
                         fontSize="sm"
                     >
-                        Designed and Developed by Francesco Bosso
+                        <FormattedMessage id="footer.credit" />
                     </MotionText>
 
                     <Stack direction="row" spacing={4}>

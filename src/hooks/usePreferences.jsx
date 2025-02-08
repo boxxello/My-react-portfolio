@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext, useContext } from 'react';
+import { getDefaultLanguage } from '../translations';
 
 const PreferencesContext = createContext();
 
@@ -6,7 +7,7 @@ const STORAGE_KEY = 'app_preferences';
 
 const defaultPreferences = {
   theme: 'light',
-  language: 'en',
+  language: getDefaultLanguage(),
   drawerOpen: false,
 };
 
@@ -20,6 +21,8 @@ export const PreferencesProvider = ({ children }) => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(preferences));
     // Apply theme to body
     document.body.setAttribute('data-theme', preferences.theme);
+    // Apply language to html lang attribute
+    document.documentElement.setAttribute('lang', preferences.language);
   }, [preferences]);
 
   const toggleTheme = () => {

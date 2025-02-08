@@ -6,6 +6,7 @@
     "nav.github": "GitHub",
     "nav.language.en": "English",
     "nav.language.it": "Italian",
+    "nav.language.select": "Select Language",
     
     "home.loading": "Loading...",
     "home.welcome": "Welcome to my Portfolio",
@@ -82,9 +83,9 @@
     "projects.captchaSolver.title": "Captcha solver",
     "projects.captchaSolver.description": "Deep learning image classification tool trained with around 5 thousand images. The model was trained using Tensorflow 2 framework and has +95% accuracy",
     
-    "projects.clientAntiCheat.title": "Client AntiCheat",
-    "projects.clientAntiCheat.description": "A FiveM Anticheat client which performed a scan through regedit key files memory strings, prefetch file analysis, Fivem client process memory dumps but also allowed to have a quick look into pc specs, folders and so on.",
-    "projects.clientAntiCheat.btn": "View on Github",
+    "projects.clientAntiCheat.title": "FiveM Anti-Cheat",
+    "projects.clientAntiCheat.description": "A FiveM client AntiCheat that scans through registry keys, memory strings, prefetch files analysis, FiveM client process memory dump and also allows to take a quick look at PC specs and folders.",
+    "projects.clientAntiCheat.btn": "View Code",
     
     "projects.moreComing.title": "More are coming",
     "projects.moreComing.description": "Stay tuned!",
@@ -93,5 +94,6 @@
     "minigame.title": "Mini Game Coming Soon!",
     "minigame.description": "Get ready for an awesome retro gaming experience!",
     
-    "footer.copyright": " 2024 Francesco Bosso. All rights reserved."
+    "footer.copyright": " 2024 Francesco Bosso. All rights reserved.",
+    "footer.credit": "Designed and Developed by Francesco Bosso"
 }

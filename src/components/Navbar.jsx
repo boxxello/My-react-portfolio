@@ -24,6 +24,7 @@ import {
 } from "react-icons/ai";
 import { CgFileDocument } from "react-icons/cg";
 import { usePreferences } from "../hooks/usePreferences";
+import LanguageSelector from './LanguageSelector';
 
 const MotionBox = motion(Box);
 const MotionFlex = motion(Flex);
@@ -244,22 +245,7 @@ function NavbarCustom() {
                             </Button>
                         </MotionBox>
                         
-                        <MotionBox
-                            whileHover="hover"
-                            variants={pixelBorderAnimation}
-                        >
-                            <Button
-                                onClick={() => setLanguage(language === 'en' ? 'it' : 'en')}
-                                variant="ghost"
-                                size="sm"
-                                style={{
-                                    fontFamily: "'Press Start 2P', cursive",
-                                    fontSize: "0.7em",
-                                }}
-                            >
-                                <FormattedMessage id={`nav.language.${language === 'en' ? 'it' : 'en'}`} />
-                            </Button>
-                        </MotionBox>
+                        <LanguageSelector />
                     </Stack>
                 </MotionFlex>
             </Container>

@@ -6,6 +6,7 @@
     "nav.github": "GitHub",
     "nav.language.en": "Inglese",
     "nav.language.it": "Italiano",
+    "nav.language.select": "Seleziona Lingua",
     
     "home.loading": "Caricamento...",
     "home.welcome": "Benvenuto nel mio Portfolio",
@@ -94,5 +95,8 @@
     "projects.moreComing.description": "Resta sintonizzato per altri progetti interessanti!",
     "home.play.game": "GIOCA ORA",
     "minigame.title": "Mini Gioco in Arrivo!",
-    "minigame.description": "Preparati per un'incredibile esperienza di gioco retrò!"
+    "minigame.description": "Preparati per un'incredibile esperienza di gioco retrò!",
+    
+    "footer.copyright": " 2024 Francesco Bosso. Tutti i diritti riservati.",
+    "footer.credit": "Progettato e Sviluppato da Francesco Bosso"
 }
