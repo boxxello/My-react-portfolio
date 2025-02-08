@@ -5,53 +5,81 @@ import {
     Heading,
     Text,
     Stack,
-    Image,
     Flex,
     useColorModeValue,
     Button,
 } from "@chakra-ui/react";
+import { keyframes, css } from "@emotion/react";
 import {motion} from "framer-motion";
 import {FormattedMessage} from "react-intl";
 import Type from "./Type";
-import homeLogo from "../../Assets/avatar-5-cmp.webp";
 import AboutMe from "./AboutMe";
 
 const Particle = lazy(() => import("../Particle"));
 const MotionHeading = motion(Heading);
 const MotionText = motion(Text);
 const MotionBox = motion(Box);
-const MotionImage = motion(Image);
+
+// Define keyframes for various animations
+const glitch = css`
+  ${keyframes`
+    0% { text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                      0.025em 0.04em 0 #fffc00; }
+    15% { text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                       0.025em 0.04em 0 #fffc00; }
+    16% { text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+                       -0.05em -0.05em 0 #fffc00; }
+    49% { text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+                       -0.05em -0.05em 0 #fffc00; }
+    50% { text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
+                       0 -0.04em 0 #fffc00; }
+    100% { text-shadow: -0.05em 0 0 #00fffc, -0.025em -0.04em 0 #fc00ff,
+                        -0.04em -0.025em 0 #fffc00; }
+  `}
+`;
+
+const scanlines = css`
+  ${keyframes`
+    0% { background-position: 0 0; }
+    100% { background-position: 0 -100vh; }
+  `}
+`;
+
+const flicker = css`
+  ${keyframes`
+    0% { opacity: 0.9; }
+    5% { opacity: 0.85; }
+    10% { opacity: 0.9; }
+    15% { opacity: 0.85; }
+    20% { opacity: 0.9; }
+    25% { opacity: 1; }
+    30% { opacity: 0.9; }
+    35% { opacity: 0.95; }
+    40% { opacity: 0.9; }
+    45% { opacity: 0.95; }
+    50% { opacity: 0.9; }
+    55% { opacity: 0.95; }
+    60% { opacity: 1; }
+  `}
+`;
 
 function Home() {
     const textColor = useColorModeValue("gray.600", "gray.300");
     const headingColor = useColorModeValue("teal.600", "teal.200");
-    const glowColor = useColorModeValue("0 0 10px #4FD1C5", "0 0 10px #81E6D9");
-    const buttonBgColor = useColorModeValue("teal.500", "teal.200");
-    const buttonHoverBgColor = useColorModeValue("teal.600", "teal.300");
+    const buttonBg = useColorModeValue("teal.500", "teal.200");
+    const buttonColor = useColorModeValue("white", "gray.800");
+    const bgColor = useColorModeValue("gray.900", "gray.900");
+    const glowColor = useColorModeValue(
+        "0 0 20px rgba(49, 151, 149, 0.6)",
+        "0 0 20px rgba(129, 230, 217, 0.6)"
+    );
 
     const containerAnimation = {
-        hidden: {opacity: 0},
+        hidden: { opacity: 0 },
         show: {
             opacity: 1,
             transition: {
                 staggerChildren: 0.3
-            }
-        }
-    };
-
-    const pixelateAnimation = {
-        hidden: { 
-            opacity: 0,
-            filter: "blur(10px)",
-            scale: 0.9
-        },
-        show: { 
-            opacity: 1,
-            filter: "blur(0px)",
-            scale: 1,
-            transition: {
-                duration: 0.5,
-                ease: "easeOut"
             }
         }
     };
@@ -68,17 +96,6 @@ function Home() {
         }
     };
 
-    const floatAnimation = {
-        animate: {
-            y: [0, -10, 0],
-            transition: {
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-            }
-        }
-    };
-
     const buttonAnimation = {
         initial: { scale: 1 },
         hover: { 
@@ -91,49 +108,28 @@ function Home() {
         tap: { scale: 0.95 }
     };
 
-    const scanlineAnimation = {
-        animate: {
-            y: [0, 100],
-            opacity: [0.5, 0],
-            transition: {
-                y: {
-                    duration: 1,
-                    repeat: Infinity,
-                    ease: "linear"
-                },
-                opacity: {
-                    duration: 1,
-                    repeat: Infinity,
-                    ease: "linear"
-                }
-            }
-        }
-    };
-
     return (
         <>
             <Box
                 as="section"
                 minH="100vh"
-                pt={{base: "20", md: "32"}}
-                pb={20}
-                overflow="hidden"
+                bg={bgColor}
                 position="relative"
+                overflow="hidden"
+                _before={{
+                    content: '""',
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: "repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(32, 32, 32, 0.1) 2px, rgba(32, 32, 32, 0.1) 2px)",
+                    backgroundSize: "100% 4px",
+                    animation: `${scanlines} 10s linear infinite`,
+                    pointerEvents: "none",
+                    opacity: 0.3,
+                }}
             >
-                <motion.div
-                    style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        height: "100%",
-                        background: "linear-gradient(transparent 50%, rgba(79, 209, 197, 0.1) 50%)",
-                        backgroundSize: "100% 4px",
-                        pointerEvents: "none",
-                    }}
-                    {...scanlineAnimation}
-                />
-
                 <Suspense fallback={
                     <Text fontFamily="'Press Start 2P', cursive" fontSize="sm">
                         <FormattedMessage id="home.loading"/>
@@ -142,49 +138,63 @@ function Home() {
                     <Particle/>
                 </Suspense>
 
-                <Container maxW="container.xl">
+                <Container maxW="container.xl" position="relative" zIndex={2}>
                     <motion.div
                         initial="hidden"
                         animate="show"
                         variants={containerAnimation}
                     >
                         <Flex
-                            direction={{ base: "column", md: "row" }}
+                            direction="column"
                             align="center"
-                            justify="space-between"
+                            justify="center"
+                            minH="100vh"
+                            textAlign="center"
+                            pt={{ base: "20", md: "32" }}
+                            pb={20}
                             gap={8}
                         >
-                            <Stack spacing={8} flex="1" align={{ base: "center", md: "flex-start" }}>
+                            <Stack spacing={8} maxW="800px">
                                 <MotionHeading
                                     as="h1"
-                                    fontSize={{base: "2xl", md: "4xl"}}
+                                    fontSize={{ base: "4xl", md: "6xl" }}
                                     fontFamily="'Press Start 2P', cursive"
                                     color={headingColor}
                                     variants={arcadeTextAnimation}
+                                    css={`animation: ${glitch} 2s infinite;`}
                                     style={{ textShadow: glowColor }}
                                 >
                                     <FormattedMessage id="home.welcome"/>
                                 </MotionHeading>
 
-                                <MotionText
-                                    fontSize={{base: "xl", md: "2xl"}}
+                                <MotionHeading
+                                    as="h2"
+                                    fontSize={{ base: "2xl", md: "4xl" }}
                                     fontFamily="'Press Start 2P', cursive"
                                     color={headingColor}
                                     variants={arcadeTextAnimation}
-                                    style={{ textShadow: glowColor }}
+                                    opacity={0.9}
+                                    css={`animation: ${flicker} 2s infinite;`}
                                 >
                                     <FormattedMessage id="home.name"/>
-                                </MotionText>
+                                </MotionHeading>
 
-                                <MotionBox variants={arcadeTextAnimation}>
+                                <MotionBox 
+                                    variants={arcadeTextAnimation}
+                                    w="full"
+                                >
                                     <Type/>
                                 </MotionBox>
 
                                 <MotionText
                                     color={textColor}
-                                    fontSize={{base: "md", md: "lg"}}
+                                    fontSize={{ base: "lg", md: "xl" }}
                                     variants={arcadeTextAnimation}
-                                    textAlign={{ base: "center", md: "left" }}
+                                    maxW="600px"
+                                    mx="auto"
+                                    lineHeight="tall"
+                                    letterSpacing="wide"
+                                    style={{ textShadow: "0 0 8px rgba(255,255,255,0.1)" }}
                                 >
                                     <FormattedMessage id="home.description"/>
                                 </MotionText>
@@ -196,45 +206,27 @@ function Home() {
                                 >
                                     <Button
                                         as="a"
-                                        href="/minigame"
+                                        href="#about"
                                         size="lg"
-                                        bg={buttonBgColor}
-                                        color="white"
-                                        _hover={{
-                                            bg: buttonHoverBgColor,
-                                        }}
+                                        bg={buttonBg}
+                                        color={buttonColor}
                                         fontFamily="'Press Start 2P', cursive"
                                         fontSize="sm"
                                         px={8}
                                         py={6}
+                                        _hover={{
+                                            transform: "translateY(-2px)",
+                                            boxShadow: glowColor
+                                        }}
                                         style={{
                                             textShadow: "0 0 5px rgba(255,255,255,0.5)",
                                             boxShadow: "0 0 10px rgba(79, 209, 197, 0.5)"
                                         }}
                                     >
-                                        <FormattedMessage id="home.play.game" defaultMessage="PLAY GAME" />
+                                        PRESS START
                                     </Button>
                                 </motion.div>
                             </Stack>
-
-                            <motion.div
-                                variants={pixelateAnimation}
-                                animate="animate"
-                                style={{ flex: 1, display: "flex", justifyContent: "center" }}
-                                {...floatAnimation}
-                            >
-                                <MotionImage
-                                    src={homeLogo}
-                                    alt="home pic"
-                                    height={{ base: "250px", md: "400px" }}
-                                    width="auto"
-                                    objectFit="contain"
-                                    style={{
-                                        imageRendering: "pixelated",
-                                        filter: "drop-shadow(0 0 8px rgba(79, 209, 197, 0.6))"
-                                    }}
-                                />
-                            </motion.div>
                         </Flex>
                     </motion.div>
                 </Container>
