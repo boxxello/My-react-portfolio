@@ -2,25 +2,32 @@ import React, {useState, useEffect, lazy, Suspense} from "react";
 import { IntlProvider } from 'react-intl';
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import { PreferencesProvider, usePreferences } from "./hooks/usePreferences";
-import Preloader from "./components/Pre";
-import Navbar from "./components/Navbar";
-import Home from "./components/Home/Home";
-import Footer from "./components/Footer";
 import {
     BrowserRouter,
     Routes,
     Route,
     Navigate
 } from "react-router-dom";
+
+// Components
+import Preloader from "./components/Pre";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home/Home";
+import Footer from "./components/Footer";
+
+// Styles
 import "./style.css";
 import "./App.css";
 
+// Locales
 import messages_en from './locales/en.json';
 import messages_it from './locales/it.json';
 
+// Lazy-loaded components
 const Projects = lazy(() => import("./components/Projects/Projects"));
 const About = lazy(() => import("./components/About/About"));
 const Resume = lazy(() => import("./components/Resume/Resume"));
+const MiniGame = lazy(() => import("./components/MiniGame/MiniGame"));
 
 const messages = {
     'en': messages_en,
@@ -51,6 +58,7 @@ function AppContent() {
                             <Route path="/projects" element={<Projects />} />
                             <Route path="/about" element={<About />} />
                             <Route path="/resume" element={<Resume />} />
+                            <Route path="/minigame" element={<MiniGame />} />
                             <Route path="*" element={<Navigate to="/"/>} />
                         </Routes>
                     </Suspense>

@@ -1,0 +1,260 @@
+import React from "react";
+import {
+    Container,
+    Box,
+    Flex,
+    Text,
+    Heading,
+    Image,
+    Link,
+    SimpleGrid,
+    useColorModeValue,
+    VStack,
+    Icon,
+} from "@chakra-ui/react";
+import { motion } from "framer-motion";
+import { FormattedMessage } from "react-intl";
+import Tilt from "react-parallax-tilt";
+import myImg4 from "../../Assets/avatar-5-cmp.webp";
+import {
+    AiFillGithub,
+    AiOutlineTwitter,
+    AiFillInstagram,
+} from "react-icons/ai";
+import { FaLinkedinIn } from "react-icons/fa";
+
+const MotionBox = motion(Box);
+const MotionFlex = motion(Flex);
+const MotionHeading = motion(Heading);
+const MotionText = motion(Text);
+
+function AboutMe() {
+    const purpleColor = useColorModeValue("teal.500", "teal.200");
+    const bgColor = useColorModeValue("gray.50", "gray.900");
+    const iconHoverBg = useColorModeValue("gray.200", "gray.700");
+    const glowColor = useColorModeValue("0 0 10px #4FD1C5", "0 0 10px #81E6D9");
+
+    const socialLinks = [
+        { icon: AiFillGithub, href: "https://github.com/boxxello", ariaLabel: "home.intro.social.github" },
+        { icon: AiOutlineTwitter, href: "https://twitter.com/francesco_bosso", ariaLabel: "home.intro.social.twitter" },
+        { icon: FaLinkedinIn, href: "https://linkedin.com/in/francesco-bosso-unisa", ariaLabel: "home.intro.social.linkedin" },
+        { icon: AiFillInstagram, href: "https://www.instagram.com/boxxo__/", ariaLabel: "home.intro.social.instagram" },
+    ];
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { 
+            opacity: 0,
+            y: 20,
+            filter: "blur(4px)"
+        },
+        show: { 
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            transition: {
+                type: "spring",
+                bounce: 0.4
+            }
+        }
+    };
+
+    const iconVariants = {
+        hover: {
+            scale: 1.2,
+            rotate: [0, -10, 10, -10, 0],
+            transition: {
+                duration: 0.3
+            }
+        },
+        tap: {
+            scale: 0.9
+        }
+    };
+
+    return (
+        <MotionBox
+            as="section"
+            bg={bgColor}
+            py={16}
+            id="about"
+            initial="hidden"
+            animate="show"
+            variants={containerVariants}
+            overflow="hidden"
+        >
+            <Container maxW="container.xl">
+                <MotionFlex
+                    direction={{ base: "column", md: "row" }}
+                    align="center"
+                    justify="space-between"
+                    gap={8}
+                    variants={itemVariants}
+                >
+                    <VStack
+                        flex="1"
+                        align="start"
+                        spacing={6}
+                        maxW={{ base: "100%", md: "60%" }}
+                    >
+                        <MotionHeading
+                            fontSize={{ base: "3xl", md: "4xl" }}
+                            fontWeight="bold"
+                            fontFamily="'Press Start 2P', cursive"
+                            variants={itemVariants}
+                            style={{ textShadow: glowColor }}
+                        >
+                            <FormattedMessage id="home.intro.heading" values={{
+                                highlight: (chunks) => (
+                                    <Text as="span" color={purpleColor}>
+                                        <FormattedMessage id="home.intro.heading.highlight" />
+                                    </Text>
+                                )
+                            }} />
+                        </MotionHeading>
+                        
+                        <VStack align="start" spacing={4}>
+                            <MotionText
+                                fontSize="lg"
+                                variants={itemVariants}
+                                style={{ 
+                                    fontFamily: "'Press Start 2P', cursive",
+                                    fontSize: "14px",
+                                    lineHeight: "2"
+                                }}
+                            >
+                                <FormattedMessage id="home.intro.p1" />
+                            </MotionText>
+                            
+                            <MotionText
+                                fontSize="lg"
+                                variants={itemVariants}
+                                style={{ 
+                                    fontFamily: "'Press Start 2P', cursive",
+                                    fontSize: "14px",
+                                    lineHeight: "2"
+                                }}
+                            >
+                                <FormattedMessage id="home.intro.p2" />{" "}
+                                <Text as="span" fontWeight="bold" color={purpleColor}>
+                                    <FormattedMessage id="home.intro.p2.highlight" />
+                                </Text>
+                            </MotionText>
+                            
+                            <MotionText
+                                fontSize="lg"
+                                variants={itemVariants}
+                                style={{ 
+                                    fontFamily: "'Press Start 2P', cursive",
+                                    fontSize: "14px",
+                                    lineHeight: "2"
+                                }}
+                            >
+                                <FormattedMessage id="home.intro.p3" />{" "}
+                                <Text as="span" fontWeight="bold" color={purpleColor}>
+                                    <FormattedMessage id="home.intro.p3.highlight1" />
+                                </Text>{" "}
+                                <FormattedMessage id="home.intro.p3.between" />{" "}
+                                <Text as="span" fontWeight="bold" color={purpleColor}>
+                                    <FormattedMessage id="home.intro.p3.highlight2" />
+                                </Text>
+                            </MotionText>
+                            <MotionText
+                                fontSize="lg"
+                                variants={itemVariants}
+                                style={{ 
+                                    fontFamily: "'Press Start 2P', cursive",
+                                    fontSize: "14px",
+                                    lineHeight: "2"
+                                }}
+                            >
+                                <FormattedMessage id="home.intro.p4" />
+                                <br />
+                                <Text as="span" fontWeight="bold" color={purpleColor}>
+                                    <FormattedMessage id="home.intro.p4.comment" />
+                                </Text>
+                            </MotionText>
+                        </VStack>
+
+                        <SimpleGrid columns={4} spacing={4} w="full" maxW="200px">
+                            {socialLinks.map((social, index) => (
+                                <motion.div
+                                    key={index}
+                                    variants={iconVariants}
+                                    whileHover="hover"
+                                    whileTap="tap"
+                                >
+                                    <Link
+                                        href={social.href}
+                                        isExternal
+                                        aria-label={social.ariaLabel}
+                                    >
+                                        <Box
+                                            p={3}
+                                            bg="transparent"
+                                            rounded="lg"
+                                            _hover={{ bg: iconHoverBg }}
+                                            transition="all 0.3s"
+                                            style={{
+                                                boxShadow: "0 0 10px rgba(79, 209, 197, 0.3)"
+                                            }}
+                                        >
+                                            <Icon
+                                                as={social.icon}
+                                                boxSize={6}
+                                                color={purpleColor}
+                                            />
+                                        </Box>
+                                    </Link>
+                                </motion.div>
+                            ))}
+                        </SimpleGrid>
+                    </VStack>
+
+                    <Box flex="1" maxW={{ base: "300px", md: "400px" }}>
+                        <Tilt
+                            tiltMaxAngleX={15}
+                            tiltMaxAngleY={15}
+                            perspective={3000}
+                            scale={1.05}
+                            transitionSpeed={2000}
+                            gyroscope={true}
+                        >
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{
+                                    duration: 0.5,
+                                    ease: "easeOut"
+                                }}
+                            >
+                                <Image
+                                    src={myImg4}
+                                    alt="avatar"
+                                    w="full"
+                                    h="auto"
+                                    rounded="lg"
+                                    style={{
+                                        imageRendering: "pixelated",
+                                        filter: "drop-shadow(0 0 8px rgba(79, 209, 197, 0.6))"
+                                    }}
+                                />
+                            </motion.div>
+                        </Tilt>
+                    </Box>
+                </MotionFlex>
+            </Container>
+        </MotionBox>
+    );
+}
+
+export default AboutMe;
