@@ -8,7 +8,7 @@ import MainLayout from './Layout/MainLayout';
 const Projects = lazy(() => import('./Projects/Projects'));
 const About = lazy(() => import('./About/About'));
 const Resume = lazy(() => import('./Resume/Resume'));
-const MiniGame = lazy(() => import('./MiniGame/MiniGame'));
+// const MiniGame = lazy(() => import('./MiniGame/MiniGame'));
 
 function Routes() {
     return (
@@ -19,7 +19,7 @@ function Routes() {
                     <Route path="/projects" element={<Projects />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/resume" element={<Resume />} />
-                    <Route path="/minigame" element={<MiniGame />} />
+                    {/*<Route path="/minigame" element={<MiniGame />} />*/}
                     <Route path="*" element={<Navigate to="/"/>} />
                 </RouterRoutes>
             </Suspense>
