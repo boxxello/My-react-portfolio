@@ -9,7 +9,6 @@ import {
     useColorModeValue,
     Button,
 } from "@chakra-ui/react";
-import { keyframes, css } from "@emotion/react";
 import {motion} from "framer-motion";
 import {FormattedMessage} from "react-intl";
 import Type from "./Type";
@@ -19,49 +18,6 @@ const Particle = lazy(() => import("../Particle"));
 const MotionHeading = motion(Heading);
 const MotionText = motion(Text);
 const MotionBox = motion(Box);
-
-// Define keyframes for various animations
-const glitch = css`
-  ${keyframes`
-    0% { text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
-                      0.025em 0.04em 0 #fffc00; }
-    15% { text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
-                       0.025em 0.04em 0 #fffc00; }
-    16% { text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
-                       -0.05em -0.05em 0 #fffc00; }
-    49% { text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
-                       -0.05em -0.05em 0 #fffc00; }
-    50% { text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
-                       0 -0.04em 0 #fffc00; }
-    100% { text-shadow: -0.05em 0 0 #00fffc, -0.025em -0.04em 0 #fc00ff,
-                        -0.04em -0.025em 0 #fffc00; }
-  `}
-`;
-
-const scanlines = css`
-  ${keyframes`
-    0% { background-position: 0 0; }
-    100% { background-position: 0 -100vh; }
-  `}
-`;
-
-const flicker = css`
-  ${keyframes`
-    0% { opacity: 0.9; }
-    5% { opacity: 0.85; }
-    10% { opacity: 0.9; }
-    15% { opacity: 0.85; }
-    20% { opacity: 0.9; }
-    25% { opacity: 1; }
-    30% { opacity: 0.9; }
-    35% { opacity: 0.95; }
-    40% { opacity: 0.9; }
-    45% { opacity: 0.95; }
-    50% { opacity: 0.9; }
-    55% { opacity: 0.95; }
-    60% { opacity: 1; }
-  `}
-`;
 
 function Home() {
     const textColor = useColorModeValue("gray.600", "gray.300");
@@ -99,10 +55,9 @@ function Home() {
     const buttonAnimation = {
         initial: { scale: 1 },
         hover: { 
-            scale: 1.1,
+            scale: 1.05,
             transition: {
-                duration: 0.2,
-                yoyo: Infinity
+                duration: 0.2
             }
         },
         tap: { scale: 0.95 }
@@ -116,19 +71,6 @@ function Home() {
                 bg={bgColor}
                 position="relative"
                 overflow="hidden"
-                _before={{
-                    content: '""',
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: "repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(32, 32, 32, 0.1) 2px, rgba(32, 32, 32, 0.1) 2px)",
-                    backgroundSize: "100% 4px",
-                    animation: `${scanlines} 10s linear infinite`,
-                    pointerEvents: "none",
-                    opacity: 0.3,
-                }}
             >
                 <Suspense fallback={
                     <Text fontFamily="'Press Start 2P', cursive" fontSize="sm">
@@ -157,44 +99,30 @@ function Home() {
                             <Stack spacing={8} maxW="800px">
                                 <MotionHeading
                                     as="h1"
-                                    fontSize={{ base: "4xl", md: "6xl" }}
-                                    fontFamily="'Press Start 2P', cursive"
-                                    color={headingColor}
-                                    variants={arcadeTextAnimation}
-                                    css={`animation: ${glitch} 2s infinite;`}
-                                    style={{ textShadow: glowColor }}
-                                >
-                                    <FormattedMessage id="home.welcome"/>
-                                </MotionHeading>
-
-                                <MotionHeading
-                                    as="h2"
                                     fontSize={{ base: "2xl", md: "4xl" }}
                                     fontFamily="'Press Start 2P', cursive"
                                     color={headingColor}
                                     variants={arcadeTextAnimation}
-                                    opacity={0.9}
-                                    css={`animation: ${flicker} 2s infinite;`}
                                 >
-                                    <FormattedMessage id="home.name"/>
+                                    <FormattedMessage id="home.title" />
                                 </MotionHeading>
-
-                                <MotionBox 
-                                    variants={arcadeTextAnimation}
-                                    w="full"
-                                >
-                                    <Type/>
-                                </MotionBox>
-
-                                <MotionText
+                                <MotionHeading
+                                    as="h2"
+                                    fontSize={{ base: "xl", md: "2xl" }}
+                                    fontFamily="'Press Start 2P', cursive"
                                     color={textColor}
-                                    fontSize={{ base: "lg", md: "xl" }}
                                     variants={arcadeTextAnimation}
-                                    maxW="600px"
-                                    mx="auto"
-                                    lineHeight="tall"
-                                    letterSpacing="wide"
-                                    style={{ textShadow: "0 0 8px rgba(255,255,255,0.1)" }}
+                                    mt={4}
+                                >
+                                    <Type />
+                                </MotionHeading>
+                                <MotionText
+                                    fontSize={{ base: "md", md: "lg" }}
+                                    color={textColor}
+                                    variants={arcadeTextAnimation}
+                                    textAlign="center"
+                                    maxW="2xl"
+                                    mt={6}
                                 >
                                     <FormattedMessage id="home.description"/>
                                 </MotionText>
@@ -217,10 +145,6 @@ function Home() {
                                         _hover={{
                                             transform: "translateY(-2px)",
                                             boxShadow: glowColor
-                                        }}
-                                        style={{
-                                            textShadow: "0 0 5px rgba(255,255,255,0.5)",
-                                            boxShadow: "0 0 10px rgba(79, 209, 197, 0.5)"
                                         }}
                                     >
                                         PRESS START
