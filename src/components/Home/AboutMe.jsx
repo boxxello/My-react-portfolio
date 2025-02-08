@@ -15,7 +15,7 @@ import {
 import { motion } from "framer-motion";
 import { FormattedMessage } from "react-intl";
 import Tilt from "react-parallax-tilt";
-import myImg4 from "../../Assets/avatar-5-cmp.webp";
+import myImg4 from "../../Assets/stong_fort.png";
 import {
     AiFillGithub,
     AiOutlineTwitter,
