@@ -34,12 +34,6 @@ function AboutMe() {
     const iconHoverBg = useColorModeValue("gray.200", "gray.700");
     const glowColor = useColorModeValue("0 0 10px #4FD1C5", "0 0 10px #81E6D9");
 
-    const socialLinks = [
-        { icon: AiFillGithub, href: "https://github.com/boxxello", ariaLabel: "home.intro.social.github" },
-        { icon: AiOutlineTwitter, href: "https://twitter.com/francesco_bosso", ariaLabel: "home.intro.social.twitter" },
-        { icon: FaLinkedinIn, href: "https://linkedin.com/in/francesco-bosso-unisa", ariaLabel: "home.intro.social.linkedin" },
-        { icon: AiFillInstagram, href: "https://www.instagram.com/boxxo__/", ariaLabel: "home.intro.social.instagram" },
-    ];
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -185,39 +179,6 @@ function AboutMe() {
                             </MotionText>
                         </VStack>
 
-                        <SimpleGrid columns={4} spacing={4} w="full" maxW="200px">
-                            {socialLinks.map((social, index) => (
-                                <motion.div
-                                    key={index}
-                                    variants={iconVariants}
-                                    whileHover="hover"
-                                    whileTap="tap"
-                                >
-                                    <Link
-                                        href={social.href}
-                                        isExternal
-                                        aria-label={social.ariaLabel}
-                                    >
-                                        <Box
-                                            p={3}
-                                            bg="transparent"
-                                            rounded="lg"
-                                            _hover={{ bg: iconHoverBg }}
-                                            transition="all 0.3s"
-                                            style={{
-                                                boxShadow: "0 0 10px rgba(79, 209, 197, 0.3)"
-                                            }}
-                                        >
-                                            <Icon
-                                                as={social.icon}
-                                                boxSize={6}
-                                                color={purpleColor}
-                                            />
-                                        </Box>
-                                    </Link>
-                                </motion.div>
-                            ))}
-                        </SimpleGrid>
                     </VStack>
 
                     <Box flex="1" maxW={{ base: "300px", md: "400px" }}>
