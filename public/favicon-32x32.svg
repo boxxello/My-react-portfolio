@@ -1,12 +1,12 @@
-<svg width="600" height="200" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
-    <!-- Define a gradient and neon filter for a retro, glowing effect -->
+<svg width="150" height="50" viewBox="0 0 150 50" xmlns="http://www.w3.org/2000/svg">
+    <!-- Define a gradient and a subtle neon filter -->
     <defs>
-        <linearGradient id="text-gradient" x1="0" y1="0" x2="1" y2="0">
+        <linearGradient id="grad" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stop-color="#ffffff" />
             <stop offset="100%" stop-color="#00f9ff" />
         </linearGradient>
-        <filter id="neon" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur" />
+        <filter id="neon">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur" />
             <feMerge>
                 <feMergeNode in="blur" />
                 <feMergeNode in="SourceGraphic" />
@@ -14,13 +14,12 @@
         </filter>
     </defs>
 
-    <!-- The background is left transparent so that your arcade teal site background shows through -->
+    <!-- Transparent background so your arcade teal shows through -->
     <rect width="100%" height="100%" fill="none" />
 
-    <!-- Main text: "boxxo.is()" rendered in a monospaced, code-like style with neon glow -->
+    <!-- Minimalist text: ".()" -->
     <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
-          font-family="'Courier New', Courier, monospace"
-          font-size="64" fill="url(#text-gradient)" filter="url(#neon)">
-        boxxo.is()
+          font-family="monospace" font-size="24" fill="url(#grad)" filter="url(#neon)">
+        .()
     </text>
 </svg>
