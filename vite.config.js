@@ -72,15 +72,19 @@ export default defineConfig({
     build: {
         outDir: 'dist',
         assetsDir: 'assets',
-        sourcemap: true,
         rollupOptions: {
             output: {
                 manualChunks: {
                     'react-pdf': ['react-pdf'],
                     'pdfjs-dist': ['pdfjs-dist'],
                 },
-            },
+                entryFileNames: '[name].[hash].js',
+                chunkFileNames: '[name].[hash].js',
+                assetFileNames: '[name].[hash].[ext]'
+            }
         },
+        manifest: true,
+        sourcemap: true
     },
     server: {
         port: 3000,
