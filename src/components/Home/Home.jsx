@@ -167,8 +167,7 @@ function Home() {
                                     fontFamily="'Press Start 2P', cursive"
                                     color={textColor}
                                     variants={arcadeTextAnimation}
-                                    style={{ 
-                                        textShadow: "0 0 8px rgba(255,255,255,0.3)",
+                                    style={{
                                         fontSize: "14px",
                                         lineHeight: "2"
                                     }}

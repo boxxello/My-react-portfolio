@@ -29,10 +29,13 @@ const MotionHeading = motion(Heading);
 const MotionText = motion(Text);
 
 function AboutMe() {
-    const purpleColor = useColorModeValue("teal.500", "teal.200");
-    const bgColor = useColorModeValue("gray.50", "gray.900");
-    const iconHoverBg = useColorModeValue("gray.200", "gray.700");
-    const glowColor = useColorModeValue("0 0 10px #4FD1C5", "0 0 10px #81E6D9");
+    const purpleColor = useColorModeValue("teal.600", "teal.300");
+    const bgColor = useColorModeValue("gray.50", "rgba(26, 32, 44, 0.95)");
+    const iconHoverBg = useColorModeValue("teal.50", "rgba(129, 230, 217, 0.2)");
+    const glowColor = useColorModeValue(
+        "0 0 8px rgba(79, 209, 197, 0.3)",
+        "0 0 12px rgba(129, 230, 217, 0.4)"
+    );
 
 
     const containerVariants = {
@@ -85,6 +88,10 @@ function AboutMe() {
             animate="show"
             variants={containerVariants}
             overflow="hidden"
+            boxShadow={useColorModeValue(
+                "inset 0 0 30px rgba(79, 209, 197, 0.1)",
+                "inset 0 0 30px rgba(26, 32, 44, 0.3)"
+            )}
         >
             <Container maxW="container.xl">
                 <MotionFlex
