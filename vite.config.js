@@ -19,7 +19,7 @@ export default defineConfig({
         include: /\.[jt]sx?$/,
         exclude: /node_modules/
     },
-    base: '/',
+    base: './',
     optimizeDeps: {
         esbuildOptions: {
             loader: {
