@@ -1,128 +1,152 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import {
     Container,
-    Stack,
-    Button,
     Box,
     useColorModeValue,
+    Button,
+    VStack,
     Text,
-    Center,
-    Spinner,
+    Link,
+    Flex,
 } from "@chakra-ui/react";
-import { AiOutlineDownload } from "react-icons/ai";
-import "react-pdf/dist/esm/Page/AnnotationLayer.css";
-import "react-pdf/dist/esm/Page/TextLayer.css";
-import { Document, Page, pdfjs } from "react-pdf";
+import { motion } from "framer-motion";
+import { FormattedMessage } from "react-intl";
+import { FaDownload } from "react-icons/fa";
 import Particle from "@/components/Particle.jsx";
-
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
-
-const resumeLink = "https://raw.githubusercontent.com/boxxello/My-react-portfolio/master/public/Resume_Francesco_Bosso.pdf";
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
+import { Document, Page, pdfjs } from 'react-pdf';
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+// Set worker
 const resumePath = "/assets/Resume_Francesco_Bosso.pdf";
 
 function Resume() {
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
-    const [scale, setScale] = useState(1.7);
     const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const handleResize = () => {
-            const width = window.innerWidth;
-            setScale(width > 786 ? 1.7 : 0.6);
-        };
+    const bgColor = useColorModeValue("gray.50", "gray.900");
+    const buttonColorScheme = useColorModeValue("teal", "teal");
 
-        handleResize(); // Set initial scale
-        window.addEventListener('resize', handleResize);
 
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
-    const onDocumentLoadSuccess = ({ numPages }) => {
+    function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
         setIsLoading(false);
-        setError(null);
-    };
+    }
 
-    const onDocumentLoadError = (error) => {
+    function onDocumentLoadError(error) {
         console.error('Error loading PDF:', error);
-        setError('Failed to load PDF. Please try again later.');
         setIsLoading(false);
+    }
+
+    const containerAnimation = {
+        hidden: { opacity: 0, y: 20 },
+        show: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.5
+            }
+        }
     };
 
     return (
-        <Box minH="100vh" bg={useColorModeValue('gray.50', 'gray.900')}>
-            <Container maxW="container.xl" py={10}>
-                <Suspense fallback={<Center h="100vh"><Spinner size="xl" /></Center>}>
-                    <Particle />
-                </Suspense>
-
-                <Stack spacing={8} align="center">
-                    <Box
-                        w="full"
-                        bg={useColorModeValue('white', 'gray.800')}
-                        rounded="lg"
-                        p={6}
-                        textAlign="center"
-                        pos="relative"
-                    >
-                        {isLoading && (
-                            <Center py={10}>
-                                <Spinner size="xl" />
-                            </Center>
-                        )}
-
-                        {error && (
-                            <Center py={10}>
-                                <Text color="red.500">{error}</Text>
-                            </Center>
-                        )}
-
-                        <Document
-                            file={resumeLink}
-                            onLoadSuccess={onDocumentLoadSuccess}
-                            onLoadError={onDocumentLoadError}
-                            loading={
-                                <Center py={10}>
-                                    <Spinner size="xl" />
-                                </Center>
-                            }
+        <Box
+            as="section"
+            minH="100vh"
+            bg={bgColor}
+            py={16}
+            position="relative"
+            overflow="hidden"
+        >
+            <Particle />
+            <Container maxW="container.xl" position="relative" zIndex={1}>
+                <motion.div
+                    initial="hidden"
+                    animate="show"
+                    variants={containerAnimation}
+                >
+                    <VStack spacing={8} align="center">
+                        <Flex
+                            direction="column"
+                            align="center"
+                            w="100%"
+                            maxW="800px"
+                            p={4}
+                            borderRadius="lg"
+                            bg={useColorModeValue("white", "gray.800")}
+                            boxShadow="xl"
                         >
-                            <Page
-                                pageNumber={pageNumber}
-                                scale={scale}
-                                renderTextLayer={true}
-                                renderAnnotationLayer={true}
-                            />
-                        </Document>
+                            <Button
+                                as={Link}
+                                href={resumePath}
+                                download="Resume_Francesco_Bosso.pdf"
+                                colorScheme={buttonColorScheme}
+                                size="lg"
+                                mb={8}
+                                leftIcon={<FaDownload />}
+                                _hover={{
+                                    transform: "scale(1.05)",
+                                    textDecoration: "none"
+                                }}
+                            >
+                                <FormattedMessage id="resume.download" defaultMessage="Download Resume" />
+                            </Button>
 
-                        {!isLoading && !error && (
-                            <Text mt={4} color={useColorModeValue('gray.600', 'gray.400')}>
-                                Page {pageNumber} of {numPages}
-                            </Text>
-                        )}
-                    </Box>
-
-                    <Button
-                        leftIcon={<AiOutlineDownload />}
-                        colorScheme="teal"
-                        size="lg"
-                        as="a"
-                        href={resumePath}
-                        target="_blank"
-                        download
-                        _hover={{
-                            transform: 'translateY(-2px)',
-                            boxShadow: 'lg',
-                        }}
-                        transition="all 0.2s"
-                    >
-                        Download CV
-                    </Button>
-                </Stack>
+                            <Box
+                                w="100%"
+                                overflow="auto"
+                                css={{
+                                    "&::-webkit-scrollbar": {
+                                        width: "4px",
+                                    },
+                                    "&::-webkit-scrollbar-track": {
+                                        width: "6px",
+                                    },
+                                    "&::-webkit-scrollbar-thumb": {
+                                        background: useColorModeValue("gray.300", "gray.600"),
+                                        borderRadius: "24px",
+                                    },
+                                }}
+                            >
+                                <Document
+                                    file={resumePath}
+                                    onLoadSuccess={onDocumentLoadSuccess}
+                                    onLoadError={onDocumentLoadError}
+                                    loading={
+                                        <Text textAlign="center" py={4}>
+                                            <FormattedMessage id="resume.loading" defaultMessage="Loading PDF..." />
+                                        </Text>
+                                    }
+                                    error={
+                                        <Text textAlign="center" py={4} color="red.500">
+                                            <FormattedMessage id="resume.error" defaultMessage="Error loading PDF. Please try downloading instead." />
+                                        </Text>
+                                    }
+                                >
+                                    <Page
+                                        pageNumber={pageNumber}
+                                        width={Math.min(800, window.innerWidth - 32)}
+                                        renderTextLayer={true}
+                                        renderAnnotationLayer={true}
+                                    />
+                                </Document>
+                                {numPages && (
+                                    <Text textAlign="center" mt={4}>
+                                        <FormattedMessage
+                                            id="resume.pageInfo"
+                                            defaultMessage="Page {current} of {total}"
+                                            values={{
+                                                current: pageNumber,
+                                                total: numPages
+                                            }}
+                                        />
+                                    </Text>
+                                )}
+                            </Box>
+                        </Flex>
+                    </VStack>
+                </motion.div>
             </Container>
         </Box>
     );
