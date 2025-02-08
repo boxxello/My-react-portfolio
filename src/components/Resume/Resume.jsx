@@ -12,111 +12,116 @@ import {
 import { AiOutlineDownload } from "react-icons/ai";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
-
 import { Document, Page, pdfjs } from "react-pdf";
-import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
+import Particle from "@/components/Particle.jsx";
 
-pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
+const resumeLink = "https://raw.githubusercontent.com/boxxello/My-react-portfolio/master/public/Resume_Francesco_Bosso.pdf";
 const resumePath = "/assets/Resume_Francesco_Bosso.pdf";
 
 function Resume() {
-    const [width, setWidth] = useState(window.innerWidth);
     const [numPages, setNumPages] = useState(null);
-    const [pageNumber] = useState(1);
+    const [pageNumber, setPageNumber] = useState(1);
+    const [scale, setScale] = useState(1.7);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const bgColor = useColorModeValue("gray.50", "gray.900");
-    const pdfBgColor = useColorModeValue("white", "gray.800");
-
     useEffect(() => {
-        const setDimension = () => {
-            setWidth(window.innerWidth);
+        const handleResize = () => {
+            const width = window.innerWidth;
+            setScale(width > 786 ? 1.7 : 0.6);
         };
 
-        window.addEventListener("resize", setDimension);
-        return () => window.removeEventListener("resize", setDimension);
+        handleResize(); // Set initial scale
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
     }, []);
 
-    function onDocumentLoadSuccess({ numPages }) {
+    const onDocumentLoadSuccess = ({ numPages }) => {
         setNumPages(numPages);
         setIsLoading(false);
         setError(null);
-        console.log("PDF loaded successfully!");
-    }
+    };
 
-    function onDocumentLoadError(error) {
-        setError(error.message);
+    const onDocumentLoadError = (error) => {
+        console.error('Error loading PDF:', error);
+        setError('Failed to load PDF. Please try again later.');
         setIsLoading(false);
-        console.error("Error loading PDF:", error.message);
-    }
-
-    function renderPDFContent() {
-        const scale = width > 786 ? 1.7 : 0.6;
-        return <Page pageNumber={pageNumber} scale={scale} />;
-    }
+    };
 
     return (
-        <Box minH="100vh" bg={bgColor} pt={20} pb={10}>
-            <Container maxW="container.xl">
-                <Suspense
-                    fallback={
-                        <Center h="100vh">
-                            <Spinner size="xl" color="teal.500" />
-                        </Center>
-                    }
-                >
+        <Box minH="100vh" bg={useColorModeValue('gray.50', 'gray.900')}>
+            <Container maxW="container.xl" py={10}>
+                <Suspense fallback={<Center h="100vh"><Spinner size="xl" /></Center>}>
                     <Particle />
                 </Suspense>
 
                 <Stack spacing={8} align="center">
+                    <Box
+                        w="full"
+                        bg={useColorModeValue('white', 'gray.800')}
+                        rounded="lg"
+                        p={6}
+                        textAlign="center"
+                        pos="relative"
+                    >
+                        {isLoading && (
+                            <Center py={10}>
+                                <Spinner size="xl" />
+                            </Center>
+                        )}
+
+                        {error && (
+                            <Center py={10}>
+                                <Text color="red.500">{error}</Text>
+                            </Center>
+                        )}
+
+                        <Document
+                            file={resumeLink}
+                            onLoadSuccess={onDocumentLoadSuccess}
+                            onLoadError={onDocumentLoadError}
+                            loading={
+                                <Center py={10}>
+                                    <Spinner size="xl" />
+                                </Center>
+                            }
+                        >
+                            <Page
+                                pageNumber={pageNumber}
+                                scale={scale}
+                                renderTextLayer={true}
+                                renderAnnotationLayer={true}
+                            />
+                        </Document>
+
+                        {!isLoading && !error && (
+                            <Text mt={4} color={useColorModeValue('gray.600', 'gray.400')}>
+                                Page {pageNumber} of {numPages}
+                            </Text>
+                        )}
+                    </Box>
+
                     <Button
-                        as="a"
-                        href="/Resume_Francesco_Bosso.pdf"
-                        target="_blank"
+                        leftIcon={<AiOutlineDownload />}
                         colorScheme="teal"
                         size="lg"
-                        leftIcon={<AiOutlineDownload />}
+                        as="a"
+                        href={resumePath}
+                        target="_blank"
+                        download
                         _hover={{
-                            transform: "translateY(-2px)",
-                            boxShadow: "lg",
+                            transform: 'translateY(-2px)',
+                            boxShadow: 'lg',
                         }}
-                        transition="all 0.3s"
+                        transition="all 0.2s"
                     >
                         Download CV
                     </Button>
-
-                    <Box
-                        w="100%"
-                        display="flex"
-                        justifyContent="center"
-                        overflow="auto"
-                        bg={pdfBgColor}
-                        p={4}
-                        borderRadius="lg"
-                        boxShadow="md"
-                        position="relative"
-                    >
-                        {isLoading && (
-                            <Center position="absolute" top="50%" left="50%" transform="translate(-50%, -50%)">
-                                <Spinner size="xl" color="teal.500" />
-                            </Center>
-                        )}
-                        {error && (
-                            <Center position="absolute" top="50%" left="50%" transform="translate(-50%, -50%)">
-                                <Text color="red.500">Error loading PDF: {error}</Text>
-                            </Center>
-                        )}
-                        <Document
-                            file={resumePath}
-                            onLoadSuccess={onDocumentLoadSuccess}
-                            onLoadError={onDocumentLoadError}
-                            loading={null}
-                        >
-                            {renderPDFContent()}
-                        </Document>
-                    </Box>
                 </Stack>
             </Container>
         </Box>
