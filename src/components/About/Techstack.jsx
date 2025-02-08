@@ -18,9 +18,9 @@ import {
     SiMicrosoftsqlserver,
     SiTypescript,
     SiRedux,
-    SiNestjs,
     SiExpress,
 } from "react-icons/si";
+//import all
 import { FormattedMessage } from "react-intl";
 
 const MotionBox = motion(Box);
@@ -42,8 +42,8 @@ function Techstack() {
         { icon: DiPython, name: "Python" },
         { icon: DiDjango, name: "Django" },
         { icon: SiCsharp, name: "C#" },
+
         { icon: SiDotnet, name: ".NET Core" },
-        { icon: SiNestjs, name: "NestJS" },
         { icon: SiExpress, name: "Express" },
         
         // Databases

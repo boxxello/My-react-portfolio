@@ -17,6 +17,7 @@ import Github from "./Github";
 
 const MotionHeading = motion(Heading);
 const MotionText = motion(Text);
+const MotionBox = motion(Box);
 
 function About() {
     const headingColor = useColorModeValue("teal.600", "teal.200");
@@ -80,60 +81,59 @@ function About() {
                             </MotionText>
                         </VStack>
 
-                        <Box as={motion.div} variants={itemAnimation}>
-                            <AboutCard />
-                        </Box>
+                        <VStack spacing={12} w="full">
+                            <MotionBox variants={itemAnimation}>
+                                <AboutCard />
+                            </MotionBox>
 
-                        <VStack spacing={8} as={motion.div} variants={itemAnimation}>
-                            <MotionHeading
-                                as="h2"
-                                fontSize={{ base: "xl", md: "2xl" }}
-                                fontFamily="'Press Start 2P', cursive"
-                                color={headingColor}
-                                variants={itemAnimation}
-                            >
-                                <FormattedMessage id="about.skills.professional" />
-                            </MotionHeading>
-                            <Techstack />
-                        </VStack>
+                            <MotionBox variants={itemAnimation}>
+                                <Heading
+                                    as="h2"
+                                    size="lg"
+                                    color={headingColor}
+                                    textAlign="center"
+                                    mb={8}
+                                    fontFamily="'Press Start 2P', cursive"
+                                    fontSize={{ base: "xl", md: "2xl" }}
+                                >
+                                    <FormattedMessage id="about.skills.professional" />
+                                </Heading>
+                                <Techstack />
+                            </MotionBox>
 
-                        <VStack spacing={8} as={motion.div} variants={itemAnimation}>
-                            <MotionHeading
-                                as="h2"
-                                fontSize={{ base: "xl", md: "2xl" }}
-                                fontFamily="'Press Start 2P', cursive"
-                                color={headingColor}
-                                variants={itemAnimation}
-                            >
-                                <FormattedMessage id="about.skills.tools" />
-                            </MotionHeading>
-                            <Toolstack />
-                        </VStack>
+                            <MotionBox variants={itemAnimation}>
+                                <Heading
+                                    as="h2"
+                                    size="lg"
+                                    color={headingColor}
+                                    textAlign="center"
+                                    mb={8}
+                                    fontFamily="'Press Start 2P', cursive"
+                                    fontSize={{ base: "xl", md: "2xl" }}
+                                >
+                                    <FormattedMessage id="about.skills.tools" />
+                                </Heading>
+                                <Toolstack />
+                            </MotionBox>
 
-                        <VStack spacing={8} as={motion.div} variants={itemAnimation}>
-                            <MotionHeading
-                                as="h2"
-                                fontSize={{ base: "xl", md: "2xl" }}
-                                fontFamily="'Press Start 2P', cursive"
-                                color={headingColor}
-                                variants={itemAnimation}
-                            >
-                                <FormattedMessage id="about.skills.virtualization" />
-                            </MotionHeading>
-                            <Virtualization />
-                        </VStack>
+                            <MotionBox variants={itemAnimation}>
+                                <Heading
+                                    as="h2"
+                                    size="lg"
+                                    color={headingColor}
+                                    textAlign="center"
+                                    mb={8}
+                                    fontFamily="'Press Start 2P', cursive"
+                                    fontSize={{ base: "xl", md: "2xl" }}
+                                >
+                                    <FormattedMessage id="about.skills.virtualization" />
+                                </Heading>
+                                <Virtualization />
+                            </MotionBox>
 
-                        <VStack spacing={8} as={motion.div} variants={itemAnimation}>
-                            <MotionHeading
-                                as="h2"
-                                fontSize={{ base: "xl", md: "2xl" }}
-                                fontFamily="'Press Start 2P', cursive"
-                                color={headingColor}
-                                variants={itemAnimation}
-                            >
-                                <FormattedMessage id="about.github.title" />
-                            </MotionHeading>
-                            <Github />
+                            <MotionBox variants={itemAnimation}>
+                                <Github />
+                            </MotionBox>
                         </VStack>
                     </VStack>
                 </motion.div>
