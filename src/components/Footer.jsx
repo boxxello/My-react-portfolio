@@ -38,7 +38,7 @@ function Footer() {
         {
             label: "Twitter",
             icon: <FaTwitter />,
-            href: "https://twitter.com/boxxo__",
+            href: "https://twitter.com/francesco_bosso",
         },
         {
             label: "Instagram",
