@@ -33,17 +33,17 @@ function Footer() {
         {
             label: "LinkedIn",
             icon: <FaLinkedinIn />,
-            href: "https://www.linkedin.com/in/francesco-bosso-034b15194/",
+            href: "https://www.linkedin.com/in/francesco-bosso-unisa/",
         },
         {
             label: "Twitter",
             icon: <FaTwitter />,
-            href: "https://twitter.com/FrancescoBosso8",
+            href: "https://twitter.com/boxxo__",
         },
         {
             label: "Instagram",
             icon: <FaInstagram />,
-            href: "https://www.instagram.com/francesco_bosso_/",
+            href: "https://www.instagram.com/boxxo__/",
         },
     ];
 
