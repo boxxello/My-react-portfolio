@@ -1,6 +1,6 @@
 .vscode
 .idea
-
+.env
 .venv
 /node_modules/
 *sqlite*
@@ -13,3 +13,6 @@ htmlcov/**
 .coverage
 
 /node_modules/
+
+
+
