@@ -160,10 +160,17 @@ function Home() {
                                 p={4}
                                 bg="rgba(0,0,0,0.3)"
                                 boxShadow="0 0 20px rgba(79, 209, 197, 0.3)"
+                                width="100%"
+                                maxW="600px"
+                                height={{ base: "80px", md: "100px" }}
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                overflow="hidden"
                             >
                                 <MotionHeading
                                     as="h2"
-                                    fontSize={{ base: "xl", md: "2xl" }}
+                                    width="100%"
                                     fontFamily="'Press Start 2P', cursive"
                                     color={textColor}
                                     variants={arcadeTextAnimation}
