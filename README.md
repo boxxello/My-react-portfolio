@@ -3,6 +3,8 @@
 
 This portfolio is built with React and features a unique retro gaming aesthetic, complete with arcade-style fonts, animations, and interactive elements.
 
+View live site at [box-xo.com](https://box-xo.com/)
+
 ## Project Structure
 
 ```
