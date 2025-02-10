@@ -1,4 +1,4 @@
-import React, {lazy, Suspense} from "react";
+import React, {lazy, Suspense, useEffect, useRef} from "react";
 import {
     Container,
     SimpleGrid,
@@ -10,6 +10,10 @@ import {
 import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCards";
 import {FormattedMessage} from 'react-intl';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 import captcha_eval from "../../Assets/Projects/captcha-eval-min_1.webp";
 import anticheat from "../../Assets/Projects/anticheat-test-min_1.webp";
@@ -24,6 +28,8 @@ const MotionSimpleGrid = motion(SimpleGrid);
 function Projects() {
     const bgColor = useColorModeValue("gray.50", "gray.900");
     const headingColor = useColorModeValue("teal.600", "teal.200");
+    const projectsRef = useRef(null);
+    const gridRef = useRef(null);
 
     const containerAnimation = {
         hidden: { opacity: 0 },
@@ -37,10 +43,11 @@ function Projects() {
     };
 
     const itemAnimation = {
-        hidden: { opacity: 0, y: 20 },
+        hidden: { opacity: 0, y: 20, scale: 0.9 },
         show: {
             opacity: 1,
             y: 0,
+            scale: 1,
             transition: {
                 duration: 0.5,
                 ease: "easeOut"
@@ -48,32 +55,71 @@ function Projects() {
         }
     };
 
-    return (
-        <Box
-            as="section"
-            minH="100vh"
-            bg={bgColor}
-            py={20}
-        >
-            <Container maxW="container.xl">
-                <Suspense fallback={
-                    <Text fontFamily="'Press Start 2P', cursive" fontSize="sm">
-                        <FormattedMessage id="home.loading" />
-                    </Text>
-                }>
-                    <Particle/>
-                </Suspense>
+    useEffect(() => {
+        // Animate project cards on component mount
+        const projectCards = gridRef.current.children;
+        Array.from(projectCards).forEach((card, index) => {
+            gsap.fromTo(card,
+                {
+                    opacity: 0,
+                    y: 30,
+                    scale: 0.95,
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.5,
+                    ease: "power2.out",
+                    delay: 0.3 + (index * 0.15),
+                }
+            );
+        });
 
+        // Heading animation
+        const heading = document.querySelector('.projects-heading');
+        gsap.fromTo(heading,
+            {
+                opacity: 0,
+                y: -20,
+            },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                ease: "power2.out",
+            }
+        );
+
+    }, []);
+
+    return (
+        <Box 
+            position="relative" 
+            bg={bgColor} 
+            py={20} 
+            overflow="hidden"
+            ref={projectsRef}
+            minH="100vh"
+            display="flex"
+            flexDirection="column"
+        >
+            <Suspense fallback={<div>Loading...</div>}>
+                <Particle />
+            </Suspense>
+
+            <Container maxW="container.xl" flex="1" display="flex" flexDirection="column">
                 <MotionHeading
+                    className="projects-heading"
                     as="h1"
                     fontSize={{ base: "2xl", md: "4xl" }}
+                    mb={16}
                     textAlign="center"
-                    mb={12}
                     color={headingColor}
-                    fontFamily="'Press Start 2P', cursive"
-                    initial="hidden"
-                    animate="show"
-                    variants={itemAnimation}
+                    sx={{
+                        fontFamily: "'Press Start 2P', cursive",
+                        letterSpacing: "2px",
+                    }}
                 >
                     <FormattedMessage id="projects.title" defaultMessage="My Recent Works" />
                 </MotionHeading>
@@ -92,12 +138,14 @@ function Projects() {
                 </Text>
 
                 <MotionSimpleGrid
+                    ref={gridRef}
                     columns={{ base: 1, md: 2, lg: 3 }}
-                    spacing={8}
-                    justifyItems="center"
-                    variants={containerAnimation}
+                    spacing={{ base: 6, md: 10 }}
                     initial="hidden"
                     animate="show"
+                    variants={containerAnimation}
+                    flex="1"
+                    alignContent="flex-start"
                 >
                     <ProjectCard
                         imgPath={bloomshare}

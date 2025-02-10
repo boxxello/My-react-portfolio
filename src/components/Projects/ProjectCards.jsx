@@ -33,7 +33,7 @@ function ProjectCards(props) {
             }
         },
         hover: {
-            scale: 1.05,
+            scale: 1.02,
             border: `2px solid ${useColorModeValue("#319795", "#81E6D9")}`,
             transition: {
                 duration: 0.2,

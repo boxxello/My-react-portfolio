@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 // Components
 import Preloader from "./components/Pre";
 import Routes from "./components/Routes";
+import CustomCursor from "./components/CustomCursor/CustomCursor";
 
 // Styles
 import "./style.css";
@@ -49,6 +50,7 @@ function App() {
     return (
         <ChakraProvider>
             <ColorModeScript initialColorMode="system" />
+            <CustomCursor />
             <PreferencesProvider>
                 <AppContent />
             </PreferencesProvider>
