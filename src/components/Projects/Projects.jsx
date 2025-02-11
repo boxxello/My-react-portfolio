@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCards";
-import {FormattedMessage} from 'react-intl';
+import {FormattedMessage, useIntl} from 'react-intl';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -25,9 +25,44 @@ const Particle = lazy(() => import("../Particle"));
 const MotionHeading = motion(Heading);
 const MotionSimpleGrid = motion(SimpleGrid);
 
+const projects = [
+    {
+        imgPath: bloomshare,
+        titleId: "projects.bloomShare.title",
+        descriptionId: "projects.bloomShare.description",
+        demoLink: "https://flowers.box-xo.com",
+        showContactButton: true,
+    },
+    {
+        imgPath: warehouse_project,
+        titleId: "projects.warehouse.title",
+        descriptionId: "projects.warehouse.description",
+        demoLink: "https://t.me/WarehouseDealsItalia",
+    },
+    {
+        imgPath: captcha_eval,
+        titleId: "projects.captcha.title",
+        descriptionId: "projects.captcha.description",
+        showContactButton: true,
+    },
+    {
+        imgPath: anticheat,
+        titleId: "projects.anticheat.title",
+        descriptionId: "projects.anticheat.description",
+        ghLink: "https://github.com/boxxello/Fivem",
+    },
+    {
+        imgPath: treedots,
+        titleId: "projects.more.title",
+        descriptionId: "projects.more.description",
+        isComingSoon: true,
+    },
+];
+
 function Projects() {
-    const bgColor = useColorModeValue("gray.50", "gray.900");
-    const headingColor = useColorModeValue("teal.600", "teal.200");
+    const intl = useIntl();
+    const bgColor = useColorModeValue("background.light", "background.dark");
+    const headingColor = useColorModeValue("primary.light", "primary.dark");
     const projectsRef = useRef(null);
     const gridRef = useRef(null);
 
@@ -75,22 +110,6 @@ function Projects() {
                 }
             );
         });
-
-        // Heading animation
-        const heading = document.querySelector('.projects-heading');
-        gsap.fromTo(heading,
-            {
-                opacity: 0,
-                y: -20,
-            },
-            {
-                opacity: 1,
-                y: 0,
-                duration: 0.5,
-                ease: "power2.out",
-            }
-        );
-
     }, []);
 
     return (
@@ -112,27 +131,26 @@ function Projects() {
                 <MotionHeading
                     className="projects-heading"
                     as="h1"
-                    fontSize={{ base: "2xl", md: "4xl" }}
+                    size="lg"
                     mb={16}
                     textAlign="center"
                     color={headingColor}
-                    sx={{
-                        fontFamily: "'Press Start 2P', cursive",
-                        letterSpacing: "2px",
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                        duration: 0.5,
+                        ease: "easeOut"
                     }}
                 >
                     <FormattedMessage id="projects.title" defaultMessage="My Recent Works" />
                 </MotionHeading>
 
                 <Text
-                    as={motion.p}
                     textAlign="center"
-                    mb={16}
-                    color={headingColor}
+                    mb={12}
                     fontSize={{ base: "sm", md: "md" }}
-                    variants={itemAnimation}
-                    initial="hidden"
-                    animate="show"
+                    maxW="container.md"
+                    mx="auto"
                 >
                     <FormattedMessage id="projects.subtitle" defaultMessage="Here are a few projects I've worked on recently" />
                 </Text>
@@ -147,44 +165,18 @@ function Projects() {
                     flex="1"
                     alignContent="flex-start"
                 >
-                    <ProjectCard
-                        imgPath={bloomshare}
-                        title={<FormattedMessage id="projects.bloomShare.title" defaultMessage="BloomShare" />}
-                        description={<FormattedMessage id="projects.bloomShare.description" defaultMessage="A flower website that allows users to create virtual bouquets." />}
-                        link="https://flowers.box-xo.com"
-                        showBtn={true}
-                        btn_text={<FormattedMessage id="projects.bloomShare.btn" defaultMessage="Let's bloom!" />}
-                    />
-                    <ProjectCard
-                        imgPath={warehouse_project}
-                        title={<FormattedMessage id="projects.amazon.title" defaultMessage="Amazon WareHouseDeals Italia (discontinued)" />}
-                        description={<FormattedMessage id="projects.amazon.description" defaultMessage="A scraper which allows us to check for discounts or price errors on Amazon WareHouse IT in the shortest possible time to allow Telegram channel users to buy the posted products." />}
-                        link="https://t.me/WarehouseDealsItalia"
-                        showBtn={true}
-                        btn_text={<FormattedMessage id="projects.amazon.btn" defaultMessage="Join the TG channel" />}
-                    />
-                    <ProjectCard
-                        imgPath={captcha_eval}
-                        title={<FormattedMessage id="projects.captchaSolver.title" defaultMessage="Captcha solver" />}
-                        description={<FormattedMessage id="projects.captchaSolver.description" defaultMessage="Deep learning image classification tool trained with around 5 thousand images. The model was trained using Tensorflow 2 framework and has +95% accuracy " />}
-                        link="#"
-                        showBtn={false}
-                    />
-                    <ProjectCard
-                        imgPath={anticheat}
-                        title={<FormattedMessage id="projects.clientAntiCheat.title" defaultMessage="Client AntiCheat" />}
-                        description={<FormattedMessage id="projects.clientAntiCheat.description" defaultMessage="A FiveM Anticheat client which performed a scan through regedit key files memory strings, prefetch file analysis, Fivem client process memory dumps but also allowed to have a quick look into pc specs, folders and so on." />}
-                        link="https://github.com/boxxello/Fivem"
-                        showBtn={true}
-                        btn_text={<FormattedMessage id="projects.clientAntiCheat.btn" defaultMessage="View on Github" />}
-                    />
-                    <ProjectCard
-                        imgPath={treedots}
-                        title={<FormattedMessage id="projects.moreComing.title" defaultMessage="More are coming" />}
-                        description={<FormattedMessage id="projects.moreComing.description" defaultMessage="Stay tuned!" />}
-                        link="#"
-                        showBtn={false}
-                    />
+                    {projects.map((project, index) => (
+                        <ProjectCard
+                            key={index}
+                            imgPath={project.imgPath}
+                            title={<FormattedMessage id={project.titleId} />}
+                            description={<FormattedMessage id={project.descriptionId} />}
+                            ghLink={project.ghLink}
+                            demoLink={project.demoLink}
+                            showContactButton={!project.isComingSoon && project.showContactButton}
+                            isComingSoon={project.isComingSoon}
+                        />
+                    ))}
                 </MotionSimpleGrid>
             </Container>
         </Box>
