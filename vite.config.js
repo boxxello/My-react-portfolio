@@ -48,7 +48,8 @@ export default defineConfig({
     esbuild: {
         loader: 'jsx',
         include: /\.[jt]sx?$/,
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        sourcemap: true,
     },
     base: './',
     optimizeDeps: {
@@ -61,13 +62,14 @@ export default defineConfig({
                 global: 'globalThis',
             },
         },
-        include: ['react-pdf'],
+        include: ['react-pdf', '@chakra-ui/react', 'framer-motion', '@emotion/react'],
     },
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './src'),
         },
-        extensions: ['.js', '.jsx', '.json']
+        extensions: ['.js', '.jsx', '.json'],
+        dedupe: ['@chakra-ui/react', 'framer-motion', '@emotion/react'],
     },
     build: {
         outDir: 'dist',
@@ -89,6 +91,10 @@ export default defineConfig({
     server: {
         port: 3000,
         host: true,
+        sourcemap: true,
     },
-    assetsInclude: ['**/*.pdf', '**/*.worker.js', "**/*.worker.min.mjs"]
+    assetsInclude: ['**/*.pdf', '**/*.worker.js', "**/*.worker.min.mjs"],
+    css: {
+        devSourcemap: true,
+    }
 });

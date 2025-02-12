@@ -1,4 +1,3 @@
-
 html {
     --section-background-color: linear-gradient(
             to bottom left,
@@ -58,6 +57,12 @@ canvas {
     box-sizing: border-box !important;
 
 }*/
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
 
 
 

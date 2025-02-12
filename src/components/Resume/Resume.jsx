@@ -19,33 +19,27 @@ import Particle from "@/components/Particle.jsx";
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 import { Document, Page, pdfjs } from "react-pdf";
+import { Global } from '@emotion/react';
+
 
 // Imposta il worker di PDF.js (il file deve essere presente in /public)
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
 
-// Percorso del PDF (assicurati che il file esista in /public/assets)
-const resumeLink =
-    "https://raw.githubusercontent.com/boxxello/My-react-portfolio/master/public/Resume_Francesco_Bosso.pdf";
+const resumeLink = "https://raw.githubusercontent.com/boxxello/My-react-portfolio/master/public/Resume_Francesco_Bosso.pdf";
 
 function Resume() {
+    // Group all useState hooks at the top
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
-    const [scale, setScale] = useState(1.7);
+    const [scale, setScale] = useState(1.0);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
+    
+    // Theme colors
+    const bgColor = useColorModeValue("gray.50", "gray.900");
+    const textColor = useColorModeValue("gray.600", "gray.400");
 
-    // Adatta lo scale in base alla larghezza della finestra
-    useEffect(() => {
-        const handleResize = () => {
-            const width = window.innerWidth;
-            setScale(width > 786 ? 1.7 : 0.6);
-        };
-
-        handleResize(); // Imposta lo scale iniziale
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
+    // Document handlers
     const onDocumentLoadSuccess = ({ numPages }) => {
         setNumPages(numPages);
         setIsLoading(false);
@@ -58,71 +52,183 @@ function Resume() {
         setIsLoading(false);
     };
 
-    // Varianti per animazioni arcade con Framer Motion
+    // Window resize effect
+    useEffect(() => {
+        const handleResize = () => {
+            const width = window.innerWidth;
+            // Linear interpolation function
+            const lerp = (min, max, t) => min + (max - min) * t;
+            
+            // Define scale boundaries
+            const minScale = 0.6;  // Scale at smallest width
+            const maxScale = 1.4;  // Scale at largest width
+            const minWidth = 480;  // Smallest supported width
+            const maxWidth = 1440; // Largest width before scale caps
+            
+            // Calculate normalized position between min and max width
+            const t = Math.max(0, Math.min(1, (width - minWidth) / (maxWidth - minWidth)));
+            
+            // Calculate scale using linear interpolation
+            const newScale = lerp(minScale, maxScale, t);
+            
+            // Set the scale, clamped between min and max values
+            setScale(Math.max(minScale, Math.min(maxScale, newScale)));
+        };
+
+        handleResize(); // Set initial scale
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    // Animation variants
+    const containerVariant = {
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.6, ease: "easeOut" }
+        }
+    };
+
     const arcadeVariant = {
-        hidden: { opacity: 0, y: -20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { delay: 0.3, duration: 0.6, ease: "easeOut" }
+        }
     };
 
     return (
-        <Box minH="100vh" bg={useColorModeValue("gray.900", "black")}>
-            <Container maxW="container.xl" py={10}>
-                {/* Il Particle component può avere effetti in stile arcade */}
-                <Suspense fallback={<Center h="100vh"><Spinner size="xl" /></Center>}>
-                    <Particle />
-                </Suspense>
+        <Box
+            as="section"
+            minH="100vh"
+            pt={{ base: "16", md: "24" }}
+            pb={20}
+            bg={bgColor}
+        >
+            <Global
+                styles={`
+                    .pdf-page {
+                        display: flex !important;
+                        justify-content: center !important;
+                    }
+                    .pdf-page canvas {
+                        max-width: 100% !important;
+                        height: auto !important;
+                    }
+                `}
+            />
 
+            <Container maxW="container.xl" px={{ base: 4, md: 8 }}>
                 <Stack spacing={8} align="center">
                     <motion.div
-                        variants={arcadeVariant}
+                        variants={containerVariant}
                         initial="hidden"
                         animate="visible"
+                        style={{ width: "100%" }}
                     >
                         <Box
-                            w="full"
-                            bg={useColorModeValue("gray.50", "gray.800")}
-                            rounded="lg"
-                            p={6}
-                            textAlign="center"
-                            pos="relative"
-                            border="4px solid #39ff14" // bordo neon verde
-                            boxShadow="0 0 20px #39ff14"  // effetto glow neon
-                            fontFamily="'Press Start 2P', cursive" // font in stile arcade
+                            bg={useColorModeValue("white", "gray.800")}
+                            p={{ base: 4, md: 8 }}
+                            rounded="xl"
+                            shadow="2xl"
+                            w="100%"
+                            maxW={{ base: "100%", md: "100%" }}
+                            mx="auto"
+                            position="relative"
+                            _hover={{
+                                transform: "translateY(-2px)",
+                                boxShadow: useColorModeValue(
+                                    "0 4px 20px rgba(79, 209, 197, 0.2)",
+                                    "0 4px 20px rgba(129, 230, 217, 0.2)"
+                                ),
+                            }}
+                            transition="all 0.3s ease"
                         >
                             {isLoading && (
-                                <Center py={10}>
-                                    <Spinner size="xl" color="#39ff14" />
-                                </Center>
-                            )}
-
-                            {error && (
-                                <Center py={10}>
-                                    <Text color="red.500">{error}</Text>
-                                </Center>
+                                <Box
+                                    position="absolute"
+                                    inset={0}
+                                    bg={useColorModeValue("white", "gray.800")}
+                                    display="flex"
+                                    alignItems="center"
+                                    justifyContent="center"
+                                    zIndex={1}
+                                    rounded="xl"
+                                >
+                                    <motion.div
+                                        animate={{ rotate: 360 }}
+                                        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                                    >
+                                        <Spinner size="xl" color="teal.400" thickness="4px" />
+                                    </motion.div>
+                                </Box>
                             )}
 
                             <Document
                                 file={resumeLink}
                                 onLoadSuccess={onDocumentLoadSuccess}
                                 onLoadError={onDocumentLoadError}
-                                loading={
-                                    <Center py={10}>
-                                        <Spinner size="xl" color="#39ff14" />
-                                    </Center>
-                                }
+                                loading={null}
                             >
-                                <Page
-                                    pageNumber={pageNumber}
-                                    scale={scale}
-                                    renderTextLayer={true}
-                                    renderAnnotationLayer={true}
-                                />
+                                <Box
+                                    overflow="auto"
+                                    maxW="100%"
+                                    mx="auto"
+                                    minH="80vh"
+                                    display="flex"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                    sx={{
+                                        '&::-webkit-scrollbar': {
+                                            width: '8px',
+                                            height: '8px',
+                                        },
+                                        '&::-webkit-scrollbar-thumb': {
+                                            backgroundColor: 'rgba(79, 209, 197, 0.3)',
+                                            borderRadius: '4px',
+                                        },
+                                    }}
+                                >
+                                    <Center w="100%" h="100%">
+                                        <Box
+                                            position="relative"
+                                            w="fit-content"
+                                            mx="auto"
+                                            bg={useColorModeValue("white", "gray.800")}
+                                            p={4}
+                                            borderRadius="xl"
+                                            boxShadow="xl"
+                                        >
+                                            <Page
+                                                pageNumber={pageNumber}
+                                                scale={scale}
+                                                renderTextLayer={true}
+                                                renderAnnotationLayer={true}
+                                                className="pdf-page"
+                                            />
+                                        </Box>
+                                    </Center>
+                                </Box>
                             </Document>
 
                             {!isLoading && !error && (
-                                <Text mt={4} color={useColorModeValue("gray.600", "gray.400")}>
-                                    Page {pageNumber} of {numPages}
-                                </Text>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.5 }}
+                                >
+                                    <Text
+                                        mt={4}
+                                        color={textColor}
+                                        textAlign="center"
+                                        fontFamily="'Press Start 2P', cursive"
+                                        fontSize="sm"
+                                    >
+                                        Page {pageNumber} of {numPages}
+                                    </Text>
+                                </motion.div>
                             )}
                         </Box>
                     </motion.div>
@@ -131,6 +237,8 @@ function Resume() {
                         variants={arcadeVariant}
                         initial="hidden"
                         animate="visible"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                     >
                         <Button
                             leftIcon={<AiOutlineDownload />}
@@ -142,7 +250,10 @@ function Resume() {
                             download
                             _hover={{
                                 transform: "translateY(-2px)",
-                                boxShadow: "0 0 10px #39ff14",
+                                boxShadow: "0 0 15px rgba(79, 209, 197, 0.6)",
+                            }}
+                            _active={{
+                                transform: "translateY(1px)",
                             }}
                             transition="all 0.2s"
                             fontFamily="'Press Start 2P', cursive"

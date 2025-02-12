@@ -137,7 +137,7 @@ function Home() {
                                 opacity={0.5}
                                 bgGradient="radial-gradient(circle, rgba(79, 209, 197, 0.2) 0%, transparent 70%)"
                             />
-                            
+
                             <MotionHeading
                                 fontSize={{ base: "3xl", md: "4xl" }}
                                 fontWeight="bold"
@@ -145,7 +145,7 @@ function Home() {
                                 color={headingColor}
                                 variants={arcadeTextAnimation}
                                 textAlign="center"
-                                style={{ 
+                                style={{
                                     textShadow: glowColor,
                                     letterSpacing: "2px"
                                 }}
@@ -183,9 +183,9 @@ function Home() {
                                 </MotionHeading>
                             </Box>
 
-                            <VStack 
-                                align="center" 
-                                spacing={6} 
+                            <VStack
+                                align="center"
+                                spacing={6}
                                 bg="rgba(0,0,0,0.4)"
                                 p={6}
                                 borderRadius="lg"
@@ -193,7 +193,7 @@ function Home() {
                             >
                                 <MotionText
                                     variants={arcadeTextAnimation}
-                                    style={{ 
+                                    style={{
                                         fontFamily: "'Press Start 2P', cursive",
                                         fontSize: "14px",
                                         lineHeight: "2",
@@ -205,7 +205,7 @@ function Home() {
                                     <FormattedMessage id="home.description"/>
                                 </MotionText>
 
-                                <Box 
+                                <Box
                                     mt={8}
                                     position="relative"
                                     _before={{

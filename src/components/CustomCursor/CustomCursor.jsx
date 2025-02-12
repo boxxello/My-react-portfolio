@@ -7,9 +7,16 @@ const CustomCursor = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
 
-  // Use theme colors from design system
-  const cursorColor = useColorModeValue('#4FD1C5', '#81E6D9');
-  const glowColor = useColorModeValue('rgba(79, 209, 197, 0.3)', 'rgba(129, 230, 217, 0.3)');
+  // Convert hex to rgba for animatable colors
+  const cursorColor = useColorModeValue(
+    'rgba(79, 209, 197, 1)',  // #4FD1C5 in rgba
+    'rgba(129, 230, 217, 1)'  // #81E6D9 in rgba
+  );
+  const transparentColor = 'rgba(79, 209, 197, 0)';
+  const glowColor = useColorModeValue(
+    'rgba(79, 209, 197, 0.3)',
+    'rgba(129, 230, 217, 0.3)'
+  );
 
   useEffect(() => {
     const updateMousePosition = (e) => {
@@ -88,20 +95,23 @@ const CustomCursor = () => {
           x: mousePosition.x - 14,
           y: mousePosition.y - 14,
           scale: isClicking ? 0.9 : isHovering ? 1.4 : 1,
-          borderColor: isHovering ? cursorColor : 'transparent',
+          borderColor: isHovering ? cursorColor : transparentColor,
         }}
         style={{
           width: '28px',
           height: '28px',
           border: '1.5px solid',
           borderRadius: '50%',
-          transition: 'border-color 0.3s ease',
         }}
         transition={{
           type: 'spring',
           stiffness: 550,
           damping: 35,
           mass: 0.5,
+          borderColor: {
+            type: 'tween',
+            duration: 0.2
+          }
         }}
       />
 
