@@ -129,5 +129,9 @@
     "minigame.description": "Preparati per un'incredibile esperienza di gioco retrò!",
     
     "footer.copyright": " 2024 Francesco Bosso. Tutti i diritti riservati.",
-    "footer.credit": "Progettato e Sviluppato da Francesco Bosso"
+    "footer.credit": "Progettato e Sviluppato da Francesco Bosso",
+    
+    "preloader.text": "CARICAMENTO...",
+    "preloader.aria": "Caricamento contenuto, attendere prego",
+    "preloader.tooltip": "Il contenuto è in fase di caricamento"
 }

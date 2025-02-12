@@ -114,5 +114,9 @@
     "minigame.description": "Get ready for an awesome retro gaming experience!",
     
     "footer.copyright": " 2024 Francesco Bosso. All rights reserved.",
-    "footer.credit": "Designed and Developed by Francesco Bosso"
+    "footer.credit": "Designed and Developed by Francesco Bosso",
+    
+    "preloader.text": "LOADING...",
+    "preloader.aria": "Loading content, please wait",
+    "preloader.tooltip": "Content is being loaded"
 }

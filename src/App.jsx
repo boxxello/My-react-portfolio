@@ -3,6 +3,7 @@ import { IntlProvider } from 'react-intl';
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import { PreferencesProvider, usePreferences } from "./hooks/usePreferences";
 import { BrowserRouter } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 // Components
 import Preloader from "./components/Pre";
@@ -27,9 +28,21 @@ function AppContent() {
     const { language } = usePreferences();
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setLoad(false);
-        }, 1200);
+        // Show loader for minimum time to prevent flash
+        const minLoadTime = 1200;
+        const startTime = Date.now();
+
+        const handleLoad = () => {
+            const elapsedTime = Date.now() - startTime;
+            const remainingTime = Math.max(0, minLoadTime - elapsedTime);
+
+            setTimeout(() => {
+                setLoad(false);
+            }, remainingTime);
+        };
+
+        // Start timer when component mounts
+        const timer = setTimeout(handleLoad, minLoadTime);
 
         return () => clearTimeout(timer);
     }, []);
@@ -37,7 +50,9 @@ function AppContent() {
     return (
         <IntlProvider messages={messages[language]} locale={language} defaultLocale="en">
             <BrowserRouter>
-                <Preloader load={load}/>
+                <AnimatePresence mode="wait">
+                    {load && <Preloader load={load} />}
+                </AnimatePresence>
                 <div className="App" id={load ? "no-scroll" : "scroll"}>
                     <Routes />
                 </div>
