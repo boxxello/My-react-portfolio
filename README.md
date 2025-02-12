@@ -123,7 +123,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ⭐ Project Stats
 
-[![Star History Chart](https://api.star-history.com/svg?repos=box-xo/portfolio&type=Date)](https://star-history.com/#box-xo/portfolio&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=boxxello/My-react-portfolio&date)](https://star-history.com/#boxxello/My-react-portfolio)
 
 ## 📊 Project Activity
 
