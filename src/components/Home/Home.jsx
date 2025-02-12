@@ -15,6 +15,7 @@ import {FormattedMessage} from "react-intl";
 import { keyframes } from "@emotion/react";
 import Type from "./Type";
 import AboutMe from "./AboutMe";
+import { useNavigate } from "react-router-dom";
 
 const Particle = lazy(() => import("../Particle"));
 const MotionHeading = motion(Heading);
@@ -74,6 +75,8 @@ function Home() {
         },
         tap: { scale: 0.95 }
     };
+
+    const navigate = useNavigate();
 
     return (
         <Box
@@ -231,6 +234,7 @@ function Home() {
                                         py={6}
                                         fontSize="lg"
                                         fontFamily="'Press Start 2P', cursive"
+                                        onClick={() => navigate('/minigame')}
                                         _hover={{
                                             transform: "translateY(-2px)",
                                             boxShadow: "0 0 15px rgba(79, 209, 197, 0.8)"
@@ -241,7 +245,7 @@ function Home() {
                                             borderRadius: "8px"
                                         }}
                                     >
-                                        PRESS START
+                                        <FormattedMessage id="home.play.game" defaultMessage="PLAY GAME" />
                                     </Button>
                                 </Box>
                             </VStack>
