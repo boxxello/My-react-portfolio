@@ -1,4 +1,3 @@
-
 # React Portfolio - Retro Gaming Style
 
 This portfolio is built with React and features a unique retro gaming aesthetic, complete with arcade-style fonts, animations, and interactive elements.
@@ -62,3 +61,86 @@ src/
 - Framer Motion
 - React Intl (Internationalization)
 - React Parallax Tilt
+
+
+
+## 🎨 Design Guidelines
+
+### Typography
+- **Primary Font**: 'Press Start 2P' for headings and arcade elements
+- **Secondary Font**: System font stack for body text
+- **Font Sizes**: Follow 8px grid system
+
+### Colors
+- **Light Mode**
+  - Primary: Teal (#4FD1C5)
+  - Background: White/Gray (#FFFFFF/#F7FAFC)
+  - Text: Dark Gray (#2D3748)
+
+- **Dark Mode**
+  - Primary: Light Teal (#81E6D9)
+  - Background: Dark Gray (#1A202C)
+  - Text: Light Gray (#E2E8F0)
+
+### Animations
+- Smooth transitions (0.2s-0.3s)
+- Arcade-style hover effects
+- Text glow animations
+- Parallax tilt on images
+
+## 🛠️ Technologies
+
+- React 18
+- Chakra UI
+- Framer Motion
+- React Router 6
+- React Intl
+- React Parallax Tilt
+- TypeWriter Effect
+- GSAP
+- Vite
+
+## 📱 Responsive Design
+
+- Mobile-first approach
+- Breakpoints:
+  - Mobile: < 480px
+  - Tablet: 481px - 768px
+  - Desktop: > 768px
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+
+⭐ Project Stats
+
+[![Star History Chart](https://api.star-history.com/svg?repos=box-xo/portfolio&type=Date)](https://star-history.com/#box-xo/portfolio&Date)
+
+## 📊 Project Activity
+
+### Contributions
+![GitHub contributors](https://img.shields.io/github/contributors/boxxello/My-react-portfolio)
+![GitHub last commit](https://img.shields.io/github/last-commit/boxxello/My-react-portfolio)
+
+### Pull Requests & Issues
+![GitHub pull requests](https://img.shields.io/github/issues-pr/boxxello/My-react-portfolio)
+![GitHub issues](https://img.shields.io/github/issues/boxxello/My-react-portfolio)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/boxxello/My-react-portfolio)
+
+### Commit Activity
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/boxxello/My-react-portfolio)
+![GitHub commits since latest release](https://img.shields.io/github/commits-since/boxxello/My-react-portfolio/latest)
+
+### Top Contributors
+<a href="https://github.com/boxxello/My-react-portfolio/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=boxxello/My-react-portfolio" />
+</a>
