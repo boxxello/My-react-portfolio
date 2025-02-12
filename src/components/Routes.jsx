@@ -8,7 +8,7 @@ import MainLayout from './Layout/MainLayout';
 const Projects = lazy(() => import('./Projects/Projects' /* webpackChunkName: "projects" */));
 const About = lazy(() => import('./About/About' /* webpackChunkName: "about" */));
 const Resume = lazy(() => import('./Resume/Resume' /* webpackChunkName: "resume" */));
-// const MiniGame = lazy(() => import('./MiniGame/MiniGame'));
+const MiniGame = lazy(() => import('./MiniGame/MiniGame' /* webpackChunkName: "minigame" */));
 
 function Routes() {
     return (
@@ -44,7 +44,14 @@ function Routes() {
                             </Suspense>
                         } 
                     />
-                    {/*<Route path="/minigame" element={<MiniGame />} />*/}
+                    <Route 
+                        path="/minigame" 
+                        element={
+                            <Suspense fallback={<Preloader load={true} />}>
+                                <MiniGame />
+                            </Suspense>
+                        } 
+                    />
                     <Route path="*" element={<Navigate to="/"/>} />
                 </RouterRoutes>
             </Suspense>
