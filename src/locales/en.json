@@ -96,7 +96,10 @@
     "projects.buttons.contact.early": "Get Early Access",
     "projects.buttons.contact.aria": "Send an email to ask about this project",
     "projects.buttons.contact.tooltip": "Send an email to ask about this project",
+    "projects.status.live": "Live",
     "projects.status.inDevelopment": "In Development",
+    "projects.status.comingSoon": "Coming Soon",
+    "projects.status.discontinued": "Discontinued",
     
     "projects.bloomShare.title": "BloomShare",
     "projects.bloomShare.description": "A flower website that allows users to create virtual bouquets.",

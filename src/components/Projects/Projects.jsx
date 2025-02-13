@@ -32,30 +32,35 @@ const projects = [
         descriptionId: "projects.bloomShare.description",
         demoLink: "https://flowers.box-xo.com",
         showContactButton: true,
+        status: "live",
     },
     {
         imgPath: warehouse_project,
         titleId: "projects.warehouse.title",
         descriptionId: "projects.warehouse.description",
         demoLink: "https://t.me/WarehouseDealsItalia",
+        status: "live",
     },
     {
         imgPath: captcha_eval,
         titleId: "projects.captcha.title",
         descriptionId: "projects.captcha.description",
         showContactButton: true,
+        status: "inDevelopment",
     },
     {
         imgPath: anticheat,
         titleId: "projects.anticheat.title",
         descriptionId: "projects.anticheat.description",
         ghLink: "https://github.com/boxxello/Fivem",
+        status: "discontinued",
     },
     {
         imgPath: treedots,
         titleId: "projects.more.title",
         descriptionId: "projects.more.description",
         isComingSoon: true,
+        status: "comingSoon",
     },
 ];
 
@@ -175,6 +180,7 @@ function Projects() {
                             demoLink={project.demoLink}
                             showContactButton={!project.isComingSoon && project.showContactButton}
                             isComingSoon={project.isComingSoon}
+                            status={project.status}
                         />
                     ))}
                 </MotionSimpleGrid>

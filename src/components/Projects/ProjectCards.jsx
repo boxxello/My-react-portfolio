@@ -18,6 +18,13 @@ import { motion } from "framer-motion";
 
 const MotionBox = motion(Box);
 
+const ProjectStatus = {
+    LIVE: "live",
+    IN_DEVELOPMENT: "inDevelopment",
+    COMING_SOON: "comingSoon",
+    DISCONTINUED: "discontinued"
+};
+
 function ProjectCards({ 
     imgPath, 
     title, 
@@ -25,7 +32,8 @@ function ProjectCards({
     ghLink, 
     demoLink,
     showContactButton,
-    isComingSoon 
+    isComingSoon,
+    status
 }) {
     const intl = useIntl();
     const [imageLoaded, setImageLoaded] = React.useState(false);
@@ -67,10 +75,14 @@ function ProjectCards({
         base: {
             fontFamily: "'Press Start 2P', cursive",
             fontSize: "xs",
-            height: "auto",
             py: 4,
             px: 6,
             transition: "all 0.2s",
+            whiteSpace: "normal",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            textAlign: "center",
             _hover: {
                 transform: "translateY(-2px)",
                 boxShadow: "lg"
@@ -92,6 +104,37 @@ function ProjectCards({
         }
     };
 
+    const getStatusBadge = (status) => {
+        switch(status) {
+            case ProjectStatus.LIVE:
+                return {
+                    colorScheme: "green",
+                    messageId: "projects.status.live",
+                    defaultMessage: "Live"
+                };
+            case ProjectStatus.IN_DEVELOPMENT:
+                return {
+                    colorScheme: "purple",
+                    messageId: "projects.status.inDevelopment",
+                    defaultMessage: "In Development"
+                };
+            case ProjectStatus.COMING_SOON:
+                return {
+                    colorScheme: "gray",
+                    messageId: "projects.status.comingSoon",
+                    defaultMessage: "Coming Soon"
+                };
+            case ProjectStatus.DISCONTINUED:
+                return {
+                    colorScheme: "red",
+                    messageId: "projects.status.discontinued",
+                    defaultMessage: "Discontinued"
+                };
+            default:
+                return null;
+        }
+    };
+
     return (
         <MotionBox
             maxW="sm"
@@ -99,7 +142,7 @@ function ProjectCards({
             borderRadius="lg"
             overflow="hidden"
             bg={cardBg}
-            height={{ base: "auto", md: "500px" }}
+            height={{ base: "auto"}}
             display="flex"
             flexDirection="column"
             initial="rest"
@@ -139,9 +182,16 @@ function ProjectCards({
                     >
                         {title}
                     </Heading>
-                    {(!ghLink && !demoLink && !isComingSoon) && (
-                        <Badge colorScheme="purple" variant="solid" fontSize="xs">
-                            <FormattedMessage id="projects.status.inDevelopment" defaultMessage="In Development" />
+                    {status && (
+                        <Badge 
+                            colorScheme={getStatusBadge(status).colorScheme} 
+                            variant="solid" 
+                            fontSize="xs"
+                        >
+                            <FormattedMessage 
+                                id={getStatusBadge(status).messageId} 
+                                defaultMessage={getStatusBadge(status).defaultMessage} 
+                            />
                         </Badge>
                     )}
                 </Box>
@@ -154,7 +204,7 @@ function ProjectCards({
                 </Text>
                 
                 {!isComingSoon && (
-                    <VStack spacing={3} mt="auto">
+                    <VStack spacing={3} mt="auto" width="100%">
                         {demoLink && (
                             <Tooltip 
                                 label={intl.formatMessage({ 
@@ -169,7 +219,7 @@ function ProjectCards({
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     leftIcon={<Icon as={FaExternalLinkAlt} />}
-                                    width="full"
+                                    width="100%"
                                     {...buttonStyles.base}
                                     {...buttonStyles.primary}
                                     aria-label={intl.formatMessage({ id: "projects.buttons.demo.aria", defaultMessage: "View live demo of the project" })}
@@ -192,7 +242,7 @@ function ProjectCards({
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     leftIcon={<Icon as={FaGithub} />}
-                                    width="full"
+                                    width="100%"
                                     {...buttonStyles.base}
                                     {...buttonStyles.secondary}
                                     aria-label={intl.formatMessage({ id: "projects.buttons.source.aria", defaultMessage: "View project source code on GitHub" })}
@@ -212,7 +262,7 @@ function ProjectCards({
                                 <Button
                                     onClick={handleContactClick}
                                     leftIcon={<Icon as={FaEnvelope} />}
-                                    width="full"
+                                    width="100%"
                                     {...buttonStyles.base}
                                     {...(!ghLink && !demoLink ? buttonStyles.primary : buttonStyles.secondary)}
                                     _hover={{
