@@ -121,7 +121,7 @@ function Projects() {
         <Box 
             position="relative" 
             bg={bgColor} 
-            py={20} 
+            py={16}
             overflow="hidden"
             ref={projectsRef}
             minH="100vh"
@@ -136,8 +136,10 @@ function Projects() {
                 <MotionHeading
                     className="projects-heading"
                     as="h1"
-                    size="lg"
-                    mb={16}
+                    fontSize={{ base: "2xl", md: "4xl" }}
+                    fontFamily="'Press Start 2P', cursive"
+                    mb={10}
+                    mt={20}
                     textAlign="center"
                     color={headingColor}
                     initial={{ opacity: 0, y: -20 }}
