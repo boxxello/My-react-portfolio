@@ -1,6 +1,12 @@
 import { extendTheme } from '@chakra-ui/react';
 
+const config = {
+    initialColorMode: 'dark',
+    useSystemColorMode: true,
+};
+
 const theme = extendTheme({
+  config,
   fonts: {
     heading: "'Press Start 2P', cursive",
     body: "system-ui, sans-serif",

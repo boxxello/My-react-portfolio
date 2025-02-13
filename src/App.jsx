@@ -4,6 +4,7 @@ import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import { PreferencesProvider, usePreferences } from "./hooks/usePreferences";
 import { BrowserRouter } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import theme from './theme';  // Your existing theme
 
 // Components
 import Preloader from "./components/Pre";
@@ -63,8 +64,8 @@ function AppContent() {
 
 function App() {
     return (
-        <ChakraProvider>
-            <ColorModeScript initialColorMode="system" />
+        <ChakraProvider theme={theme}>
+            <ColorModeScript initialColorMode={theme.config.initialColorMode} />
             <CustomCursor />
             <PreferencesProvider>
                 <AppContent />
