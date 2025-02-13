@@ -111,7 +111,7 @@
     
     "home.play.game": "PLAY GAME",
     "minigame.title": "Bug Crusher",
-    "minigame.description": "Catch the bugs before they escape!",
+    "minigame.description": "Catch the bugs before they reach GIT production!",
     "minigame.score": "Score: {score}",
     "minigame.highscore": "High Score: {score}",
     "minigame.gameover": "Game Over",

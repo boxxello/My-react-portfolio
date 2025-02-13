@@ -126,7 +126,7 @@
     "projects.moreComing.description": "Resta sintonizzato per altri progetti interessanti!",
     "home.play.game": "GIOCA ORA",
     "minigame.title": "Acchiappa Bug",
-    "minigame.description": "Cattura i bug prima che scappino!",
+    "minigame.description": "Cattura i bug prima che vadano in produzione!",
     "minigame.score": "Punteggio: {score}",
     "minigame.highscore": "Record: {score}",
     "minigame.gameover": "Game Over",
