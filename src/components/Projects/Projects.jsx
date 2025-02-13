@@ -32,7 +32,7 @@ const projects = [
         descriptionId: "projects.bloomShare.description",
         demoLink: "https://flowers.box-xo.com",
         showContactButton: true,
-        status: "live",
+        status: "inDevelopment",
     },
     {
         imgPath: warehouse_project,
@@ -46,7 +46,7 @@ const projects = [
         titleId: "projects.captcha.title",
         descriptionId: "projects.captcha.description",
         showContactButton: true,
-        status: "inDevelopment",
+        status: "discontinued",
     },
     {
         imgPath: anticheat,
