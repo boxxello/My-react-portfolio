@@ -34,13 +34,12 @@ yarn-error.log*
 .nyc_output/
 
 # Temporary files
-*.log
+*.log.
 *.tmp
 
 # Private submodule handling
 /temp-minigame/*
 !/temp-minigame/.gitkeep
-/MiniGame/*
 # Docker
 .docker/
 docker-compose.override.yml
