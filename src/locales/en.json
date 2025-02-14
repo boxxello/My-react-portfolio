@@ -180,5 +180,13 @@
     
     "preloader.text": "LOADING...",
     "preloader.aria": "Loading content, please wait",
-    "preloader.tooltip": "Content is being loaded"
+    "preloader.tooltip": "Content is being loaded",
+    "minigame.gameover.reason.syntax": "Too many Syntax Errors escaped! ({max} allowed)",
+    "minigame.gameover.reason.runtime": "Too many Runtime Errors escaped! ({max} allowed)",
+    "minigame.gameover.reason.logic": "Too many Logic Bugs escaped! ({max} allowed)",
+    "minigame.gameover.reason.lives": "No more lives left!",
+    "minigame.stats.missed.title": "Missed Bugs",
+    "minigame.stats.missed.syntax.full": "Syntax Errors: {current}/{max}",
+    "minigame.stats.missed.runtime.full": "Runtime Errors: {current}/{max}",
+    "minigame.stats.missed.logic.full": "Logic Bugs: {current}/{max}"
 }

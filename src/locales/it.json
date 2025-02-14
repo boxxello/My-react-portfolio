@@ -195,5 +195,13 @@
     
     "preloader.text": "CARICAMENTO...",
     "preloader.aria": "Caricamento contenuto, attendere prego",
-    "preloader.tooltip": "Il contenuto è in fase di caricamento"
+    "preloader.tooltip": "Il contenuto è in fase di caricamento",
+    "minigame.gameover.reason.syntax": "Troppi Errori di Sintassi sfuggiti! ({max} consentiti)",
+    "minigame.gameover.reason.runtime": "Troppi Errori Runtime sfuggiti! ({max} consentiti)",
+    "minigame.gameover.reason.logic": "Troppi Bug Logici sfuggiti! ({max} consentiti)",
+    "minigame.gameover.reason.lives": "Nessuna vita rimasta!",
+    "minigame.stats.missed.title": "Bug Mancati",
+    "minigame.stats.missed.syntax.full": "Errori Sintassi: {current}/{max}",
+    "minigame.stats.missed.runtime.full": "Errori Runtime: {current}/{max}",
+    "minigame.stats.missed.logic.full": "Bug Logici: {current}/{max}"
 }
