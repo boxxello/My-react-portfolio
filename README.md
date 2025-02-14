@@ -16,10 +16,66 @@ src/
 │   │   └── Type.jsx    # Typing animation
 │   ├── About/          # About page components
 │   ├── Layout/         # Layout components
-│   └── Resume/         # Resume components
+│   ├── Resume/         # Resume components
+│   └── MiniGame/       # Debug Arcade Game components
+│       ├── components/ # Game UI components
+│       ├── hooks/      # Game logic hooks
+│       └── gameState.js # Game constants and state
 ├── App.jsx             # Root component
 └── Routes.jsx          # Application routing
 ```
+
+## 🎮 Debug Arcade Game
+
+The Bug crusher Arcade Game is an interactive mini-game where players catch and eliminate different types of bugs. The game features a retro arcade style with modern React implementation.
+
+### Key Features
+
+- **Real-time Bug Catching**: Players move a debug tool to catch different types of bugs
+- **Multiple Bug Types**:
+  - Syntax Errors (Red) - Fast but weak
+  - Runtime Errors (Cyan) - Medium speed and points
+  - Logic Errors (Yellow) - Slow but high value
+
+- **Power-up System**:
+  - Debug Mode - Slows all bugs
+  - TypeScript Shield - Immunity to syntax errors
+  - Django ORM Boost - Slows runtime errors
+  - Debug Glasses - Highlights logic errors
+  - Code Formatter - Clears screen
+
+- **Achievement System**:
+  - Bug Hunter - Catch total bugs
+  - Syntax Master - Perfect syntax catches
+  - Runtime Warrior - Survival time
+  - Logic Legend - Logic bug catches
+  - Clean Coder - High score
+
+- **Advanced Game Mechanics**:
+  - Combo system for consecutive catches
+  - Progressive difficulty scaling
+  - Score multipliers
+  - Life system
+  - Particle effects
+
+### Technical Implementation
+
+- **Canvas-based Rendering**: Smooth graphics with `useGameRenderer`
+- **Optimized Game Loop**: RAF-based updates with `useGameLoop`
+- **Collision Detection**: Precise hit detection with `useCollisionDetection`
+- **State Management**: Custom hooks for game state
+- **Performance Optimizations**:
+  - Memoized components
+  - RAF-based animations
+  - Batched state updates
+  - Optimized re-renders
+
+### Game Controls
+
+- **Movement**: Arrow keys or A/D
+- **Power-ups**: Spacebar
+- **Pause**: ESC key
+- **Menu Navigation**: Mouse/Touch
 
 ## Key Features
 
