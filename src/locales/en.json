@@ -196,5 +196,16 @@
     "minigame.stats.missed.syntax.full": "Syntax Errors: {current}/{max}",
     "minigame.stats.missed.runtime.full": "Runtime Errors: {current}/{max}",
     "minigame.stats.missed.logic.full": "Logic Bugs: {current}/{max}",
-    "minigame.restart.hint": "Press SPACE to play again"
+    "minigame.restart.hint": "Press SPACE to play again",
+    "home.game.title": "READY TO DEBUG?",
+    "home.game.description": "Test your debugging skills in our retro-style arcade game!",
+    "home.game.start": "START GAME",
+    "home.game.highscore": "HIGH SCORE: {score}",
+    "home.social.github": "Check my GitHub",
+    "home.social.linkedin": "Connect on LinkedIn",
+    "home.social.twitter": "Follow on Twitter",
+    "home.social.leetcode": "Challenge me on LeetCode",
+    "home.intro.description": "I'm a passionate Software Developer specializing in full-stack development with React and Django. Let's build something amazing together!",
+    "home.intro.cta": "EXPLORE MY WORK",
+    "home.scroll.hint": "Scroll to discover more"
 }

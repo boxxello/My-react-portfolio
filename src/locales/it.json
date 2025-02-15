@@ -211,5 +211,16 @@
     "minigame.stats.missed.syntax.full": "Errori Sintassi: {current}/{max}",
     "minigame.stats.missed.runtime.full": "Errori Runtime: {current}/{max}",
     "minigame.stats.missed.logic.full": "Bug Logici: {current}/{max}",
-    "minigame.restart.hint": "Premi SPAZIO per giocare ancora"
+    "minigame.restart.hint": "Premi SPAZIO per giocare ancora",
+    "home.game.title": "PRONTO A DEBUGGARE?",
+    "home.game.description": "Metti alla prova le tue abilità di debugging nel nostro gioco arcade retrò!",
+    "home.game.start": "INIZIA IL GIOCO",
+    "home.game.highscore": "RECORD: {score}",
+    "home.social.github": "Visita il mio GitHub",
+    "home.social.linkedin": "Connettiti su LinkedIn",
+    "home.social.twitter": "Seguimi su Twitter",
+    "home.social.leetcode": "Sfidami su LeetCode",
+    "home.intro.description": "Sono uno Sviluppatore Software appassionato specializzato nello sviluppo full-stack con React e Django. Costruiamo qualcosa di straordinario insieme!",
+    "home.intro.cta": "ESPLORA I MIEI LAVORI",
+    "home.scroll.hint": "Scorri per scoprire di più"
 }

@@ -10,12 +10,8 @@ import {
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { FormattedMessage } from "react-intl";
-import {
-    FaGithub,
-    FaLinkedinIn,
-    FaTwitter,
-    FaInstagram,
-} from "react-icons/fa";
+import { SOCIAL_LINKS } from "../constants/socialLinks";
+import { MOTION_VARIANTS } from "../constants/animations";
 
 const MotionIconButton = motion(IconButton);
 const MotionText = motion(Text);
@@ -24,51 +20,9 @@ function Footer() {
     const bgColor = useColorModeValue("gray.50", "gray.900");
     const textColor = useColorModeValue("gray.600", "gray.400");
 
-    const socialLinks = [
-        {
-            label: "GitHub",
-            icon: <FaGithub />,
-            href: "https://github.com/boxxello",
-        },
-        {
-            label: "LinkedIn",
-            icon: <FaLinkedinIn />,
-            href: "https://www.linkedin.com/in/francesco-bosso-unisa/",
-        },
-        {
-            label: "Twitter",
-            icon: <FaTwitter />,
-            href: "https://twitter.com/francesco_bosso",
-        },
-        {
-            label: "Instagram",
-            icon: <FaInstagram />,
-            href: "https://www.instagram.com/boxxo__/",
-        },
-    ];
-
-    const iconAnimation = {
-        rest: { scale: 1 },
-        hover: { 
-            scale: 1.2,
-            transition: {
-                duration: 0.2,
-                type: "spring",
-                stiffness: 400,
-            }
-        },
-    };
-
-    const textAnimation = {
-        rest: { y: 0 },
-        hover: { 
-            y: -2,
-            transition: {
-                duration: 0.2,
-                ease: "easeInOut",
-            }
-        },
-    };
+    const socialLinksArray = Object.values(SOCIAL_LINKS).filter(link => 
+        link.name !== "LeetCode" // Exclude LeetCode from footer
+    );
 
     return (
         <Box
@@ -89,7 +43,7 @@ function Footer() {
                     <MotionText
                         initial="rest"
                         whileHover="hover"
-                        variants={textAnimation}
+                        variants={MOTION_VARIANTS.text}
                         fontFamily="'Press Start 2P', cursive"
                         fontSize="sm"
                     >
@@ -97,19 +51,19 @@ function Footer() {
                     </MotionText>
 
                     <Stack direction="row" spacing={4}>
-                        {socialLinks.map((social) => (
+                        {socialLinksArray.map((social) => (
                             <MotionIconButton
-                                key={social.label}
+                                key={social.name}
                                 as={Link}
-                                href={social.href}
+                                href={social.url}
                                 target="_blank"
-                                aria-label={social.label}
-                                icon={social.icon}
+                                aria-label={social.ariaLabel}
+                                icon={<social.icon />}
                                 variant="ghost"
                                 size="lg"
                                 initial="rest"
                                 whileHover="hover"
-                                variants={iconAnimation}
+                                variants={MOTION_VARIANTS.icon}
                                 _hover={{
                                     color: "teal.500",
                                 }}
