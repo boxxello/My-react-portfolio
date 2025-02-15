@@ -175,11 +175,11 @@
     "minigame.stats.panel.speed": "Speed: {speed}x",
     "minigame.bugTypes": "Bug Types",
     "minigame.bugTypes.syntax": "Syntax Error",
-    "minigame.bugTypes.syntax.desc": "Fast but fragile bugs worth 100 points",
+    "minigame.bugTypes.syntax.desc": "Syntax Errors: Fast but fragile (100pts)",
     "minigame.bugTypes.runtime": "Runtime Error",
-    "minigame.bugTypes.runtime.desc": "Medium speed bugs worth 200 points",
+    "minigame.bugTypes.runtime.desc": "Runtime Errors: Medium speed, balanced (200pts)",
     "minigame.bugTypes.logic": "Logic Error",
-    "minigame.bugTypes.logic.desc": "Slow but valuable bugs worth 300 points",
+    "minigame.bugTypes.logic.desc": "Logic Errors: Slow but valuable (300pts)",
     
     "footer.copyright": " 2024 Francesco Bosso. All rights reserved.",
     "footer.credit": "Designed and Developed by Francesco Bosso",
@@ -209,5 +209,10 @@
     "home.intro.cta": "EXPLORE MY WORK",
     "home.scroll.hint": "Scroll to discover more",
     "footer.social.instagram": "Follow my creative journey on Instagram",
-    "footer.social.instagram.aria": "Visit my Instagram profile"
+    "footer.social.instagram.aria": "Visit my Instagram profile",
+    "minigame.rules.title": "Game Rules",
+    "minigame.rules.controls": "Use arrow keys or A/D to move. Space for power-ups. ESC to pause.",
+    "minigame.rules.tip.combo": "Catch same-type bugs for combo bonus!",
+    "minigame.rules.tip.powerup": "Power-ups can help with specific bug types",
+    "minigame.rules.tip.lives": "Don't let too many bugs escape!"
 }
