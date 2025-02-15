@@ -188,5 +188,6 @@
     "minigame.stats.missed.title": "Missed Bugs",
     "minigame.stats.missed.syntax.full": "Syntax Errors: {current}/{max}",
     "minigame.stats.missed.runtime.full": "Runtime Errors: {current}/{max}",
-    "minigame.stats.missed.logic.full": "Logic Bugs: {current}/{max}"
+    "minigame.stats.missed.logic.full": "Logic Bugs: {current}/{max}",
+    "minigame.restart.hint": "Press SPACE to play again"
 }

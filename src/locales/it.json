@@ -203,5 +203,6 @@
     "minigame.stats.missed.title": "Bug Mancati",
     "minigame.stats.missed.syntax.full": "Errori Sintassi: {current}/{max}",
     "minigame.stats.missed.runtime.full": "Errori Runtime: {current}/{max}",
-    "minigame.stats.missed.logic.full": "Bug Logici: {current}/{max}"
+    "minigame.stats.missed.logic.full": "Bug Logici: {current}/{max}",
+    "minigame.restart.hint": "Premi SPAZIO per giocare ancora"
 }
