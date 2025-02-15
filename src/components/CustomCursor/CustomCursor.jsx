@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Box, useColorModeValue } from '@chakra-ui/react';
+import { Box, useColorModeValue, useMediaQuery } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 
 const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
+  const [isMobile] = useMediaQuery("(max-width: 768px)");
 
   // Convert hex to rgba for animatable colors
   const cursorColor = useColorModeValue(
@@ -19,8 +20,19 @@ const CustomCursor = () => {
   );
 
   useEffect(() => {
+    // Don't initialize cursor on mobile devices
+    if (isMobile) {
+      document.body.style.cursor = 'auto';
+      return;
+    }
+
     const updateMousePosition = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      // Smoother cursor movement with lerp
+      const lerp = (start, end, factor) => start + (end - start) * factor;
+      setMousePosition(prev => ({
+        x: lerp(prev.x, e.clientX, 0.5),
+        y: lerp(prev.y, e.clientY, 0.5)
+      }));
     };
 
     const handleMouseDown = () => setIsClicking(true);
@@ -44,7 +56,7 @@ const CustomCursor = () => {
     document.addEventListener('mouseover', handleMouseOver);
     document.addEventListener('mouseout', handleMouseOut);
 
-    // Hide default cursor
+    // Hide default cursor only on desktop
     document.body.style.cursor = 'none';
 
     return () => {
@@ -55,7 +67,10 @@ const CustomCursor = () => {
       document.removeEventListener('mouseout', handleMouseOut);
       document.body.style.cursor = 'auto';
     };
-  }, []);
+  }, [isMobile]);
+
+  // Don't render custom cursor on mobile
+  if (isMobile) return null;
 
   return (
     <>
@@ -79,9 +94,9 @@ const CustomCursor = () => {
         }}
         transition={{
           type: 'spring',
-          stiffness: 750,
-          damping: 40,
-          mass: 0.5,
+          stiffness: 500, // Reduced for smoother movement
+          damping: 25,    // Adjusted for better response
+          mass: 0.2,      // Lighter for faster movement
         }}
       />
 
@@ -105,12 +120,12 @@ const CustomCursor = () => {
         }}
         transition={{
           type: 'spring',
-          stiffness: 550,
-          damping: 35,
-          mass: 0.5,
+          stiffness: 400, // Reduced for smoother movement
+          damping: 20,    // Adjusted for better response
+          mass: 0.2,      // Lighter for faster movement
           borderColor: {
             type: 'tween',
-            duration: 0.2
+            duration: 0.15 // Faster color transition
           }
         }}
       />
@@ -134,9 +149,9 @@ const CustomCursor = () => {
         }}
         transition={{
           type: 'spring',
-          stiffness: 400,
-          damping: 30,
-          mass: 0.5,
+          stiffness: 300, // Reduced for smoother movement
+          damping: 15,    // Adjusted for better response
+          mass: 0.2,      // Lighter for faster movement
         }}
       />
     </>
