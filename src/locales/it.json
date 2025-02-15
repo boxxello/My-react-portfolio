@@ -219,7 +219,10 @@
     "home.social.linkedin": "Connettiti su LinkedIn",
     "home.social.twitter": "Seguimi su Twitter",
     "home.social.leetcode": "Sfidami su LeetCode",
+    "home.social.instagram": "Seguimi su Instagram",
     "home.intro.description": "Sono uno Sviluppatore Software appassionato specializzato nello sviluppo full-stack con React e Django. Costruiamo qualcosa di straordinario insieme!",
     "home.intro.cta": "ESPLORA I MIEI LAVORI",
-    "home.scroll.hint": "Scorri per scoprire di più"
+    "home.scroll.hint": "Scorri per scoprire di più",
+    "footer.social.instagram": "Segui il mio percorso creativo su Instagram",
+    "footer.social.instagram.aria": "Visita il mio profilo Instagram"
 }

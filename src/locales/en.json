@@ -204,7 +204,10 @@
     "home.social.linkedin": "Connect on LinkedIn",
     "home.social.twitter": "Follow on Twitter",
     "home.social.leetcode": "Challenge me on LeetCode",
+    "home.social.instagram": "Follow on Instagram",
     "home.intro.description": "I'm a passionate Software Developer specializing in full-stack development with React and Django. Let's build something amazing together!",
     "home.intro.cta": "EXPLORE MY WORK",
-    "home.scroll.hint": "Scroll to discover more"
+    "home.scroll.hint": "Scroll to discover more",
+    "footer.social.instagram": "Follow my creative journey on Instagram",
+    "footer.social.instagram.aria": "Visit my Instagram profile"
 }
