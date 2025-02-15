@@ -32,8 +32,7 @@
     "home.intro.connect": "TROVAMI SU",
     "home.intro.social.github": "Visita il mio profilo GitHub",
     "home.intro.social.twitter": "Seguimi su Twitter",
-    "home.intro.social.linkedin": "Connettiti con me su LinkedIn",
-    "home.intro.social.instagram": "Seguimi su Instagram",
+    "home.intro.social.linkedin": "Connettiti su LinkedIn",
     
     "about.title": "Chi Sono",
     "about.subtitle": "Sviluppatore Full Stack e Appassionato di Tecnologia",
@@ -216,7 +215,7 @@
     "home.game.description": "Metti alla prova le tue abilità di debugging nel nostro gioco arcade retrò!",
     "home.game.start": "INIZIA IL GIOCO",
     "home.game.highscore": "RECORD: {score}",
-    "home.social.github": "Visita il mio GitHub",
+    "home.social.github": "Visita GitHub",
     "home.social.linkedin": "Connettiti su LinkedIn",
     "home.social.twitter": "Seguimi su Twitter",
     "home.social.leetcode": "Sfidami su LeetCode",
