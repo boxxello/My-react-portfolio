@@ -189,6 +189,13 @@
     "minigame.stats.panel.powerups": "Power-up Disponibili",
     "minigame.stats.panel.points": "{points} punti",
     "minigame.stats.panel.speed": "Velocità: {speed}x",
+    "minigame.bugTypes": "Tipi di Bug",
+    "minigame.bugTypes.syntax": "Errore di Sintassi",
+    "minigame.bugTypes.syntax.desc": "Bug veloci ma fragili da 100 punti",
+    "minigame.bugTypes.runtime": "Errore Runtime",
+    "minigame.bugTypes.runtime.desc": "Bug a velocità media da 200 punti",
+    "minigame.bugTypes.logic": "Errore Logico",
+    "minigame.bugTypes.logic.desc": "Bug lenti ma preziosi da 300 punti",
     
     "footer.copyright": " 2024 Francesco Bosso. Tutti i diritti riservati.",
     "footer.credit": "Progettato e Sviluppato da Francesco Bosso",
