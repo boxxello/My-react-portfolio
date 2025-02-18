@@ -1,3 +1,4 @@
 [submodule "src/components/MiniGame"]
 	path = src/components/MiniGame
 	url = git@github.com:boxxello/my-portfolio-minigame.git
+    branch = funziona-daqui
