@@ -6,6 +6,7 @@ import {
     Text,
     VStack,
     useColorModeValue,
+    useColorMode,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { FormattedMessage } from "react-intl";
@@ -20,8 +21,12 @@ const MotionText = motion(Text);
 const MotionBox = motion(Box);
 
 function About() {
-    const headingColor = useColorModeValue("teal.600", "teal.200");
-    const textColor = useColorModeValue("gray.600", "gray.300");
+    const { colorMode } = useColorMode();
+    
+    // Using theme's dark mode colors
+    const headingColor = useColorModeValue("text.dark", "text.dark");
+    const textColor = useColorModeValue("text.dark", "text.dark");
+    const sectionHeadingColor = useColorModeValue("primary.dark", "primary.dark");
 
     const containerAnimation = {
         hidden: { opacity: 0 },
@@ -51,6 +56,7 @@ function About() {
             minH="100vh"
             pt={{ base: "20", md: "32" }}
             pb={20}
+            bg={useColorModeValue("background.light", "background.dark")}
         >
             <Container maxW="container.lg">
                 <motion.div
@@ -66,6 +72,8 @@ function About() {
                                 fontFamily="'Press Start 2P', cursive"
                                 color={headingColor}
                                 variants={itemAnimation}
+                                letterSpacing="wider"
+                                textShadow="0 0 10px rgba(129, 230, 217, 0.4)"
                             >
                                 <FormattedMessage id="about.title" />
                             </MotionHeading>
@@ -76,6 +84,7 @@ function About() {
                                 textAlign="center"
                                 maxW="2xl"
                                 variants={itemAnimation}
+                                lineHeight="tall"
                             >
                                 <FormattedMessage id="about.subtitle" />
                             </MotionText>
@@ -90,11 +99,13 @@ function About() {
                                 <Heading
                                     as="h2"
                                     size="lg"
-                                    color={headingColor}
+                                    color={sectionHeadingColor}
                                     textAlign="center"
                                     mb={8}
                                     fontFamily="'Press Start 2P', cursive"
                                     fontSize={{ base: "xl", md: "2xl" }}
+                                    textShadow="0 0 10px rgba(129, 230, 217, 0.4)"
+                                    letterSpacing="wider"
                                 >
                                     <FormattedMessage id="about.skills.professional" />
                                 </Heading>
@@ -105,11 +116,13 @@ function About() {
                                 <Heading
                                     as="h2"
                                     size="lg"
-                                    color={headingColor}
+                                    color={sectionHeadingColor}
                                     textAlign="center"
                                     mb={8}
                                     fontFamily="'Press Start 2P', cursive"
                                     fontSize={{ base: "xl", md: "2xl" }}
+                                    textShadow="0 0 10px rgba(129, 230, 217, 0.4)"
+                                    letterSpacing="wider"
                                 >
                                     <FormattedMessage id="about.skills.tools" />
                                 </Heading>
@@ -120,11 +133,13 @@ function About() {
                                 <Heading
                                     as="h2"
                                     size="lg"
-                                    color={headingColor}
+                                    color={sectionHeadingColor}
                                     textAlign="center"
                                     mb={8}
                                     fontFamily="'Press Start 2P', cursive"
                                     fontSize={{ base: "xl", md: "2xl" }}
+                                    textShadow="0 0 10px rgba(129, 230, 217, 0.4)"
+                                    letterSpacing="wider"
                                 >
                                     <FormattedMessage id="about.skills.virtualization" />
                                 </Heading>

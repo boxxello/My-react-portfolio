@@ -10,8 +10,9 @@ import {
     Container,
     Button,
     Text,
+    Tooltip,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { Link as RouterLink } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { FormattedMessage } from "react-intl";
@@ -33,7 +34,7 @@ const MotionText = motion(Text);
 
 function NavbarCustom() {
     const { isOpen, onToggle, onClose } = useDisclosure();
-    const { language, setLanguage } = usePreferences();
+    const { language, setLanguage, colorMode, toggleColorMode } = usePreferences();
     const [navBackground, setNavBackground] = useState(false);
     const [hoveredItem, setHoveredItem] = useState(null);
 
@@ -141,6 +142,33 @@ function NavbarCustom() {
         );
     };
 
+    const ThemeToggle = () => (
+        <MotionBox
+            whileHover="hover"
+            variants={pixelBorderAnimation}
+        >
+            <Tooltip
+                label={colorMode === 'light' ? 'Enable Dark Mode' : 'Enable Light Mode'}
+                aria-label="Theme toggle tooltip"
+            >
+                <IconButton
+                    aria-label={colorMode === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+                    icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+                    onClick={toggleColorMode}
+                    variant="ghost"
+                    size="sm"
+                    style={{
+                        fontFamily: "'Press Start 2P', cursive",
+                        fontSize: "0.7em",
+                    }}
+                    _hover={{
+                        bg: useColorModeValue("rgba(160, 174, 192, 0.2)", "rgba(255, 255, 255, 0.1)"),
+                    }}
+                />
+            </Tooltip>
+        </MotionBox>
+    );
+
     return (
         <MotionBox
             position="fixed"
@@ -245,7 +273,10 @@ function NavbarCustom() {
                             </Button>
                         </MotionBox>
                         
-                        <LanguageSelector />
+                        <Stack direction="row" spacing={2} align="center">
+                            <ThemeToggle />
+                            <LanguageSelector />
+                        </Stack>
                     </Stack>
                 </MotionFlex>
             </Container>

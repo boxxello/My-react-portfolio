@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext, useContext } from 'react';
+import { useColorMode } from '@chakra-ui/react';
 import { getDefaultLanguage } from '../translations';
 
 const PreferencesContext = createContext();
@@ -6,12 +7,12 @@ const PreferencesContext = createContext();
 const STORAGE_KEY = 'app_preferences';
 
 const defaultPreferences = {
-  theme: 'light',
   language: getDefaultLanguage(),
   drawerOpen: false,
 };
 
 export const PreferencesProvider = ({ children }) => {
+  const { colorMode, toggleColorMode } = useColorMode();
   const [preferences, setPreferences] = useState(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
     return stored ? JSON.parse(stored) : defaultPreferences;
@@ -19,18 +20,9 @@ export const PreferencesProvider = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(preferences));
-    // Apply theme to body
-    document.body.setAttribute('data-theme', preferences.theme);
     // Apply language to html lang attribute
     document.documentElement.setAttribute('lang', preferences.language);
   }, [preferences]);
-
-  const toggleTheme = () => {
-    setPreferences(prev => ({
-      ...prev,
-      theme: prev.theme === 'light' ? 'dark' : 'light'
-    }));
-  };
 
   const setLanguage = (lang) => {
     setPreferences(prev => ({
@@ -48,7 +40,8 @@ export const PreferencesProvider = ({ children }) => {
 
   const value = {
     ...preferences,
-    toggleTheme,
+    colorMode,
+    toggleColorMode,
     setLanguage,
     toggleDrawer,
   };

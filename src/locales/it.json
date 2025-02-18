@@ -7,6 +7,9 @@
     "nav.language.en": "Inglese",
     "nav.language.it": "Italiano",
     "nav.language.select": "Seleziona Lingua",
+    "nav.language.selector.label": "Cambia lingua, lingua attuale: {current}",
+    "nav.language.selector.menu": "Seleziona una lingua",
+    "nav.language.selector.current": "lingua selezionata",
     
     "home.loading": "Caricamento...",
     "home.welcome": "Benvenuto nel mio Portfolio",
