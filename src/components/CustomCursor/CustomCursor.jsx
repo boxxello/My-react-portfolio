@@ -27,12 +27,11 @@ const CustomCursor = () => {
     }
 
     const updateMousePosition = (e) => {
-      // Smoother cursor movement with lerp
-      const lerp = (start, end, factor) => start + (end - start) * factor;
-      setMousePosition(prev => ({
-        x: lerp(prev.x, e.clientX, 0.5),
-        y: lerp(prev.y, e.clientY, 0.5)
-      }));
+      // Directly set mouse position without smoothing
+      setMousePosition({
+        x: e.clientX,
+        y: e.clientY
+      });
     };
 
     const handleMouseDown = () => setIsClicking(true);

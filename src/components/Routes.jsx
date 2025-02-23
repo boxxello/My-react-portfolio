@@ -44,14 +44,14 @@ function Routes() {
                             </Suspense>
                         } 
                     />
-                    <Route 
-                        path="/minigame" 
-                        element={
-                            <Suspense fallback={<Preloader load={true} />}>
-                                <MiniGame />
-                            </Suspense>
-                        } 
-                    />
+                    {/*<Route */}
+                    {/*    path="/minigame" */}
+                    {/*    element={*/}
+                    {/*        <Suspense fallback={<Preloader load={true} />}>*/}
+                    {/*            <MiniGame />*/}
+                    {/*        </Suspense>*/}
+                    {/*    } */}
+                    {/*/>*/}
                     <Route path="*" element={<Navigate to="/"/>} />
                 </RouterRoutes>
             </Suspense>
