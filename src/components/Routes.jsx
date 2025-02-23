@@ -8,8 +8,6 @@ import MainLayout from './Layout/MainLayout';
 const Projects = lazy(() => import('./Projects/Projects' /* webpackChunkName: "projects" */));
 const About = lazy(() => import('./About/About' /* webpackChunkName: "about" */));
 const Resume = lazy(() => import('./Resume/Resume' /* webpackChunkName: "resume" */));
-const MiniGame = lazy(() => import('./MiniGame/index' /* webpackChunkName: "minigame" */));
-
 function Routes() {
     return (
         <MainLayout>
