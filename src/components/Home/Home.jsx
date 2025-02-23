@@ -221,6 +221,19 @@ function Home() {
                                     </Text>
                                 </ScaleFade>
 
+                                {/* Call to Action Button */}
+                                <Button
+                                    onClick={() => navigate('/projects')}
+                                    colorScheme="teal"
+                                    variant="solid"
+                                    size="lg"
+                                    mt={6}
+                                    _hover={{ transform: 'scale(1.05)' }}
+                                    transition="all 0.2s"
+                                >
+                                    Discover My Projects
+                                </Button>
+
                                 {/* Typing Effect Box */}
                                 <Box
                                     border="2px solid"
@@ -285,7 +298,7 @@ function Home() {
                                     ))}
                                 </HStack>
 
-                                {/* Game CTA */}
+{/*                             
                                 <Box
                                     mt={12}
                                     p={8}
@@ -306,55 +319,7 @@ function Home() {
                                         animation: "shine 3s infinite",
                                     }}
                                 >
-                                    <VStack spacing={6}>
-                                        <Heading
-                                            fontSize={{ base: "xl", md: "2xl" }}
-                                            color={headingColor}
-                                            fontFamily="'Press Start 2P', cursive"
-                                            textAlign="center"
-                                        >
-                                            <FormattedMessage id="home.game.title" />
-                                        </Heading>
-                                        <Text
-                                            color={textColor}
-                                            fontSize="sm"
-                                            fontFamily="'Press Start 2P', cursive"
-                                            textAlign="center"
-                                        >
-                                            <FormattedMessage id="home.game.description" />
-                                        </Text>
-                                        <Button
-                                            as={motion.button}
-                                            variants={MOTION_VARIANTS.button}
-                                            whileHover="hover"
-                                            whileTap="tap"
-                                            bg={buttonBg}
-                                            color={buttonColor}
-                                            size="lg"
-                                            px={8}
-                                            py={6}
-                                            onClick={() => navigate('/minigame')}
-                                            fontFamily="'Press Start 2P', cursive"
-                                            _hover={{
-                                                transform: "translateY(-2px)",
-                                                boxShadow: "0 0 20px rgba(79, 209, 197, 0.8)"
-                                            }}
-                                        >
-                                            <FormattedMessage id="home.game.start" />
-                                        </Button>
-                                        <Badge
-                                            colorScheme="teal"
-                                            p={2}
-                                            borderRadius="md"
-                                            fontFamily="'Press Start 2P', cursive"
-                                        >
-                                            <FormattedMessage 
-                                                id="home.game.highscore" 
-                                                values={{ score: "9000" }}
-                                            />
-                                        </Badge>
-                                    </VStack>
-                                </Box>
+                                </Box> */}
 
                                 {/* Enhanced Scroll Hint */}
                                 <motion.div

@@ -10,6 +10,7 @@
     "nav.language.selector.label": "Change language, current language: {current}",
     "nav.language.selector.menu": "Select a language",
     "nav.language.selector.current": "currently selected",
+    "nav.certifications": "Certifications",
     
     "home.loading": "Loading...",
     "home.welcome": "Welcome to my Portfolio",
@@ -212,5 +213,27 @@
     "home.intro.cta": "EXPLORE MY WORK",
     "home.scroll.hint": "Scroll to discover more",
     "footer.social.instagram": "Follow my creative journey on Instagram",
-    "footer.social.instagram.aria": "Visit my Instagram profile"
+    "footer.social.instagram.aria": "Visit my Instagram profile",
+    
+    "certifications.title": "Professional Certifications",
+    "certifications.subtitle": "Validating expertise through recognized certifications",
+    "certifications.loading": "Loading certifications...",
+    "certifications.error": "Error loading certifications",
+    "certifications.empty": "No certifications found",
+    
+    "certifications.card.issuer": "Issued by {issuer}",
+    "certifications.card.obtained": "Obtained",
+    "certifications.card.expires": "Expires",
+    "certifications.card.noExpiry": "No Expiration",
+    "certifications.card.verify": "Verify Certificate",
+    "certifications.card.skills": "Skills Validated",
+    
+    "certifications.filter.all": "All Certifications",
+    "certifications.filter.active": "Active",
+    "certifications.filter.expired": "Expired",
+    
+    "certifications.categories.cloud": "Cloud Computing",
+    "certifications.categories.development": "Development",
+    "certifications.categories.security": "Security",
+    "certifications.categories.data": "Data & Analytics"
 }

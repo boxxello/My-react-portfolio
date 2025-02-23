@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import {
     Box,
     VStack,
@@ -16,6 +16,7 @@ import {
     Badge,
     Spinner,
     Center,
+    Button,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import GitHubCalendar from "react-github-calendar";
@@ -36,8 +37,9 @@ import {
     SiRust,
     SiGo,
 } from "react-icons/si";
-import { FaCode, FaStar, FaCodeBranch } from "react-icons/fa";
+import { FaCode, FaStar, FaCodeBranch, FaSync } from "react-icons/fa";
 import { githubService } from "../../services/github";
+import { ErrorBoundary } from "react-error-boundary";
 
 const MotionBox = motion(Box);
 const MotionGrid = motion(Grid);
@@ -63,6 +65,8 @@ function Github() {
     const [githubStats, setGithubStats] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [retryCount, setRetryCount] = useState(0);
+    const MAX_RETRIES = 3;
 
     const bgColor = useColorModeValue("gray.50", "gray.700");
     const borderColor = useColorModeValue("teal.500", "teal.200");
@@ -91,19 +95,32 @@ function Github() {
         const fetchStats = async () => {
             try {
                 setLoading(true);
-                const stats = await githubService.fetchUserStats();
-                setGithubStats(stats);
                 setError(null);
+                const stats = await githubService.fetchUserStats();
+                
+                // Validate the received data
+                if (!stats || typeof stats !== 'object') {
+                    throw new Error('Invalid data received from GitHub API');
+                }
+                
+                setGithubStats(stats);
             } catch (err) {
                 console.error('Error fetching GitHub stats:', err);
-                setError('Failed to load GitHub statistics');
+                setError(err.message || 'Failed to load GitHub statistics');
+                
+                // Implement retry logic
+                if (retryCount < MAX_RETRIES) {
+                    setTimeout(() => {
+                        setRetryCount(prev => prev + 1);
+                    }, 2000 * (retryCount + 1)); // Exponential backoff
+                }
             } finally {
                 setLoading(false);
             }
         };
 
         fetchStats();
-    }, []);
+    }, [retryCount]); // Add retryCount as dependency
 
     const containerAnimation = {
         hidden: { opacity: 0, y: 20 },
@@ -196,15 +213,51 @@ function Github() {
     if (error) {
         return (
             <Center p={8}>
+                <VStack spacing={4}>
+                    <Text color={errorColor} fontSize="lg">
+                        {error}
+                    </Text>
+                    {retryCount < MAX_RETRIES && (
+                        <Button
+                            colorScheme="teal"
+                            onClick={() => setRetryCount(prev => prev + 1)}
+                            leftIcon={<Icon as={FaSync} />}
+                        >
+                            <FormattedMessage id="about.github.retry" defaultMessage="Retry" />
+                        </Button>
+                    )}
+                </VStack>
+            </Center>
+        );
+    }
+
+    if (loading) {
+        return (
+            <Center p={8}>
+                <VStack spacing={4}>
+                    <Spinner size="xl" color={borderColor} thickness="4px" />
+                    <Text color={textColor} fontSize="lg" fontFamily="'Press Start 2P', cursive">
+                        <FormattedMessage id="about.github.loading" defaultMessage="Loading GitHub Stats..." />
+                    </Text>
+                </VStack>
+            </Center>
+        );
+    }
+
+    // Ensure we have valid data before rendering
+    const hasValidStats = githubStats && Object.keys(githubStats).length > 0;
+    if (!hasValidStats) {
+        return (
+            <Center p={8}>
                 <Text color={errorColor} fontSize="lg">
-                    {error}
+                    <FormattedMessage id="about.github.no.data" defaultMessage="No GitHub data available" />
                 </Text>
             </Center>
         );
     }
 
     return (
-        <VStack spacing={8} w="full">
+        <VStack spacing={{ base: 4, md: 8 }} w="full">
             <MotionGrid
                 variants={containerAnimation}
                 initial="hidden"
@@ -216,36 +269,36 @@ function Github() {
                 <StatCard
                     icon={FaCode}
                     label={<FormattedMessage id="about.github.stats.commits" />}
-                    value={githubStats?.commits ? `${Math.floor(githubStats.commits / 100) * 100}+` : '-'}
+                    value={githubStats?.commits ? `${Math.floor(githubStats.commits / 100) * 100}+` : '0'}
                     helpText={<FormattedMessage id="about.github.stats.commits.help" />}
                 />
                 <StatCard
                     icon={FaStar}
                     label={<FormattedMessage id="about.github.stats.stars" />}
-                    value={githubStats?.stars ? `${githubStats.stars}` : '-'}
+                    value={githubStats?.stars ?? '0'}
                     helpText={<FormattedMessage id="about.github.stats.stars.help" />}
                 />
                 <StatCard
                     icon={FaCodeBranch}
                     label={<FormattedMessage id="about.github.stats.repos" />}
-                    value={githubStats?.repos ? `${githubStats.repos}` : '-'}
+                    value={githubStats?.repos ?? '0'}
                     helpText={<FormattedMessage id="about.github.stats.repos.help" />}
                 />
                 <StatCard
                     icon={SiGit}
                     label={<FormattedMessage id="about.github.stats.contributions" />}
-                    value={githubStats?.contributions ? `${githubStats.contributions}+` : '-'}
+                    value={githubStats?.contributions ? `${githubStats.contributions}+` : '0'}
                     helpText={<FormattedMessage id="about.github.stats.contributions.help" />}
                 />
             </MotionGrid>
 
-            {githubStats?.languages && (
+            {githubStats?.languages && Object.keys(githubStats.languages).length > 0 && (
                 <MotionBox
                     variants={containerAnimation}
                     initial="hidden"
                     animate="show"
                     bg={bgColor}
-                    p={6}
+                    p={{ base: 4, md: 6 }}
                     rounded="lg"
                     border="2px"
                     borderColor={borderColor}
@@ -255,7 +308,7 @@ function Github() {
                     _hover={{ transform: "translateY(-5px)" }}
                 >
                     <VStack spacing={4} align="stretch">
-                        <Heading size="md" fontFamily="'Press Start 2P', cursive" fontSize="sm">
+                        <Heading size="md" fontFamily="'Press Start 2P', cursive" fontSize={{ base: "sm", md: "md" }}>
                             <FormattedMessage id="about.github.languages.title" />
                         </Heading>
                         <HStack spacing={4} flexWrap="wrap" justify="center">
@@ -272,67 +325,91 @@ function Github() {
                 </MotionBox>
             )}
 
-            <MotionBox
-                variants={containerAnimation}
-                initial="hidden"
-                animate="show"
-                bg={bgColor}
-                p={6}
-                rounded="lg"
-                border="2px"
-                borderColor={borderColor}
-                shadow="lg"
-                w="full"
-                maxW="800px"
-                mx="auto"
-                transition="transform 0.3s ease"
-                _hover={{ transform: "translateY(-5px)" }}
-                overflowX="auto"
-            >
-                <VStack spacing={4} align="stretch">
-                    <Heading size="md" fontFamily="'Press Start 2P', cursive" fontSize="sm">
-                        <FormattedMessage id="about.github.activity.title" />
-                    </Heading>
-                    <GitHubCalendar
-                        username="boxxello"
-                        blockSize={12}
-                        blockMargin={5}
-                        theme={calendarTheme}
-                        fontSize={16}
-                        style={{ width: '100%' }}
-                    />
-                </VStack>
-            </MotionBox>
+            <ErrorBoundary fallback={
+                <Text color={errorColor} fontSize="lg">
+                    <FormattedMessage id="about.github.calendar.error" defaultMessage="Failed to load GitHub calendar" />
+                </Text>
+            }>
+                <MotionBox
+                    variants={containerAnimation}
+                    initial="hidden"
+                    animate="show"
+                    bg={bgColor}
+                    p={{ base: 4, md: 6 }}
+                    rounded="lg"
+                    border="2px"
+                    borderColor={borderColor}
+                    shadow="lg"
+                    w="full"
+                    maxW="800px"
+                    mx="auto"
+                    transition="transform 0.3s ease"
+                    _hover={{ transform: "translateY(-5px)" }}
+                    overflowX="auto"
+                >
+                    <VStack spacing={4} align="stretch">
+                        <Heading size="md" fontFamily="'Press Start 2P', cursive" fontSize={{ base: "sm", md: "md" }}>
+                            <FormattedMessage id="about.github.activity.title" />
+                        </Heading>
+                        <Suspense fallback={<Spinner size="xl" />}>
+                            <GitHubCalendar
+                                username="boxxello"
+                                blockSize={12}
+                                blockMargin={5}
+                                theme={calendarTheme}
+                                fontSize={16}
+                                style={{ width: '100%' }}
+                                onError={(error) => {
+                                    console.error('GitHub Calendar Error:', error);
+                                    setError('Failed to load GitHub calendar');
+                                }}
+                            />
+                        </Suspense>
+                    </VStack>
+                </MotionBox>
+            </ErrorBoundary>
 
-            <MotionBox
-                variants={containerAnimation}
-                initial="hidden"
-                animate="show"
-                bg={bgColor}
-                p={6}
-                rounded="lg"
-                border="2px"
-                borderColor={borderColor}
-                shadow="lg"
-                w="full"
-                transition="transform 0.3s ease"
-                _hover={{ transform: "translateY(-5px)" }}
-            >
-                <VStack spacing={4} align="stretch">
-                    <Heading size="md" fontFamily="'Press Start 2P', cursive" fontSize="sm">
-                        <FormattedMessage id="about.github.streak.title" />
-                    </Heading>
-                    <Box
-                        as="iframe"
-                        src="https://github-readme-streak-stats.herokuapp.com/?user=boxxello&theme=react&hide_border=true&background=0D1117"
-                        w="100%"
-                        h="200px"
-                        border="none"
-                        overflow="hidden"
-                        loading="lazy"
-                    />
-                </VStack>
-            </MotionBox>
+            <ErrorBoundary fallback={
+                <Text color={errorColor} fontSize="lg">
+                    <FormattedMessage id="about.github.streak.error" defaultMessage="Failed to load GitHub streak stats" />
+                </Text>
+            }>
+                <MotionBox
+                    variants={containerAnimation}
+                    initial="hidden"
+                    animate="show"
+                    bg={bgColor}
+                    p={{ base: 4, md: 6 }}
+                    rounded="lg"
+                    border="2px"
+                    borderColor={borderColor}
+                    shadow="lg"
+                    w="full"
+                    transition="transform 0.3s ease"
+                    _hover={{ transform: "translateY(-5px)" }}
+                >
+                    <VStack spacing={4} align="stretch">
+                        <Heading size="md" fontFamily="'Press Start 2P', cursive" fontSize={{ base: "sm", md: "md" }}>
+                            <FormattedMessage id="about.github.streak.title" />
+                        </Heading>
+                        <Box
+                            as="iframe"
+                            src="https://github-readme-streak-stats.herokuapp.com/?user=boxxello&theme=react&hide_border=true&background=0D1117"
+                            w="100%"
+                            h="200px"
+                            border="none"
+                            overflow="hidden"
+                            loading="lazy"
+                            onLoad={() => setError(null)}
+                            onError={() => {
+                                console.error('Streak Stats Error: Failed to load iframe');
+                                setError('Failed to load GitHub streak stats');
+                            }}
+                        />
+                        {error && <Text color={errorColor} fontSize="lg">{error}</Text>}
+                    </VStack>
+                </MotionBox>
+            </ErrorBoundary>
         </VStack>
     );
 }

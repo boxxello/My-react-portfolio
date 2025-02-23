@@ -1,6 +1,7 @@
 import { useState, useEffect, createContext, useContext } from 'react';
 import { useColorMode } from '@chakra-ui/react';
 import { getDefaultLanguage } from '../translations';
+import defaultConfig from '../config'; // Import the default config
 
 const PreferencesContext = createContext();
 
@@ -9,6 +10,7 @@ const STORAGE_KEY = 'app_preferences';
 const defaultPreferences = {
   language: getDefaultLanguage(),
   drawerOpen: false,
+  fontFamily: defaultConfig.fontFamily, // Use the font from the config
 };
 
 export const PreferencesProvider = ({ children }) => {
